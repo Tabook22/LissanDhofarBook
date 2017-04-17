@@ -15,7 +15,8 @@ namespace LissanDhofar_V1.Controllers
         {
             DhofarDb db = new DhofarDb();
             List<Post> lst = db.Posts.Select(x=>x).ToList();
-            return Json(lst, JsonRequestBehavior.AllowGet);
+            int totalPosts = lst.Count();
+            return Json(new {pstLst=lst,totalPst=totalPosts }, JsonRequestBehavior.AllowGet);
         }
 
         //Adding post data

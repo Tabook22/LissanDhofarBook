@@ -28,7 +28,8 @@
     function getAllPostsToDisply() {
         getDataService.getAllPosts().then(function (response) {
 
-            $scope.posts = response.data;
+            $scope.posts = response.data.pstLst;
+            $scope.tPst = response.data.totalPst;
         }, function () {
             alert('error please check your code')
         });
