@@ -102,6 +102,7 @@
             $scope.post.post_data = "";
             $scope.post.post_img = "";
             $scope.post.post_img_title = "";
+            $scope.post.post_status = false;
             $scope.Action = 'Add';
        
     }
@@ -112,6 +113,7 @@
         $scope.post.post_data = "";
         $scope.post.post_img = "";
         $scope.post.post_img_title = "";
+        $scope.post.post_status = false;
         $scope.Action = 'Add';
     }
 }]);

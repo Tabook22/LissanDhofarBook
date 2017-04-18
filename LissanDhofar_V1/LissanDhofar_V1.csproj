@@ -147,6 +147,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\adminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\postController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1169,13 +1170,15 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\icomoon-small.ttf" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\icomoon-small.eot" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Shared\_adminLayout.cshtml" />
+    <Content Include="Views\admin\Index.cshtml" />
+    <Content Include="Views\post\postLst.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="SPA\Admin\lib\css\" />
     <Folder Include="SPA\Admin\lib\img\" />
     <Folder Include="SPA\website\" />
-    <Folder Include="Views\post\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

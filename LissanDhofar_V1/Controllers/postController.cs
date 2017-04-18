@@ -9,6 +9,11 @@ namespace LissanDhofar_V1.Controllers
 {
     public class postController : Controller
     {
+        //post page
+        public ActionResult postLst()
+        {
+            return View();
+        }
         // GET: post
         [HttpGet]
         public JsonResult getPostsLst()
@@ -70,6 +75,7 @@ namespace LissanDhofar_V1.Controllers
                     postList.post_data = post.post_data;
                     postList.post_img = post.post_img;
                     postList.post_img_title = post.post_img_title;
+                    postList.post_status = post.post_status;
                     db.SaveChanges();
                     string msg = "حتمت عملية الإضافة";
                     return Json(msg, JsonRequestBehavior.AllowGet);

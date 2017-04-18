@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="ar-om" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <!--Bootstrap-->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!--font awsome-->
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <!--Jquery-->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!--Tinymce-->
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <!--angular library-->
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-messages.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/ui-tinymce.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <!--customer javascript-->
+    <script src="~/SPA/App.js"></script>
+    <script src="~/SPA/getDataService.js"></script>
+    <script src="~/SPA/postController.js"></script>
+
+
+</head>
+<body style="margin-top:60px;">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("الرئسيه", "index", "admin")</li>
+                    <li>@Html.ActionLink("المقالات", "postLst",  "post")</li>
+                    <li>@Html.ActionLink("البريد", "msg", "contact")</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

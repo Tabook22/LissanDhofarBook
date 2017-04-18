@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "postLst";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<style>
+    .error-msgs {
+        font-weight: bold;
+        color: red;
+    }
+
+    .btnAdd {
+        background: #19a6d1;
+        border-radius: 5px;
+        color: white;
+        padding: 3px 7px;
+        cursor: pointer;
+    }
+
+    .btnRed {
+        background: red;
+        border-radius: 5px;
+        color: white;
+        padding: 3px 7px;
+        cursor: pointer;
+    }
+</style>
+<div ng-app="myApp">
+    <div ng-controller="postController">
+        <div class="row" style="margin-top:60px;">
+            <div class="col-md-8">
+                <p style="font-weight:bold;border-bottom:1px solid #ccc;">{{Action}} Post</p>
+                <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+                <form name="postForm" ng-submit="AddOrUpdatePost()" novalidate>
+                    <!-- Post Title -->
+                    <!-- Adding Conditional Classes ng-class. The way it works is ng-class="{ <class-you-want> : <expression to be evaluated > }"-->
+                    <div class="form-group" ng-class="{ 'has-error' : postForm.post_title.$invalid && !postForm.post_title.$pristine }">
+                        <label>الموضوع:</label>
+                        <input type="text" name="post_title" class="form-control" ng-model="post.post_title" required ng-minlength="10" ng-maxlength="100">
+                        <div class="error-msgs" ng-messages="postForm.post_title.$error">
+                            <p ng-message="minlength">العنوان قصير جداً</p>
+                            <p ng-message="maxlength">العنوان طويل جداً</p>
+                            <p ng-message="required">الرجاء كتابة عنوان للموضوع</p>
+                            @*<p ng-show="postForm.post_title.$invalid && !postForm.post_title.$pristine" class="help-block">الرجاء كتابة عنوان للموضوع</p>
+                                <p ng-show="postForm.post_title.$error.minlength" class="help-block">العنوان قصير جداً</p>
+                                <p ng-show="postForm.Post_title.$error.maxlength" class="help-block">العنوان طويل جداً</p>*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" ng-model="post.post_status" name="pstatus" ng-value="0" />نشر<br />
+                        <input type="radio" ng-model="post.post_status" name="pstatus" ng-value="1" />مسودة<br />
+                    </div>
+                    @*<div ng-init="options = [{id:'resTrue',value:0,label:'draft'},{id:'resFalse',value:1,label:'publish'}]">
+                        <div ng-repeat="option in options" 
+                             class="rdio rdio-primary">
+                            <input type="radio"
+                                   name="dd"
+                                   id="{{option.id}}"
+                                   ng-value="option.value"
+                                   ng-model="post.post_status">
+                            <label for="{{option.id}}" class="pull-left">{{option.label}}</label>
+                        </div>
+                    </div>*@
+                    <!-- Post Details-->
+                    <textarea ui-tinymce="tinymceOptions" ng-model="post.post_data"></textarea>
+
+                    <!-- Post Main Image -->
+                    <div class="form-group">
+                        <label>الصورة الرئيسية:</label>
+                        <input type="text" name="post_img" ng-model="post.post_img" class="form-control">
+                        <img src="{{post.post_img}}" class="img-responsive" />
+                    </div>
+                    <!-- Post Main Image title -->
+                    <div class="form-group">
+                        <label>الصورة الرئيسية:</label>
+                        <input type="text" name="post_img_title" ng-model="post.post_img_title" class="form-control">
+                    </div>
+                    <!-- SUBMIT BUTTON -->
+                    <!--here we disabled the submit button. We only want it disabled if our form is $invalid.-->
+                    <button type="submit" class="btn btn-primary" ng-disabled="postForm.$invalid">إرسال</button>
+                    @*<input type="button" id="btnSave" class="form-control btn-space" value="Submit" ng-click="InsertData()" />*@
+                </form>
+
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <button class="btn btn-default" ng-click="clearForNewPost()">إنشاء مقاله جديدة</button><br />
+                    <span>قائمة المقالات</span><span class="badge" style="background-color:#19a6d1;margin-right:10px;color:#fff;font-weight:bold;">{{tPst}}</span>
+
+                    <table class="table table-condensed">
+                        <tr ng-repeat="post in posts">
+                            <td>
+                                <span ng-click="delPost(post)" class="btnRed"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                                <span ng-click="editPost(post)" class="btnAdd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                            </td>
+                            <td>
+                                {{post.post_title}}
+                            </td>
+                            @*<td style="font-size:8px;color:#888">{{post.post_adate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>*@
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div ng-view>
+            </div>
+        </div>
+    </div>
+</div>

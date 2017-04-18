@@ -19,6 +19,7 @@ namespace LissanDhofar_V1.Models
         [Required(ErrorMessage ="الرجاء كتابة عنوان المقالة")]
         [Display(Name ="عنوان المقالة")]
         public string post_title { get; set; }
+        public int post_status{ get; set; }
         [DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime post_adate { get; set; }
