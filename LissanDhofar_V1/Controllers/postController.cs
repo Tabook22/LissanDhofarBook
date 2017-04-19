@@ -19,7 +19,7 @@ namespace LissanDhofar_V1.Controllers
         public JsonResult getPostsLst()
         {
             DhofarDb db = new DhofarDb();
-            List<Post> lst = db.Posts.Select(x=>x).ToList();
+            List<Post> lst = db.Posts.OrderByDescending(x=>x.PostId).ToList();
             int totalPosts = lst.Count();
             return Json(new {pstLst=lst,totalPst=totalPosts }, JsonRequestBehavior.AllowGet);
         }

@@ -28,6 +28,7 @@
 </style>
 <div ng-app="myApp">
     <div ng-controller="postController">
+        <h2>قائمه المقالات</h2>
         <div class="row" style="margin-top:60px;">
             <div class="col-md-8">
                 <p style="font-weight:bold;border-bottom:1px solid #ccc;">{{Action}} Post</p>
@@ -86,7 +87,7 @@
             <div class="col-md-4">
                 <div>
                     <button class="btn btn-default" ng-click="clearForNewPost()">إنشاء مقاله جديدة</button><br />
-                    <span>قائمة المقالات</span><span class="badge" style="background-color:#19a6d1;margin-right:10px;color:#fff;font-weight:bold;">{{tPst}}</span>
+                    <span>إجمالي عدد المقالات</span><span class="badge" style="background-color:#19a6d1;margin-right:10px;color:#fff;font-weight:bold;">{{tPst}}</span>
 
                     <table class="table table-condensed">
                         <tr ng-repeat="post in posts">
