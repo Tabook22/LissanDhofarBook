@@ -4,5 +4,57 @@
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h2>إضافة مقالات للمجموعات الرئيسية</h2>
+<div class="row" ng-app="myApp">
+    <div class="col-md-12">
+        <h2>إضافة مقالات للمجموعات الرئيسية</h2>
+        <div ng-controller="articleController">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <select ng-model="selectedartGroups" class="form-control" ng-options="x for x in artGroups"></select>
+                    </div>
+                    <label for="inputEmail3" class="col-sm-2 control-label">المجموعة الرئيسية</label>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="post.post_title" class="form-control" id="post_title" placeholder="">
+                    </div>
+                    <label for="post_title" class="col-sm-2 control-label">عنوان المقالة</label>
+                   
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="post.PostId" class="form-control" id="PostId" placeholder="">
+                    </div>
+                    <label for="post_title" class="col-sm-2 control-label">رقم المقالة</label>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">إضافة</button>
+                    </div>
+                </div>
+            </form>
+            {{6+5}}
+            <table class="table table-bordered">
+                <tr>
+                    <th>م</th>
+                    <th>رقم المقالة</th>
+                    <th>عنوان المقالة</th>
+                    <th>تاريخ المقالة</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="art in post">
+                    <td>{{$index+1}}</td>
+                    <td>{{art.PostId}}</td>
+                    <td>{{art.post_title}}</td>
+                    <td>{{art.post_adate}}</td>
+                    <td><input type="button" class="btn btn-default" value="إختيار" /></td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
+</div>
 

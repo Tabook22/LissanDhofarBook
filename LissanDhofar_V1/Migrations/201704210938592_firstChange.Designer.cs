@@ -7,13 +7,13 @@ namespace LissanDhofar_V1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class firstChanges : IMigrationMetadata
+    public sealed partial class firstChange : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(firstChanges));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(firstChange));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704170429049_firstChanges"; }
+            get { return "201704210938592_firstChange"; }
         }
         
         string IMigrationMetadata.Source
