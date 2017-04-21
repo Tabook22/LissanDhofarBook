@@ -53,5 +53,15 @@ namespace LissanDhofar_V1.Controllers
                 // return "حصل خطاء أثنائء عملية الإضافة";
             }
         }
+
+        //Get Post By Id
+        public JsonResult getPostById(string id)
+        {
+            int pid = Convert.ToInt32(id);
+            DhofarDb db = new DhofarDb();
+            Post pst = db.Posts.Where(x => x.PostId == pid).FirstOrDefault();
+
+            return Json(pst, JsonRequestBehavior.AllowGet);
+        }
     }
 }

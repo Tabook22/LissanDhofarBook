@@ -29,6 +29,7 @@ namespace LissanDhofar_V1.Models
         [Display(Name ="تاريخ النهاية")]
         public DateTime? EDate { get; set; }
         public int PostId { get; set; }
+        public int order { get; set; }
         //Collection navigation property
         //Notice: we used the key word virtual, to say that we need the EF to find or to get the collection for us from the database, this is called lazy loading
         //public virtual ICollection<Post> Posts{ get; set; }
