@@ -49,7 +49,9 @@
                     <td>{{$index+1}}</td>
                     <td>{{art.PostId}}</td>
                     <td>{{art.post_title}}</td>
-                    <td>{{art.post_adate}}</td>
+                    <td>
+                    {{art.post_adate | dateFilter | date:"dd-MM-yyyy"}}
+                    </td>
                     <td><input type="button" class="btn btn-default" value="إختيار" /></td>
                 </tr>
                 
