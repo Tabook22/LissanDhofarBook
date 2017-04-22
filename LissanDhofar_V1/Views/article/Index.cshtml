@@ -7,98 +7,131 @@
     .error {
         color: red;
     }
+    .uib-tab a {
+        border: 1px solid #000;
+    }
 </style>
 <h2>إضافة مقالات للمجموعات الرئيسية</h2>
 <div class="row" ng-app="myApp">
-   
-        
-        <div ng-controller="articleController">
-            <div class="col-md-5 art-add-data">
-                <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
-                <form class="form-horizontal" name="postForm" ng-submit="addArticle()" novalidate>
-
-                    <!-- Post main group -->
-                    <!-- Adding Conditional Classes ng-class. The way it works is ng-class="{ <class-you-want> : <expression to be evaluated > }"-->
-                    <div class="form-group">
-                        <div class="col-sm-10">
-
-                            <select name="location" class="form-control" style="width: 220px;"
-                                    ng-model="postById.Location"
-                                    ng-options="x for x in artGroups"
-                                    required>
-                                <option value="">--- الرجاء إختيار المجموعه ---</option>
-                            </select>
-                            <span ng-show="postForm.location.$error.required">الرجاء إختيار المجموعة الرئيسية</span>
 
 
-                            @*<select ng-model="selectedartGroups" class="form-control" ng-options="x for x in artGroups"></select>*@
-                        </div>
-                        <label for="inputEmail3" class="col-sm-2 control-label">المجموعة</label>
+    <div ng-controller="articleController">
+        <div class="col-md-5 art-add-data">
+            <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+            <form class="form-horizontal" name="postForm" ng-submit="addArticle()" novalidate>
 
+                <!-- Post main group -->
+                <!-- Adding Conditional Classes ng-class. The way it works is ng-class="{ <class-you-want> : <expression to be evaluated > }"-->
+                <div class="form-group">
+                    <div class="col-sm-10">
+
+                        <select name="location" class="form-control" style="width: 220px;"
+                                ng-model="postById.Location"
+                                ng-options="x for x in artGroups"
+                                required>
+                            <option value="">--- الرجاء إختيار المجموعه ---</option>
+                        </select>
+                        <span ng-show="postForm.location.$error.required">الرجاء إختيار المجموعة الرئيسية</span>
+
+
+                        @*<select ng-model="selectedartGroups" class="form-control" ng-options="x for x in artGroups"></select>*@
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="text" ng-readonly="true" name="PostId" ng-model="postById.PostId" class="form-control" required ng-minlength="1" ng-maxlength="10">
-                        </div>
-                        <label for="PostId" class="col-sm-2 control-label">الرقم</label>
-                        <div class="error-msgs" ng-messages="postForm.postById.PostId.$error">
-                            <p ng-message="required"> رقم المقالة لا يمكن ان يكون فارغ</p>
-                        </div>
+                    <label for="inputEmail3" class="col-sm-2 control-label">المجموعة</label>
 
-
-
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="text"  ng-readonly="true" ng-model="postById.post_title" class="form-control" id="post_title" placeholder="">
-                        </div>
-                        <label for="post_title" class="col-sm-2 control-label">العنوان</label>
-
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="text" ng-model="postById.order" class="form-control" id="order" placeholder="">
-                        </div>
-                        <label for="order" class="col-sm-2 control-label">الترتيب</label>
-
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <img src="{{postById.post_img}}" class="img-responsive" />
-                        </div>
-                        <label for="order" class="col-sm-2 control-label">الصورة</label>
-
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <!-- SUBMIT BUTTON -->
-                            <!--here we disabled the submit button. We only want it disabled if our form is $invalid.-->
-                            <button type="submit" class="btn btn-default" ng-disabled="postForm.$invalid">إضافة</button>
-                        </div>
-                    </div>
-                </form>
                 </div>
-            <div class="col-md-6 col-md-offset-1 art-post-lst">
-                <table class="table table-bordered">
-                    <tr>
-                        <th>م</th>
-                        <th>رقم المقالة</th>
-                        <th>عنوان المقالة</th>
-                        <th>تاريخ المقالة</th>
-                        <th></th>
-                    </tr>
-                    <tr ng-repeat="art in post">
-                        <td>{{$index+1}}</td>
-                        <td>{{art.PostId}}</td>
-                        <td>{{art.post_title}}</td>
-                        <td>
-                            {{art.post_adate | dateFilter | date:"dd/MM/yyyy"}}
-                        </td>
-                        <td><input type="button" ng-click="getSelectedPost(art)" class="btn btn-default" value="إختيار" /></td>
-                    </tr>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="text" ng-readonly="true" name="PostId" ng-model="postById.PostId" class="form-control" required ng-minlength="1" ng-maxlength="10">
+                    </div>
+                    <label for="PostId" class="col-sm-2 control-label">الرقم</label>
+                    <div class="error-msgs" ng-messages="postForm.postById.PostId.$error">
+                        <p ng-message="required"> رقم المقالة لا يمكن ان يكون فارغ</p>
+                    </div>
 
-                </table>
-            </div>
+
+
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="text" ng-readonly="true" ng-model="postById.post_title" class="form-control" id="post_title" placeholder="">
+                    </div>
+                    <label for="post_title" class="col-sm-2 control-label">العنوان</label>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="postById.order" class="form-control" id="order" placeholder="">
+                    </div>
+                    <label for="order" class="col-sm-2 control-label">الترتيب</label>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <img src="{{postById.post_img}}" class="img-responsive" />
+                    </div>
+                    <label for="order" class="col-sm-2 control-label">الصورة</label>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <!-- SUBMIT BUTTON -->
+                        <!--here we disabled the submit button. We only want it disabled if our form is $invalid.-->
+                        <button type="submit" class="btn btn-default" ng-disabled="postForm.$invalid">إضافة</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 col-md-offset-1 art-post-lst">
+            <uib-tabset active="activeForm">
+                <uib-tab index="0" heading="إضافة مقالة للمجموعات الإخبارية">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>م</th>
+                            <th>رقم المقالة</th>
+                            <th>عنوان المقالة</th>
+                            <th>تاريخ المقالة</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="art in post">
+                            <td>{{$index+1}}</td>
+                            <td>{{art.PostId}}</td>
+                            <td>{{art.post_title}}</td>
+                            <td>
+                                {{art.post_adate | dateFilter | date:"dd/MM/yyyy"}}
+                            </td>
+                            <td><input type="button" ng-click="getSelectedPost(art)" class="btn btn-default" value="إختيار" /></td>
+                        </tr>
+
+                    </table>
+                </uib-tab>
+                <uib-tab index="1" heading="تعديل">
+                    More Tab Content
+                </uib-tab>
+            </uib-tabset>
+                        
+                   
+            @*<table class="table table-bordered">
+                <tr>
+                    <th>م</th>
+                    <th>رقم المقالة</th>
+                    <th>عنوان المقالة</th>
+                    <th>تاريخ المقالة</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="art in post">
+                    <td>{{$index+1}}</td>
+                    <td>{{art.PostId}}</td>
+                    <td>{{art.post_title}}</td>
+                    <td>
+                        {{art.post_adate | dateFilter | date:"dd/MM/yyyy"}}
+                    </td>
+                    <td><input type="button" ng-click="getSelectedPost(art)" class="btn btn-default" value="إختيار" /></td>
+                </tr>
+
+            </table>*@
+
+
+        </div>
     </div>
-</div>
 
+</div>

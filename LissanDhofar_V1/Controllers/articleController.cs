@@ -30,7 +30,6 @@ namespace LissanDhofar_V1.Controllers
         public JsonResult addNewArticle(Article article)
         {
             DhofarDb db = new DhofarDb();
-            crtAddedArticle crtArt = new crtAddedArticle();
             artOrder artorder = new artOrder();
             string msg = string.Empty;
             if (article != null)
