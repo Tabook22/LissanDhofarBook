@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <!--Bootstrap-->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/admin.css" rel="stylesheet" />
     <!--font awsome-->
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <!--Jquery-->
@@ -41,6 +42,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("الرئسيه", "index", "admin")</li>
                     <li>@Html.ActionLink("المقالات", "postLst",  "post")</li>
+                    <li>@Html.ActionLink("المجموعات الإخبارية", "index", "article")</li>
+
                     <li>@Html.ActionLink("البريد", "msg", "contact")</li>
                 </ul>
 
