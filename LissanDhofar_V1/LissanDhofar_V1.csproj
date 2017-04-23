@@ -164,6 +164,7 @@
     <Compile Include="Models\DhofarDb.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\VMArtPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -8,15 +8,31 @@
     //To Get All Posts
     getAllPosts();
     function getAllPosts() {
+        alert("أستغفر الله و أتوب إلية");
         debugger;
         var getData = articleService.getAllPosts();
         debugger;
         getData.then(function (pst) {
-            $scope.post = pst.data;
+            $scope.postForArt = pst.data;
         }, function () {
             alert('Error in getting records');
         });
     }
+
+    // Get all articles which was previously added
+    //To Get All Posts
+    getallArticles();
+    function getallArticles() {
+        debugger;
+        var getData = articleService.getAllArticles();
+        debugger;
+        getData.then(function (art) {
+            $scope.artPstGroups = art.data;
+        }, function () {
+            alert('Error in getting records');
+        });
+    }
+
 
     // get select post 
     $scope.getSelectedPost = function (post) {

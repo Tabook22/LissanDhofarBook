@@ -15,7 +15,7 @@ namespace LissanDhofar_V1.Controllers
             return View();
         }
 
-        //Get all articles
+        //Get all posts, which will be used inside the articles
         public JsonResult getAllPosts()
         {
             using (DhofarDb db = new DhofarDb())
@@ -23,6 +23,33 @@ namespace LissanDhofar_V1.Controllers
                 List<Post> lstPst = db.Posts.Select(x => x).ToList();
                 return Json(lstPst, JsonRequestBehavior.AllowGet);
             }
+
+        }
+
+        //get all the articles
+        public JsonResult getAllartciles()
+        {
+            //here we are going to merge two tables articles and posts then pass the result to a view model vmartposts
+            using (DhofarDb db = new DhofarDb())
+            {
+                var getlst = db.Articles.
+               Join(db.Posts,
+               a => a.PostId, b => b.PostId,
+               (a, b) => new VMArtPost
+               {
+                   ArticleId = a.ArticleId,
+                   Location = a.Location,
+                   PostId = a.PostId,
+                   order = a.order,
+                   post_title = b.post_title,
+                   post_status = b.post_status,
+                   post_adate = b.post_adate,
+                   post_img = b.post_img
+               }).ToList();
+
+                return Json(getlst.OrderByDescending(x=>x.ArticleId), JsonRequestBehavior.AllowGet);
+            }
+
 
         }
 

@@ -1,8 +1,14 @@
 ﻿myApp.service("articleService", ["$http", function ($http) {
-    //get all articles 
+    //get all post, which will be used inside the articles 
     this.getAllPosts = function () {
         return $http.get("/article/getAllPosts");
     };
+
+    //get all articles, which will previously added 
+    this.getAllArticles = function () {
+        return $http.get("/article/getAllartciles");
+    };
+
 
     //all new article
     this.addNewArticle = function (article) {
