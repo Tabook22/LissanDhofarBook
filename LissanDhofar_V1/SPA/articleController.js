@@ -5,9 +5,12 @@
     $scope.divArticleAdd = true;
     $scope.divArticleEdit = false;
 
-    //paginnation
-
-
+ 
+    //sorting
+        $scope.sort = function (keyname) {
+            $scope.sortKey = keyname;   //set the sortKey to the param passed
+            $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+        }
 
 
     $scope.postById = {};
@@ -41,6 +44,7 @@
         });
     }
 
+   
 
     // get select post 
     $scope.getSelectedPost = function (post) {

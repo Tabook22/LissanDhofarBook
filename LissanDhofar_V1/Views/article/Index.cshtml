@@ -11,11 +11,19 @@
     .uib-tab a {
         border: 1px solid #000;
     }
+    .sort-icon {
+        font-size: 9px;
+        margin-left: 5px;
+    }
+
+    th {
+        cursor: pointer;
+    }
 </style>
 <h2>إضافة مقالات للمجموعات الرئيسية</h2>
 <div class="row" ng-app="myApp">
     <div ng-controller="articleController">
-        <div class="col-md-5 art-add-data">
+        <div class="col-md-4 art-add-data">
             <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
             <div class="add-new-artgroup" ng-show="divArticleAdd">
                 <h2>إضافة مجموعات إخبارية</h2>
@@ -133,19 +141,35 @@
             </div>
 
         </div>
-        <div class="col-md-6 col-md-offset-1 art-post-lst">
+        <div class="col-md-7 col-md-offset-1 art-post-lst">
             <uib-tabset active="activeForm">
                 <uib-tab index="0" heading="إضافة مقالة للمجموعات الإخبارية">
                     <!-- get all the post which will be used inside the article groups------------------------------------------->
+                    <form class="form-inline">
+                        <div class="form-group" style="margin-bottom:5px;margin-right:5px;">
+                        
+                            <input type="text" ng-model="search" class="form-control" placeholder="بحث">
+                        </div>
+                    </form>
                     <table class="table table-bordered">
                         <tr>
                             <th>م</th>
-                            <th>رقم المقالة</th>
-                            <th>عنوان المقالة</th>
-                            <th>تاريخ المقالة</th>
+                            <th style="width:90px;" ng-click="sort('PostId')">
+                                رقم المقالة
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='PostId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-click="sort('post_title')">
+                                عنوان المقالة
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='post_title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th style="width:100px;" ng-click="sort('post_adate')">
+                                تاريخ المقالة
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='post_adate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
                             <th></th>
                         </tr>
-                        <tr ng-repeat="art in postForArt">
+                        <tr dir-paginate="art in postForArt |orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+@*<tr ng-repeat="art in postForArt">*@
                             <td>{{$index+1}}</td>
                             <td>{{art.PostId}}</td>
                             <td>{{art.post_title}}</td>
@@ -156,19 +180,42 @@
                         </tr>
 
                     </table>
+                    <dir-pagination-controls max-size="5"
+                                             direction-links="true"
+                                             boundary-links="true">
+                    </dir-pagination-controls>
                 </uib-tab>
                 <uib-tab index="1" heading="تعديل">
                     <!----Get all the articles which previouslly added ------------------------------------------------------>
+                    <form class="form-inline">
+                        <div class="form-group" style="margin-bottom:5px;margin-right:5px;">
+                           
+                            <input type="text" ng-model="search" class="form-control" placeholder="بحث">
+                        </div>
+                    </form>
                     <table class="table table-bordered">
                         <tr>
                             <th>م</th>
-                            <th>رقم المقالة</th>
-                            <td></td>
-                            <th>عنوان المقالة</th>
-                            <th>تاريخ المقالة</th>
+                            <th style="width:90px;" ng-click="sort('PostId')">
+                                رقم المقالة
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='PostId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            
+                            <th style="width:90px;" ng-click="sort('ArticleId')">
+                                رقم المجموعه
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='ArticleId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-click="sort('post_title')">
+                                عنوان المقالة
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='post_title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th style="width:100px;" ng-click="sort('post_adate')">
+                                تاريخ المقالة
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='post_adate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
                             <th></th>
                         </tr>
-                        <tr ng-repeat="agr in artPstGroups">
+                        <tr dir-paginate="agr in artPstGroups |orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
                             <td>{{$index+1}}</td>
                             <td>{{agr.PostId}}</td>
                             <td>{{agr.ArticleId}}</td>
@@ -181,8 +228,10 @@
                         </tr>
 
                     </table>
-
-                </uib-tab>
+                    <dir-pagination-controls max-size="5"
+                                             direction-links="true"
+                                             boundary-links="true">
+                    </dir-pagination-controls></uib-tab>
             </uib-tabset>
         </div>
     </div>
