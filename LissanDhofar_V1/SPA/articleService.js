@@ -6,7 +6,7 @@
 
     //get all articles, which will previously added 
     this.getAllArticles = function () {
-        return $http.get("/article/getAllartciles");
+        return $http.get("/article/getAllArtciles");
     };
 
 
@@ -21,6 +21,18 @@
         return response
     };
 
+    //edit article
+    this.editArticle = function (article) {
+        var response = $http({
+            method: "post",
+            url: "/article/editArticle",
+            data: JSON.stringify(article),
+            dataType: "json"
+        });
+        return response
+    };
+
+
     //Get Post by ID
     this.getPostById = function (PostId) {
         var response = $http({
@@ -33,6 +45,18 @@
         return response;
     }
 
+    //Get article by ID
+    this.getArticleById = function (ArtId) {
+
+        var response = $http({
+            method: "get",
+            url: "/article/getArticleById",
+            params: {
+                id: JSON.stringify(ArtId)
+            }
+        });
+        return response;
+    }
 
     // Update Article
     this.updateEmp = function (employee) {
@@ -57,12 +81,12 @@
     }
 
     //Delete Article
-    this.DeleteEmp = function (employeeId) {
+    this.delArticle = function (artId) {
         var response = $http({
-            method: "post",
-            url: "Home/DeleteEmployee",
+            method: "get",
+            url: "/article/delArticle",
             params: {
-                employeeId: JSON.stringify(employeeId)
+                id: JSON.stringify(artId)
             }
         });
         return response;
