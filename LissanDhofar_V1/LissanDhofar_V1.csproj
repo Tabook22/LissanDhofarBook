@@ -155,18 +155,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704170429049_firstChanges.cs" />
-    <Compile Include="Migrations\201704170429049_firstChanges.Designer.cs">
-      <DependentUpon>201704170429049_firstChanges.cs</DependentUpon>
+    <Compile Include="Migrations\201704210938592_firstChange.cs" />
+    <Compile Include="Migrations\201704210938592_firstChange.Designer.cs">
+      <DependentUpon>201704210938592_firstChange.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\artOrder.cs" />
     <Compile Include="Models\DhofarDb.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\VMArtPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\adim-panels.css" />
+    <Content Include="Content\admin.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
@@ -222,6 +226,8 @@
     </Content>
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\dirPagination.js" />
+    <Content Include="Scripts\dirPagination.tpl.html" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -1146,6 +1152,8 @@
     <Content Include="SPA\Admin\PostPartials\EditPost.html" />
     <Content Include="SPA\Admin\PostPartials\posts.html" />
     <Content Include="SPA\App.js" />
+    <Content Include="SPA\articleController.js" />
+    <Content Include="SPA\articleService.js" />
     <Content Include="SPA\getDataService.js" />
     <Content Include="SPA\MainController.js" />
     <Content Include="SPA\postController.js" />
@@ -1200,8 +1208,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704170429049_firstChanges.resx">
-      <DependentUpon>201704170429049_firstChanges.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704210938592_firstChange.resx">
+      <DependentUpon>201704210938592_firstChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

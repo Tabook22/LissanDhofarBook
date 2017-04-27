@@ -6,6 +6,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <!--Bootstrap-->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/admin.css" rel="stylesheet" />
+    <link href="~/Content/adim-panels.css" rel="stylesheet" />
     <!--font awsome-->
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <!--Jquery-->
@@ -18,11 +20,14 @@
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/ui-tinymce.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/Scripts/dirPagination.js"></script>
     <!--customer javascript-->
     <script src="~/SPA/App.js"></script>
     <script src="~/SPA/getDataService.js"></script>
     <script src="~/SPA/postController.js"></script>
-
+    <script src="~/SPA/articleService.js"></script>
+    <script src="~/SPA/articleController.js"></script>
 
 </head>
 <body style="margin-top:60px;">
@@ -40,6 +45,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("الرئسيه", "index", "admin")</li>
                     <li>@Html.ActionLink("المقالات", "postLst",  "post")</li>
+                    <li>@Html.ActionLink("المجموعات الإخبارية", "index", "article")</li>
+
                     <li>@Html.ActionLink("البريد", "msg", "contact")</li>
                 </ul>
 
@@ -47,6 +54,7 @@
         </div>
     </div>
     <div class="container body-content">
+
         @RenderBody()
         <hr />
         <footer>
