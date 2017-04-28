@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "uploadMyFiles";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+<style>
+    .imglst{
+        list-style:none;
+    }
+    .imglst li{
+        display:inline-block;
+    }
+</style>
+<h2>تحميل صور للموقع</h2>
+<div class="row" ng-controller="uploadImgController">
+    <div class="col-md-6">
+        <ul class="imglst">
+            <li ng-repeat="img in allImgs">
+                <span>{{$index+1}}</span><img src="~/UploadedFiles/{{img.FileName}}" style="width:60px;" />
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <form action="~/uploadFiles/SaveUploadedFile" method="post"
+              enctype="multipart/form-data" class="dropzone"
+              id="dropzoneForm"></form>
+        <button id="submit-all">Submit All Files</button>
+    </div>
+</div>
+
+
+@section Scripts{
+<script src="~/SPA/uploadImgController.js"></script>
+<script type="text/javascript">
+
+    Dropzone.options.dropzoneForm =
+        {
+            init: function () {
+                this.on("complete", function (data) {
+                    //var res = eval('(' + data.xhr.responseText + ')');   
+                    var res = JSON.parse(data.xhr.responseText);
+                });
+            }
+        };  
+
+</script>
+}

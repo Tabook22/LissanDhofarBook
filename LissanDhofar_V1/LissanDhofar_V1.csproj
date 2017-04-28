@@ -151,6 +151,7 @@
     <Compile Include="Controllers\articleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\postController.cs" />
+    <Compile Include="Controllers\uploadFilesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -164,6 +165,7 @@
     <Compile Include="Models\DhofarDb.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\UploadedFile.cs" />
     <Compile Include="Models\VMArtPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -227,6 +229,14 @@
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\dirPagination.js" />
     <Content Include="Scripts\dirPagination.tpl.html" />
+    <Content Include="Scripts\dropzone\basic.css" />
+    <Content Include="Scripts\dropzone\basic.min.css" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.js" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.min.js" />
+    <Content Include="Scripts\dropzone\dropzone.css" />
+    <Content Include="Scripts\dropzone\dropzone.js" />
+    <Content Include="Scripts\dropzone\dropzone.min.css" />
+    <Content Include="Scripts\dropzone\dropzone.min.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -1156,6 +1166,13 @@
     <Content Include="SPA\getDataService.js" />
     <Content Include="SPA\MainController.js" />
     <Content Include="SPA\postController.js" />
+    <Content Include="SPA\uploadFilesController.js" />
+    <Content Include="SPA\uploadImgController.js" />
+    <Content Include="UploadedFiles\1bc61ea8-74c0-4cbb-a2e9-71b98a0d4f88.png" />
+    <Content Include="UploadedFiles\39ae5928-a06a-4c73-994f-1f97bda0df89.jpg" />
+    <Content Include="UploadedFiles\adv2.png" />
+    <Content Include="UploadedFiles\article.png" />
+    <Content Include="UploadedFiles\ee5ecd04-971e-4e12-89da-8a6d5ef1f89e.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1183,6 +1200,8 @@
     <Content Include="Views\admin\Index.cshtml" />
     <Content Include="Views\post\postLst.cshtml" />
     <Content Include="Views\article\Index.cshtml" />
+    <Content Include="Views\uploadFiles\uploadImg.cshtml" />
+    <Content Include="Views\uploadFiles\uploadMyFiles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
