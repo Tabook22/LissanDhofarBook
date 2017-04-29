@@ -185,6 +185,10 @@
     <Content Include="Content\images\booklog.png" />
     <Content Include="Content\images\ml.jpg" />
     <Content Include="Content\images\VideoFiles.png" />
+    <Content Include="Content\ng-dropzone.css" />
+    <Content Include="Content\js\ng-dropzone.js" />
+    <Content Include="Content\ng-dropzone.min.css" />
+    <Content Include="Content\js\ng-dropzone.min.js" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -252,6 +256,8 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\js\ng-dropzone.min.css.map" />
+    <Content Include="Content\js\ng-dropzone.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1202,6 +1208,7 @@
     <Content Include="Views\article\Index.cshtml" />
     <Content Include="Views\uploadFiles\uploadImg.cshtml" />
     <Content Include="Views\uploadFiles\uploadMyFiles.cshtml" />
+    <Content Include="Views\uploadFiles\ngUploadImg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

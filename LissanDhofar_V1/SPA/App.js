@@ -3,7 +3,7 @@
 // the id of (function(){})(); is the prevent any variable declaration from beign seen outside on the globale scale, that is good because it will prevent any varialbe conflict
 // because in javascript if we declare any varialbe it will be seen globly, and name conflict can occure, this can be considered a negative thing in javascript 
 (function () {
-    myApp = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'ui.tinymce', 'ngMessages', 'angularUtils.directives.dirPagination']);
+    myApp = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'ui.tinymce', 'ngMessages', 'angularUtils.directives.dirPagination', 'thatisuday.dropzone']);
     myApp.config(function ($locationProvider) {
 
         //$routeProvider
