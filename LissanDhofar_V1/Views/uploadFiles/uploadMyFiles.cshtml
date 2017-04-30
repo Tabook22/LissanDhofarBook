@@ -42,22 +42,46 @@
               id="dropzoneForm"></form>*@
         @*<button id="submit-all">Submit All Files</button>*@
     </div>
-</div>
+
+    <button class="btn" ng-click="open()">Open Modal</button>
+
+    <div modal="showModal" close="cancel()">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Modal Dialog</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Example paragraph with some text.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" ng-click="ok()">Okay</button>
+                    <button class="btn" ng-click="cancel()">Cancel</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+          
+        </div>
 
 
-@section Scripts{
-<script src="~/SPA/uploadImgController.js"></script>
-<script type="text/javascript">
 
-    Dropzone.options.dropzoneForm =
-        {
-            init: function () {
-                this.on("complete", function (data) {
-                    //var res = eval('(' + data.xhr.responseText + ')');   
-                    var res = JSON.parse(data.xhr.responseText);
-                });
-            }
-        };  
+        @section Scripts{
+            <script src="~/SPA/uploadImgController.js"></script>
+            <script type="text/javascript">
 
-</script>
-}
+                Dropzone.options.dropzoneForm =
+                    {
+                        init: function () {
+                            this.on("complete", function (data) {
+                                //var res = eval('(' + data.xhr.responseText + ')');
+                                var res = JSON.parse(data.xhr.responseText);
+                            });
+                        }
+                    };
+
+            </script>
+        }

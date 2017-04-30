@@ -1169,8 +1169,10 @@
     <Content Include="SPA\App.js" />
     <Content Include="SPA\articleController.js" />
     <Content Include="SPA\articleService.js" />
+    <Content Include="SPA\angular-ui-bootstrap-modal.js" />
     <Content Include="SPA\getDataService.js" />
     <Content Include="SPA\MainController.js" />
+    <Content Include="SPA\MyCtrl.js" />
     <Content Include="SPA\postController.js" />
     <Content Include="SPA\uploadFilesController.js" />
     <Content Include="SPA\uploadImgController.js" />
@@ -1206,9 +1208,9 @@
     <Content Include="Views\admin\Index.cshtml" />
     <Content Include="Views\post\postLst.cshtml" />
     <Content Include="Views\article\Index.cshtml" />
-    <Content Include="Views\uploadFiles\uploadImg.cshtml" />
+    <Content Include="Views\uploadFiles\uploadImg_old.cshtml" />
     <Content Include="Views\uploadFiles\uploadMyFiles.cshtml" />
-    <Content Include="Views\uploadFiles\ngUploadImg.cshtml" />
+    <Content Include="Views\uploadFiles\ngUploadImg_old.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,6 +11,23 @@
 
 
 myApp.controller("uploadImgController", ["$scope", "uploadImgService", "$timeout", function ($scope, uploadImgService, $timeout) {
+
+
+    //modal
+
+    $scope.open = function () {
+        $scope.showModal = true;
+    };
+
+    $scope.ok = function () {
+        $scope.showModal = false;
+    };
+
+    $scope.cancel = function () {
+        $scope.showModal = false;
+    };
+
+
     //Get all images from database
     //To Get All Posts
     getAllImgs();
@@ -60,6 +77,7 @@ myApp.controller("uploadImgController", ["$scope", "uploadImgService", "$timeout
         },
         'success': function (file, xhr) {
             //console.log(file, xhr);
+            //this list images when dropzone starts and after each addition 
             getAllImgs();
         }
 
