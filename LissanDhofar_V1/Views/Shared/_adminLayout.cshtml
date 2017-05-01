@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="ar-om" dir="rtl">
+<html lang="ar-om" dir="rtl" ng-app="myApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,10 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/admin.css" rel="stylesheet" />
     <link href="~/Content/adim-panels.css" rel="stylesheet" />
+    <!--DropZone-->
+    <link href="~/Scripts/dropzone/dropzone.min.css" rel="stylesheet" />
+    <!--ngDropZone-->
+    <link href="~/Content/ng-dropzone.min.css" rel="stylesheet" />
     <!--font awsome-->
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <!--Jquery-->
@@ -21,13 +25,20 @@
     <script src="~/Scripts/ui-tinymce.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/SPA/angular-ui-bootstrap-modal.js"></script>
     <script src="~/Scripts/dirPagination.js"></script>
+    <!--DropZone Library-->
+    <script src="~/Scripts/dropzone/dropzone.min.js"></script>
+    <!-- ng-dropzone -->
+    <script src="~/Content/js/ng-dropzone.min.js"></script>
     <!--customer javascript-->
     <script src="~/SPA/App.js"></script>
     <script src="~/SPA/getDataService.js"></script>
     <script src="~/SPA/postController.js"></script>
     <script src="~/SPA/articleService.js"></script>
     <script src="~/SPA/articleController.js"></script>
+    <script src="~/SPA/MyCtrl.js"></script>
+    @*<script src="~/SPA/ngDroZone.js"></script>*@
 
 </head>
 <body style="margin-top:60px;">
