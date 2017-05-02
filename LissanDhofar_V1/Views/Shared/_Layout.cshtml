@@ -1,31 +1,32 @@
 ﻿<!DOCTYPE html>
 <html lang="ar-om" dir="rtl">
 <head>
+    <base href="/" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <!--Bootstrap-->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <!--font awsome-->
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <!--site style-->
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
     <!--Jquery-->
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <!--Tinymce-->
-    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+
     <!--angular library-->
     <script src="~/Scripts/angular.js"></script>
-    <script src="~/Scripts/angular-messages.js"></script>
-    <script src="~/Scripts/angular-route.min.js"></script>
-    <script src="~/Scripts/ui-tinymce.js"></script>
+    @*<script src="~/Scripts/angular-route.min.js"></script>*@
+    <script src="~/Scripts/angular-ui-router.min.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>
-    <!--customer javascript-->
-    <script src="~/SPA/App.js"></script>
-    <script src="~/SPA/getDataService.js"></script>
-    <script src="~/SPA/postController.js"></script>
 
    
+   
+
+    <!--customer javascript-->
+    <script src="~/SPA/mainApp.js"></script>
+    @*<script src="~/SPA/MainController.js"></script>*@
 </head>
-<body>
+<body ng-app="mainApp">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -38,6 +39,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li><a ui-sref="/about">About</a></li>
+                    <li><a ui-sref="/contact">Contact us</a></li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -48,6 +51,7 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

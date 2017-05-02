@@ -15,6 +15,15 @@ namespace LissanDhofar_V1.Controllers
             return View();
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
         //testing angularjs call
         [HttpGet]
         public JsonResult getMessage()

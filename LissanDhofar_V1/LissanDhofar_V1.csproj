@@ -218,6 +218,8 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
@@ -1171,6 +1173,7 @@
     <Content Include="SPA\articleService.js" />
     <Content Include="SPA\angular-ui-bootstrap-modal.js" />
     <Content Include="SPA\getDataService.js" />
+    <Content Include="SPA\mainApp.js" />
     <Content Include="SPA\MainController.js" />
     <Content Include="SPA\MyCtrl.js" />
     <Content Include="SPA\postController.js" />
