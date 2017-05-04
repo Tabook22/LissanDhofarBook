@@ -179,6 +179,7 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\owl.carousel.css" />
+    <Content Include="Content\css\owl.carousel.min.css" />
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -219,6 +220,8 @@
     <Content Include="Content\js\jquery.sticky.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\min\main.min.js" />
+    <Content Include="Content\js\owl.carousel.js" />
+    <Content Include="Content\js\owl.carousel.min.js" />
     <Content Include="Content\js\plugins.js" />
     <Content Include="Content\js\vendor\jquery-1.10.2.min.js" />
     <Content Include="Content\js\vendor\modernizr-2.6.2.min.js" />
@@ -1219,6 +1222,7 @@
     <Content Include="SPA\articleService.js" />
     <Content Include="SPA\angular-ui-bootstrap-modal.js" />
     <Content Include="SPA\getDataService.js" />
+    <Content Include="SPA\homeController.js" />
     <Content Include="SPA\mainApp.js" />
     <Content Include="SPA\MainController.js" />
     <Content Include="SPA\MyCtrl.js" />
@@ -1260,12 +1264,16 @@
     <Content Include="Views\uploadFiles\uploadImg.cshtml" />
     <Content Include="Views\uploadFiles\uploadMyFiles.cshtml" />
     <Content Include="Views\uploadFiles\ngUploadImg.cshtml" />
+    <Content Include="Views\Home\slider.cshtml" />
+    <Content Include="Views\Home\siteNav.cshtml" />
+    <Content Include="Views\Home\siteFooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="SPA\Admin\lib\css\" />
     <Folder Include="SPA\Admin\lib\img\" />
     <Folder Include="SPA\website\" />
+    <Folder Include="Views\Partials\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

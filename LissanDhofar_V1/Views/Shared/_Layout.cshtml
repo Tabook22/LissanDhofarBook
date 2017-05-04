@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="~/Content/css/responsive.css">
     <!--Jquery-->
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-
+    <!-- Owl Carsousle -->
+    <script src="~/Content/js/owl.carousel.min.js"></script>
     <!--angular library-->
     <script src="~/Scripts/angular.js"></script>
     @*<script src="~/Scripts/angular-route.min.js"></script>*@
@@ -27,7 +28,7 @@
     <script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>
     <!--customer javascript-->
     <script src="~/SPA/mainApp.js"></script>
-    @*<script src="~/SPA/MainController.js"></script>*@
+    <script src="~/SPA/homeController.js"></script>
 
     <!-- Js -->
     <script src="Content/js/vendor/modernizr-2.6.2.min.js"></script>
@@ -51,43 +52,8 @@
     <!--
     Header start
     ============================== -->
-    <nav id="navigation">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="block">
-                        <nav class="navbar navbar-default">
-                            <div class="container-fluid">
-                                <!-- Brand and toggle get grouped for better mobile display -->
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                    <a class="navbar-brand" href="#">
-                                        <img src="~/Content/images/logo.png" alt="Logo">
-                                    </a>
-                                </div>
-                                <!-- Collect the nav links, forms, and other content for toggling -->
-                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                    <ul class="nav navbar-nav navbar-right" id="top-nav">
-                                        <li><a href="#hero-area">Home</a></li>
-                                        <li><a href="#about-us">about us</a></li>
-                                        <li><a href="#blog">Blog</a></li>
-                                        <li><a href="#price">menu</a></li>
-                                        <li><a href="#subscribe">news</a></li>
-                                        <li><a href="#contact-us">contacts</a></li>
-                                    </ul>
-                                </div><!-- /.navbar-collapse -->
-                            </div><!-- /.container-fluid -->
-                        </nav>
-                    </div>
-                </div><!-- .col-md-12 close -->
-            </div><!-- .row close -->
-        </div><!-- .container close -->
-    </nav><!-- header close -->
+    @{Html.RenderPartial("siteNav");}
+    <!-- header close -->
 
     <div>
         @RenderBody()
@@ -98,116 +64,7 @@
     <!--
     footer  start
     ============================= -->
-    <section id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="block wow fadeInLeft" data-wow-delay="200ms">
-                        <h3>CONTACT <span>INFO</span></h3>
-                        <div class="info">
-                            <ul>
-                                <li>
-                                    <h4><i class="fa fa-phone"></i>Telefone</h4>
-                                    <p>(000) 123 456 78- (000) 123 4567 89</p>
-
-                                </li>
-                                <li>
-                                    <h4><i class="fa fa-map-marker"></i>Address</h4>
-                                    <p>2046 Blue Spruce Lane Laurel Canada</p>
-                                </li>
-                                <li>
-                                    <h4><i class="fa fa-envelope"></i>E mail</h4>
-                                    <p>rest@gmail.com - rest@mail.ru</p>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- .col-md-4 close -->
-                <div class="col-md-4">
-                    <div class="block wow fadeInLeft" data-wow-delay="700ms">
-                        <h3>LATEST <span>BLOG POSTS</span></h3>
-                        <div class="blog">
-                            <ul>
-                                <li>
-                                    <h4><a href="#">Nov 9-2014</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adip iscing elit. Curabitur ut blandit sapien</p>
-                                </li>
-                                <li>
-                                    <h4><a href="#">Sep 8-2014</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adip iscing elit. Curabitur ut blandit sapien</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- .col-md-4 close -->
-                <div class="col-md-4">
-                    <div class="block wow fadeInLeft" data-wow-delay="1100ms">
-                        <div class="gallary">
-                            <h3>PHOTO <span>STREAM</span></h3>
-                            <ul>
-                                <li>
-                                    <a href="#"><img src="~/Content/images/photo/photo-1.jpg" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="~/Content/images/photo/photo-2.jpg" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="~/Content/images/photo/photo-3.jpg" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="~/Content/images/photo/photo-4.jpg" alt=""></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="social-media-link">
-                            <h3>Follow <span>US</span></h3>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-dribbble"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-behance"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- .col-md-4 close -->
-            </div><!-- .row close -->
-        </div><!-- .containe close -->
-    </section><!-- #footer close -->
-    <!--
-    footer-bottom  start
-    ============================= -->
-    <footer id="footer-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="block">
-                        <p>Copyright &copy; 2014 - All Rights Reserved.Design and Developed By <a href="http://www.themefisher.com">Themefisher</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    @{Html.RenderPartial("siteFooter");}
 
 
     @RenderSection("scripts", required: false)

@@ -50,5 +50,23 @@ namespace LissanDhofar_V1.Controllers
 
 
         }
+
+        //Get partial view slider
+        public ActionResult slider()
+        {
+            return PartialView();
+        }
+
+        //Site Navigation
+        public ActionResult siteNav()
+        {
+            return PartialView();
+        }
+
+        //Site Footer
+        public ActionResult siteFooter()
+        {
+            return PartialView();
+        }
     }
 }
