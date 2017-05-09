@@ -24,6 +24,12 @@ namespace LissanDhofar_V1.Controllers
         {
             return View();
         }
+
+        [ChildActionOnly]
+        public ActionResult newsList()
+        {
+            return PartialView("_articleList");
+        }
         //testing angularjs call
         [HttpGet]
         public JsonResult getMessage()

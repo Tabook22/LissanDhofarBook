@@ -1,4 +1,4 @@
-﻿mainApp.controller("sliderCtrl", ["$scope", function ($scope) {
+﻿myApp.controller("sliderCtrl", ["$scope", function ($scope) {
     //Slider
 
     

@@ -1221,9 +1221,10 @@
     <Content Include="SPA\articleController.js" />
     <Content Include="SPA\articleService.js" />
     <Content Include="SPA\angular-ui-bootstrap-modal.js" />
+    <Content Include="SPA\client\articleController.js" />
     <Content Include="SPA\getDataService.js" />
-    <Content Include="SPA\homeController.js" />
-    <Content Include="SPA\mainApp.js" />
+    <Content Include="SPA\client\homeController.js" />
+    <Content Include="SPA\client\myApp.js" />
     <Content Include="SPA\MainController.js" />
     <Content Include="SPA\MyCtrl.js" />
     <Content Include="SPA\postController.js" />
@@ -1267,11 +1268,14 @@
     <Content Include="Views\Home\slider.cshtml" />
     <Content Include="Views\Home\siteNav.cshtml" />
     <Content Include="Views\Home\siteFooter.cshtml" />
+    <Content Include="Views\Home\newsList.cshtml" />
+    <Content Include="Views\Shared\_articleList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="SPA\Admin\lib\css\" />
     <Folder Include="SPA\Admin\lib\img\" />
+    <Folder Include="SPA\server\" />
     <Folder Include="SPA\website\" />
     <Folder Include="Views\Partials\" />
   </ItemGroup>
