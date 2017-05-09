@@ -184,24 +184,30 @@ namespace LissanDhofar_V1.Controllers
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
         }
-        // Add new article
-        //public JsonResult AddArticle(Article article)
-        //{
-        //    string msg = string.Empty;
-        //    if (article != null)
-        //    {
-        //        using (DhofarDb db = new DhofarDb())
-        //        {
-        //            article.SDate = DateTime.Parse(DateTime.Now.ToShortTimeString());
-        //            db.Articles.Add(article);
-        //            db.SaveChanges();
-        //            msg = "تمت عملية الإضافة بنجاح";
-
-        //            return Json(msg, JsonRequestBehavior.AllowGet);
-        //        }
-        //    }
-        //    msg = "حصل خطاء أثناء عملية الإضافة";
-        //    return Json(msg, JsonRequestBehavior.AllowGet);
-        //}
+        
+        //getting all the articles in the news category to be displyied inside the homepage
+        public JsonResult allNewsForHome()
+        {
+            DhofarDb db = new DhofarDb();
+          
+                var art = (from a in db.Articles
+                           join b in db.Posts on a.PostId equals b.PostId
+                           where a.Location == "قائمة الأخبار"
+                           select new
+                           {
+                               a.ArticleId,
+                               a.Location,
+                               a.PostId,
+                               a.order,
+                               b.post_title,
+                               b.post_status,
+                               b.post_adate,
+                               b.post_img
+                           }).ToList();
+                //Article art = db.Articles.Where(x => x.ArticleId == aid).FirstOrDefault();
+                return Json(art, JsonRequestBehavior.AllowGet);
+          
+           
+        }
     }
 }

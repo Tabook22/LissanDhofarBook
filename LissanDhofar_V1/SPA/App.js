@@ -4,26 +4,31 @@
 // because in javascript if we declare any varialbe it will be seen globly, and name conflict can occure, this can be considered a negative thing in javascript 
 (function () {
     myApp = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'ui.tinymce', 'ngMessages', 'angularUtils.directives.dirPagination', 'thatisuday.dropzone','ui.bootstrap.modal']);
-    myApp.config(function ($locationProvider) {
-
-        //$routeProvider
-        //    .when('/', {
-        //        templateUrl: 'partials/home.html',
-        //        controller: mainController
-        //    })
-        //    .when('/about', {
-        //        templateUrl: 'partials/about.html',
-        //        controller: mainController
-        //    })
-        //    .when('/contact', {
-        //        templateUrl: 'partials/contact.html',
-        //        controller: mainController
-        //    });
-
+    myApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/', {
+                redirectTo: '/Home',
+                controller: 'MainController'
+            })
+            .when('/about', {
+                templateUrl: '/Home/about',
+                controller: 'postController'
+            })
+            .when('/addPost', {
+                templateUrl: '/post/postLst',
+                controller: 'postController'
+            });
+                //.otherwise({ redirectTo: '/' });
         // use the HTML5 History API
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
-    });
+
+        //this will remove hash
+        $locationProvider.html5Mode(true); //activate HTML5 Mode
+
+        //$locationProvider.html5Mode(false).hashPrefix('!'); // This is for Hashbang Mode
+        //$locationProvider.html5Mode({
+        //    enabled: true,
+        //    requireBase: false
+        //});
+       
+    }]);
 })();

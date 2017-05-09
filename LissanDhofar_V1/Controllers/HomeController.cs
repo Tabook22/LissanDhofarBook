@@ -15,6 +15,21 @@ namespace LissanDhofar_V1.Controllers
             return View();
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult newsList()
+        {
+            return PartialView("_articleList");
+        }
         //testing angularjs call
         [HttpGet]
         public JsonResult getMessage()
@@ -40,6 +55,24 @@ namespace LissanDhofar_V1.Controllers
             return Json(lstPosts, JsonRequestBehavior.AllowGet);
 
 
+        }
+
+        //Get partial view slider
+        public ActionResult slider()
+        {
+            return PartialView();
+        }
+
+        //Site Navigation
+        public ActionResult siteNav()
+        {
+            return PartialView();
+        }
+
+        //Site Footer
+        public ActionResult siteFooter()
+        {
+            return PartialView();
         }
     }
 }

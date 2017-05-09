@@ -1,4 +1,4 @@
-﻿myApp.controller("articleController", ["$scope", "articleService", function ($scope, articleService) {
+﻿myApp.controller("articleController", ["$scope", "articleService", "newsLstService", function ($scope, articleService, newsLstService) {
     //elements to fill the dropdownlist
     $scope.artGroups = ["العنوان الرئيسي", "الشريط المتحرك", "الصور المتحركة", "قائمة الأخبار", "الخبر الرئيسي"];
     //post object used to get data from the article from
@@ -125,7 +125,24 @@
         $scope.showaArticleById.post_img = "";
         $scope.showaArticleById.order = "";
     }
+    //========================================================================================================================//
+    //getting the news article to display on the home page
+    //========================================================================================================================//
+    getAllNewsForHomePage();
+    function getAllNewsForHomePage() {
+        alert("أستغفر الله و أتوب إلية");
+        debugger;
+        var getData = newsLstService.allNews();
+        debugger;
+        getData.then(function (nws) {
+            $scope.lstNewsHome = nws.data;
+        }, function () {
+            alert('Error in getting records');
+        });
+
+    }
 }]);
+
 //filter for date becasue of json datetime issue
 myApp.filter("dateFilter", function () {
     return function (item) {
@@ -135,3 +152,12 @@ myApp.filter("dateFilter", function () {
         return "";
     };
 });
+
+//News Service for displaying the article on the home page 
+myApp.service("newsLstService", ['$http', function ($http) {
+
+//list all the news
+    this.allNews = function () {
+        return $http.get("/artcile/allNewsForHome");
+    }
+}]);
