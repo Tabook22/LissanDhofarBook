@@ -65,7 +65,6 @@
 
     // Update selected post, and add it to the database
     $scope.AddOrUpdatePost = function () {
-
         debugger;
         if ($scope.Action == 'Update') {
             //the problem is here in this part Post.PostId = $scope.PostId;

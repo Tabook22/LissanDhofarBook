@@ -16,5 +16,7 @@ namespace LissanDhofar_V1.Models
         public DbSet<Article>Articles { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<UploadedFile> UploadedFiles { get; set; }
+        public DbSet<Conference> Conferences { get; set; }
+        public DbSet<conInfo> conInfos { get; set; }
     }
 }

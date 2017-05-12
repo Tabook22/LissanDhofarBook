@@ -1,7 +1,5 @@
 ﻿myApp.controller("sliderCtrl", ["$scope", function ($scope) {
     //Slider
-
-    
     $scope.sliderImg = [{
         title: "image One",
         imgSrc: "Content/images/slider/slider-img-1.jpg"

@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "postLst";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<style>
+    .error-msgs {
+        font-weight: bold;
+        color: red;
+    }
+
+    .btnAdd {
+        background: #19a6d1;
+        border-radius: 5px;
+        color: white;
+        padding: 3px 7px;
+        cursor: pointer;
+    }
+
+    .btnRed {
+        background: red;
+        border-radius: 5px;
+        color: white;
+        padding: 3px 7px;
+        cursor: pointer;
+    }
+
+    .sort-icon {
+        font-size: 9px;
+        margin-left: 5px;
+    }
+
+    th {
+        cursor: pointer;
+    }
+</style>
+<div>
+    <div ng-controller="conferenceCtrl">
+        <h2>قائمه المقالات</h2>
+        <div class="row" style="margin-top:60px;">
+            <div class="col-md-7 pst-add-pst">
+                <p style="font-weight:bold;border-bottom:1px solid #ccc;">{{Action}} Post</p>
+                <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+                <form name="confForm" ng-submit="AddOrUpdateCon()" novalidate>
+                    <!-- Post Title -->
+                    <!-- Adding Conditional Classes ng-class. The way it works is ng-class="{ <class-you-want> : <expression to be evaluated > }"-->
+                    <div class="form-group" ng-class="{ 'has-error' : confForm.cTitle.$invalid && !confForm.cTitle.$pristine }">
+                        <label>الموضوع:</label>
+                        <input type="text" name="cTitle" class="form-control" ng-model="confr.cTitle" required ng-minlength="10" ng-maxlength="200">
+                        <div class="error-msgs" ng-messages="confForm.cTitle.$error">
+                            <p ng-message="minlength">العنوان قصير جداً</p>
+                            <p ng-message="maxlength">العنوان طويل جداً</p>
+                            <p ng-message="required">الرجاء كتابة عنوان للموضوع</p>
+                            @*<p ng-show="confForm.cTitle.$invalid && !confForm.cTitle.$pristine" class="help-block">الرجاء كتابة عنوان للموضوع</p>
+                            <p ng-show="confForm.cTitle.$error.minlength" class="help-block">العنوان قصير جداً</p>
+                            <p ng-show="confForm.cTitle.$error.maxlength" class="help-block">العنوان طويل جداً</p>*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" ng-model="confr.cstatus" name="pstatus" ng-value="0" />
+                        <span style="padding-right:10px;">
+                            نشر
+                        </span>
+
+                        <br />
+                        <input type="radio" ng-model="confr.cstatus" name="pstatus" ng-value="1" />
+                        <span style="padding-right:10px;">
+                            مسودة
+                        </span>
+                        <br />
+                    </div>
+
+                    <!-- Post Details-->
+                    <textarea ui-tinymce="tinymceOptions" ng-model="confr.cdetails"></textarea>
+
+                    <!-- Post Main Image -->
+                    <div class="form-group">
+                        <label>الصورة الرئيسية:</label>
+                        <input type="text" name="post_img" ng-model="confr.img" class="form-control">
+                        <img src="{{confr.cimg}}" class="img-responsive" />
+                    </div>
+                    <!-- SUBMIT BUTTON -->
+                    <!--here we disabled the submit button. We only want it disabled if our form is $invalid.-->
+                    <button type="submit" class="btn btn-primary" ng-disabled="confForm.$invalid">إرسال</button>
+                    @*<input type="button" id="btnSave" class="form-control btn-space" value="Submit" ng-click="InsertData()" />*@
+                </form>
+
+            </div>
+            <div class="col-md-4 col-md-offset-1 pst-lst">
+                <div>
+                    <button class="btn btn-default" ng-click="clearForNewCon()">إنشاءمؤتمر جديد</button><br />
+                    <span>إجمالي عدد الؤتمرات</span><span class="badge" style="background-color:#19a6d1;margin-right:10px;color:#fff;font-weight:bold;">{{tCon}}</span>
+                    <form class="form-inline">
+                        <div class="form-group" style="margin-bottom:5px;margin-right:5px;">
+                            <input type="text" ng-model="search" class="form-control" placeholder="بحث">
+                        </div>
+                    </form>
+                    <table class="table table-condensed">
+                        <tr>
+                            <th></th>
+                            <th ng-click="sort('cTitle')">
+                                عنوان المقالة
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='cTitle'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                        </tr>
+                        <tr dir-paginate="conf in conferences |orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                            <td style="width:80px;">
+                                <span ng-click="delCon(conf)" class="btnRed"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                                <span ng-click="editCon(conf)" class="btnAdd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                            </td>
+                            <td>
+                                {{post.cTitle}}
+                            </td>
+                            @*<td style="font-size:8px;color:#888">{{post.cadate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>*@
+
+                        </tr>
+                    </table>
+                    <dir-pagination-controls max-size="5"
+                                             direction-links="true"
+                                             boundary-links="true">
+                    </dir-pagination-controls>
+                </div>
+            </div>
+            <div ng-view>
+            </div>
+        </div>
+    </div>
+</div>

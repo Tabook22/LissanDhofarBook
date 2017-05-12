@@ -149,6 +149,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\adminController.cs" />
     <Compile Include="Controllers\articleController.cs" />
+    <Compile Include="Controllers\ConferenceController.cs" />
+    <Compile Include="Controllers\ConferenceInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\postController.cs" />
     <Compile Include="Controllers\uploadFilesController.cs" />
@@ -162,6 +164,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\artOrder.cs" />
+    <Compile Include="Models\Conference.cs" />
+    <Compile Include="Models\conInfo.cs" />
     <Compile Include="Models\DhofarDb.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Post.cs" />
@@ -1222,6 +1226,9 @@
     <Content Include="SPA\articleService.js" />
     <Content Include="SPA\angular-ui-bootstrap-modal.js" />
     <Content Include="SPA\client\articleController.js" />
+    <Content Include="SPA\client\conference.js" />
+    <Content Include="SPA\client\conferenceInfo.js" />
+    <Content Include="SPA\client\services\conService.js" />
     <Content Include="SPA\getDataService.js" />
     <Content Include="SPA\client\homeController.js" />
     <Content Include="SPA\client\myApp.js" />
@@ -1270,6 +1277,7 @@
     <Content Include="Views\Home\siteFooter.cshtml" />
     <Content Include="Views\Home\newsList.cshtml" />
     <Content Include="Views\Shared\_articleList.cshtml" />
+    <Content Include="Views\Conference\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1277,6 +1285,7 @@
     <Folder Include="SPA\Admin\lib\img\" />
     <Folder Include="SPA\server\" />
     <Folder Include="SPA\website\" />
+    <Folder Include="Views\ConferenceInfo\" />
     <Folder Include="Views\Partials\" />
   </ItemGroup>
   <ItemGroup>
