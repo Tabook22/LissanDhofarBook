@@ -16,13 +16,12 @@
     };
 
     //Get conference by ID
-    this.getConById = function (conId) {
-
+    this.getConById = function (confId) {
         var response = $http({
             method: "get",
             url: "/Conference/getConById",
             params: {
-                id: JSON.stringify(conId)
+                id: JSON.stringify(confId)
             }
         });
         return response;
@@ -31,7 +30,6 @@
 
     //update conference
     this.updateCon = function (conf) {
-        alert("الحمد لله رب العالمين");
         var response = $http({
             method: "post",
             url: "/Conference/updateCon",
@@ -42,12 +40,12 @@
     };
 
     //Delete conference
-    this.delCon = function (contId) {
+    this.delCon = function (confId) {
         var response = $http({
             method: "get",
             url: "/Conference/delCon",
             params: {
-                id: JSON.stringify(conId)
+                id: JSON.stringify(confId)
             }
         });
         return response;

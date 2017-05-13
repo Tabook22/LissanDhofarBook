@@ -1,4 +1,4 @@
-﻿myApp.controller("conferenceCtrl", ["$scope", "$http","conService", function ($scope, $http, conService) {
+﻿myApp.controller("conferenceCtrl", ["$scope", "$http", "conService", function ($scope, $http, conService) {
     //Setting Tinymce editor --------------------------------------------------------------------------------------
     $scope.updateHtml = function () {
         $scope.tinymceHtml = $sce.trustAsHtml(ctrl.tinymce);
@@ -27,8 +27,11 @@
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     }
 
+
+    $scope.Action = 'Add';
+
     //object to hold the conference data for addition
-    $scope.confr = {};
+    //$scope.confr = {};
     //display conference list
     //getAllConferences();
     //function getAllConferences() {
@@ -41,18 +44,17 @@
     //    });
     //}
     getAllConToDisply()
-   // get all conferences with total no. to be used in the  conference admin page, for udating conferences
+    // get all conferences with total no. to be used in the  conference admin page, for udating conferences
     function getAllConToDisply() {
         conService.getAllCon().then(function (response) {
-
             $scope.conferences = response.data.cnfLst; //here we are getting the list of all conferences,
-            $scope.tCon = response.data.totalcnf;//here we are getting the total number of conferences,
+            $scope.tCon = response.data.totalcn;//here we are getting the total number of conferences,
         }, function () {
             alert('error please check your code')
         });
     }
 
- 
+
     // Update selected conference, and add it to the database
     $scope.AddOrUpdateCon = function () {
         debugger;
@@ -66,10 +68,7 @@
                 alert('Error in updating record');
             });
         } else {
-            alert("أستغفر الله و أتوب إلية");
-            alert(JSON.stringify($scope.confr));
             var getData = conService.addCon($scope.confr);
-        
             getData.then(function (msg) {
                 $scope.Action = 'Add';
                 getAllConToDisply();
@@ -84,33 +83,58 @@
 
     //Delete conference
     $scope.delCon = function (conf) {
-        if (window.confirm('هل تريد حذف المؤتمر الذي عنوانه  ' + conf.ctitle + '?'))//Popup window will open to confirm
+        if (window.confirm('هل تريد حذف المؤتمر الذي عنوانه  ' + conf.cTitle + '?'))//Popup window will open to confirm
             //here am getting the selected post for delete
-            var getData = conService.delCon(conf.conId);
+            var getData = conService.delCon(conf.confId);
         getData.then(function (con) {
-            cleanFields();
-            alert(con.data);
             getAllConToDisply();
-        });
+            alert(con.data);
+            cleanFields();
+     
+        }, function () {
+            alert(con.data);
+            });
+    };
+
+    // Get selected conference for edit
+    $scope.editCon = function (conf) {
+        //here am getting the selected con for editing
+        var getData = conService.getConById(conf.confId);
+        getData.then(function (res) {
+            $scope.confr = res.data;
+            $scope.Action = "Update";
+        },
+            function () {
+                alert('Error in getting records');
+            });
     };
 
     //clear form for new conference
     $scope.clearForNewCon = function () {
-
-        $scope.post.ctitle = "";
-        $scope.post.cdata = "";
-        $scope.post.cimg = "";
-        $scope.post.cstatus = false;
+        $scope.confr.cTitle = "";
+        $scope.confr.cdetails = "";
+        $scope.confr.cimg = "";
+        $scope.confr.cstatus = false;
         $scope.Action = 'Add';
 
     }
 
     //Clean Fields
     function cleanFields() {
-        $scope.post.ctitle = "";
-        $scope.post.cdata = "";
-        $scope.post.cimg = "";
-        $scope.post.cstatus = false;
+        $scope.confr.cTitle = "";
+        $scope.confr.cdetails = "";
+        $scope.confr.cimg = "";
+        $scope.confr.cstatus = false;
         $scope.Action = 'Add';
     }
 }]);
+
+//filter for date becasue of json datetime issue
+myApp.filter("dateFilter", function () {
+    return function (item) {
+        if (item != null) {
+            return new Date(parseInt(item.substr(6)));
+        }
+        return "";
+    };
+});
