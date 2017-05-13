@@ -5,23 +5,27 @@ var myApp; //this is important because if we put it inside the (function(){ var 
 // because in javascript if we declare any varialbe it will be seen globly, and name conflict can occure, this can be considered a negative thing in javascript 
 (function () {
     myApp = angular.module("mainApp", ['ui.router', 'ui.bootstrap']);
-    myApp.config(['$stateProvider', function ($stateProvider) {
-        //new WOW().init();
-        //a state is crosponding to a place in the application
-        $stateProvider
-            .state('/', {
-               templateUrl: '/',
-                controller: 'mainController'
-            })
-            .state('/about', {
-                templateUrl: '/Home/About',
-                controller: 'mainController'
-            })
-            .state('/contact', {
-                templateUrl: '/Home/contact',
-                controller: 'mainController'
-            });
+    myApp.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
 
+        // default route
+        $urlRouterProvider.otherwise('/');
+
+        $stateProvider
+            .state('home', {
+                url: '/',
+                templateUrl: '/SPA/client/views/home.html',
+                controller: 'homeCtrl'
+            })
+            .state('about', {
+                url: '/about',
+                templateUrl: '/SPA/client/views/partials/about.html',
+                controller: 'homeCtrl'
+            })
+            .state('contact', {
+                url: '/contact',
+                templateUrl: 'home/contact',
+                controller: 'homeCtrl'
+            })
     }]);
 
 })();

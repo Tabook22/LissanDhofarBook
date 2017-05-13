@@ -38,6 +38,13 @@ namespace LissanDhofar_V1.Controllers
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
+        //this will show the result of all links in the index page
+        //[ChildActionOnly]
+        //public ActionResult sDetails()
+        //{
+
+        //    return PartialView();
+        //}
         //get users
         public JsonResult getPosts()
         {
