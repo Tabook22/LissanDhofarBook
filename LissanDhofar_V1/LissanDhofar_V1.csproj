@@ -203,6 +203,9 @@
     <Content Include="Content\images\blog\blog-img-thumb-2.jpg" />
     <Content Include="Content\images\book.jpg" />
     <Content Include="Content\images\booklog.png" />
+    <Content Include="Content\images\conf1.png" />
+    <Content Include="Content\images\conf1_1.png" />
+    <Content Include="Content\images\conf1_2.png" />
     <Content Include="Content\images\cooker-img.png" />
     <Content Include="Content\images\header.jpg" />
     <Content Include="Content\images\logo.png" />
