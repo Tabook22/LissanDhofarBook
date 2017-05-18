@@ -21,6 +21,37 @@ var myApp; //this is important because if we put it inside the (function(){ var 
                 templateUrl: '/SPA/client/views/partials/about.html',
                 controller: 'homeCtrl'
             })
+            .state('page1', {
+                url: '/page1/:postTitle',
+                templateUrl: '/SPA/client/views/partials/page1.html',
+                controller: 'conDetails',
+                resolve: {
+                    artDetail: ['$http', '$stateParams', function ($http, $stateParams) {
+                        return $http({
+                            url: "/article/getAllArtGuide",
+                            method: "GET",
+                            params: { postTitle: $stateParams.postTitle }
+                        }).then(function (res) {
+                            return res.data;
+                        });
+                    }]
+                }
+            })
+            //.state('page1', {
+            //    url: '/page1/:postTitle',
+            //    templateUrl: '/SPA/client/views/partials/page1.html',
+            //    controller: 'conLst'
+            //})
+            .state('dic', {
+                url: '/dic',
+                templateUrl: '/SPA/client/views/partials/dic.html',
+                controller: 'homeCtrl'
+            })
+            .state('letters', {
+                url: '/letters',
+                templateUrl: '/SPA/client/views/partials/letter.html',
+                controller: 'homeCtrl'
+            })
             .state('contact', {
                 url: '/contact',
                 templateUrl: 'home/contact',

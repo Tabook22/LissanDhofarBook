@@ -212,6 +212,9 @@
     <Content Include="Content\images\ml.jpg" />
     <Content Include="Content\images\overlay-pattern.png" />
     <Content Include="Content\images\overlay-pattern2.png" />
+    <Content Include="Content\images\photo\p1.JPG" />
+    <Content Include="Content\images\photo\p2.JPG" />
+    <Content Include="Content\images\photo\p3.JPG" />
     <Content Include="Content\images\photo\photo-1.jpg" />
     <Content Include="Content\images\photo\photo-2.jpg" />
     <Content Include="Content\images\photo\photo-3.jpg" />
@@ -1232,9 +1235,11 @@
     <Content Include="SPA\client\articleController.js" />
     <Content Include="SPA\client\conference.js" />
     <Content Include="SPA\client\conferenceInfo.js" />
+    <Content Include="SPA\client\controllers\conlstController.js" />
     <Content Include="SPA\client\services\conService.js" />
     <Content Include="SPA\client\views\home.html" />
     <Content Include="SPA\client\views\partials\about.html" />
+    <Content Include="SPA\client\views\partials\page1.html" />
     <Content Include="SPA\getDataService.js" />
     <Content Include="SPA\client\homeController.js" />
     <Content Include="SPA\client\myApp.js" />

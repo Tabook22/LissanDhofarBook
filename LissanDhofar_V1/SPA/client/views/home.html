@@ -62,19 +62,23 @@ blog start
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="block">
+                <div class="block" ng-controller="conLst">
                     <h1 class="heading">دليل <span>الندوات</span> و <span>المؤتمرات</span></h1>
                     <ul>
-                        <li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="300ms">
+                        <li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="300ms" ng-repeat="art in allConf">
                             <div class="blog-img">
-                                <img src="Content/images/blog/blog-img-1.jpg" alt="blog-img">
+                                <img src="{{art.post_img}}" alt="blog-img" class="img-responsive">
                             </div>
                             <div class="content-right">
-                                <h3 style="font-size:14px;">ندوة ريسوت الاقتصاد والتنمية</h3>
-                                <p>إن الموانئ والمناطق الصناعية والحرة من أهم  ...</p>
+                                <a ui-sref="page1({postTitle: art.post_title})">
+                                  {{art.post_title}}
+                                </a>
+                                <!--<h3 style="font-size:14px;">ندوة ريسوت الاقتصاد والتنمية</h3>-->
+                                <div ng-bind-html="trustAsHtml(showArts.post_data)"></div>
+                                <p style="height:65px;overflow:hidden;"  ng-bind-html="trustAsHtml(art.post_data)"></p><span>...</span>
                             </div>
                         </li>
-                        <li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="400ms">
+                        <!--<li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="400ms">
                             <div class="blog-img">
                                 <img src="Content/images/blog/blog-img-2.jpg" alt="blog-img">
                             </div>
@@ -85,7 +89,10 @@ blog start
                         </li>
                         <li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="500ms">
                             <div class="content-left">
-                                <h3>ندوة الشباب وريادة الأعمال</h3>
+                                <a ui-sref="page1({postTitle:'ندوة الشباب وريادة الأعمال'})">
+                                    ندوة الشباب وريادة الأعمال
+                                </a>
+                              
                                 <p>من أكثر القضايا التي تقلق صناع القرار والمسؤولين في السلطنة اليوم هي ...</p>
                             </div>
                             <div class="blog-img-2">
@@ -115,10 +122,16 @@ blog start
                                 <img src="Content/images/blog/blog-img-6.jpg" alt="blog-img">
                             </div>
                             <div class="content-right">
-                                <h3>مؤتمرالتجارة الثالث</h3>
-                                <p>يأتي انعقاد هذا المؤتمر للعام الثالث على التوالي في إطار نجاحه ولله الحمد ...</p>
+                                <h3 style="font-size:14px;">
+                                    <a ui-sref="page1({postTitle:'الحملة الوطنية لمخاطر تقنية المعلومات'})">
+                                        الحملة الوطنية لمخاطر تقنية المعلومات
+                                    </a>
+                                   
+                                
+                                </h3>
+                                <p>وجهت شريعتنا السمحاء وحثت على أهمية التكافل الاجتماعي ...</p>
                             </div>
-                        </li>
+                        </li>-->
                     </ul>
                     <a class="btn btn-default btn-more-info wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" href="#" role="button">مزيد من المعلومات</a>
                 </div>

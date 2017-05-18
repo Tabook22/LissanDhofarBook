@@ -53,6 +53,49 @@ namespace LissanDhofar_V1.Controllers
 
         }
 
+        //get all the articles which are used in conference list-----------------------------------------------------------------------------------------------
+        public JsonResult getAllConArtciles()
+        {
+            //here we are going to merge two tables articles and posts then pass the result to a view model vmartposts
+            using (DhofarDb db = new DhofarDb())
+            {
+                var art = (from a in db.Articles
+                           join b in db.Posts on a.PostId equals b.PostId
+                           where a.Location == "دليل الندوات و المؤتمرات"
+                           select new
+                           {
+                               a.ArticleId,
+                               a.Location,
+                               a.PostId,
+                               a.order,
+                               b.post_title,
+                               b.post_data,
+                               b.post_status,
+                               b.post_adate,
+                               b.post_img
+                           }).ToList();
+
+               // var getlst = db.Articles.
+               //Join(db.Posts,
+               //a => a.PostId, b => b.PostId,
+               //(a, b) => new VMArtPost
+               //{
+               //    ArticleId = a.ArticleId,
+               //    Location = a.Location,
+               //    PostId = a.PostId,
+               //    order = a.order,
+               //    post_title = b.post_title,
+               //    post_status = b.post_status,
+               //    post_adate = b.post_adate,
+               //    post_img = b.post_img
+               //}).ToList();
+
+                return Json(art.OrderByDescending(x => x.ArticleId), JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+
         //Add new article-----------------------------------------------------------------------------------------------------
         public JsonResult addNewArticle(Article article)
         {
@@ -67,15 +110,15 @@ namespace LissanDhofar_V1.Controllers
 
                 // return Json(new { status = "تمت عملية الإضافة بنجاح" }, JsonRequestBehavior.AllowGet);
                 msg = "تمت عملية الإضافة بنجاح";
-            
+
                 //get the current added article, by getting the max articleid, then using that id to get the whole article
-               // int maxArtId = db.Articles.Max(x => x.ArticleId);
+                // int maxArtId = db.Articles.Max(x => x.ArticleId);
                 //int artid = article.ArticleId;
                 //var maxOrder = db.Articles.Where(x=>x.Location  == article.Location).Max(x => x.order );
                 //Article getArt = db.Articles.Where(x => x.ArticleId == maxArtId).FirstOrDefault();
 
                 //change the articles order based on the current article order 
-               // artorder.getOrder(getArt.ArticleId, getArt.order, getArt.Location, maxOrder);
+                // artorder.getOrder(getArt.ArticleId, getArt.order, getArt.Location, maxOrder);
 
                 return Json(msg, JsonRequestBehavior.AllowGet);
                 //return "تمت عملية الإضافة";
@@ -108,17 +151,17 @@ namespace LissanDhofar_V1.Controllers
                 art.PostId = article.PostId;
                 art.order = article.order;
                 //article.post_adate = DateTime.Parse(DateTime.Now.ToShortTimeString());
-               // db.Articles.Add(art);
+                // db.Articles.Add(art);
                 db.SaveChanges();
 
                 // return Json(new { status = "تمت عملية الإضافة بنجاح" }, JsonRequestBehavior.AllowGet);
                 msg = "تمت عملية الإضافة بنجاح";
 
                 //get the current updated article
-               // Article getArt = db.Articles.Where(x => x.ArticleId == aid).FirstOrDefault();
+                // Article getArt = db.Articles.Where(x => x.ArticleId == aid).FirstOrDefault();
                 //var maxOrder = db.Articles.Where(x => x.Location == article.Location).Max(x => x.order);
                 //change the articles order based on the current article order
-               // artorder.getOrder(getArt.ArticleId, getArt.order, getArt.Location, maxOrder);
+                // artorder.getOrder(getArt.ArticleId, getArt.order, getArt.Location, maxOrder);
 
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
@@ -174,7 +217,7 @@ namespace LissanDhofar_V1.Controllers
         {
             string msg = string.Empty;
             int aid = Convert.ToInt32(id);
-            using(DhofarDb db=new DhofarDb())
+            using (DhofarDb db = new DhofarDb())
             {
                 Article art = db.Articles.Where(x => x.ArticleId == aid).FirstOrDefault();
                 db.Articles.Remove(art);
@@ -184,15 +227,40 @@ namespace LissanDhofar_V1.Controllers
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
         }
-        
+
         //getting all the articles in the news category to be displyied inside the homepage
         public JsonResult allNewsForHome()
         {
             DhofarDb db = new DhofarDb();
-          
+
+            var art = (from a in db.Articles
+                       join b in db.Posts on a.PostId equals b.PostId
+                       where a.Location == "قائمة الأخبار"
+                       select new
+                       {
+                           a.ArticleId,
+                           a.Location,
+                           a.PostId,
+                           a.order,
+                           b.post_title,
+                           b.post_status,
+                           b.post_adate,
+                           b.post_img
+                       }).ToList();
+            //Article art = db.Articles.Where(x => x.ArticleId == aid).FirstOrDefault();
+            return Json(art, JsonRequestBehavior.AllowGet);
+
+
+        }
+
+        //get all the articles which will be used in conference list
+        public JsonResult getAllArtGuide(string postTitle)
+        {
+            using (DhofarDb db = new DhofarDb())
+            {
                 var art = (from a in db.Articles
                            join b in db.Posts on a.PostId equals b.PostId
-                           where a.Location == "قائمة الأخبار"
+                           where a.Location == "دليل الندوات و المؤتمرات" && b.post_title == postTitle
                            select new
                            {
                                a.ArticleId,
@@ -200,14 +268,15 @@ namespace LissanDhofar_V1.Controllers
                                a.PostId,
                                a.order,
                                b.post_title,
+                               b.post_data,
                                b.post_status,
                                b.post_adate,
                                b.post_img
-                           }).ToList();
+                           }).FirstOrDefault();
                 //Article art = db.Articles.Where(x => x.ArticleId == aid).FirstOrDefault();
                 return Json(art, JsonRequestBehavior.AllowGet);
-          
-           
+            }
+
         }
     }
 }
