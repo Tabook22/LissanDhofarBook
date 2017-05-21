@@ -54,6 +54,25 @@ myApp.controller("newsCtrl", ["$scope", "$sce", "conLstService", function ($scop
 
 }]);
 
+//--------------------------------------------Conference controller ---------------------------------------------------------
+myApp.controller("conferenceCtrl", ["$scope", "$sce", "conLstService", function ($scope, $sce, conLstService) {
+    //get conference to display on the homepage
+    getConferenceHome();
+    function getConferenceHome() {
+        conLstService.getConHome().then(function (response) {
+            $scope.conHome = response.data;
+           
+        }, function () {
+                alert('error please check your code')
+            });
+    }
+
+    $scope.trustAsHtml = function (html) {
+        return $sce.trustAsHtml(html);
+    };
+
+}]);
+
 //Another way to check for our code wither it safe or not, is to define a filter which works in exactly the same way as the trustAsHtml function above:
 //And use it like this:
 //<div ng-bind-html="myHtmlVar | trustAsHtml"></div>
@@ -90,6 +109,15 @@ myApp.service("conLstService", ["$http", function ($http) {
             url: "/article/getNews",
         });
         return response
+    }
+
+    //Display conference on the homepage
+    this.getConHome = function () {
+        var response = $http({
+            method: "get",
+            url: "/Conference/getConHome"
+        });
+        return response;
     }
 }]);
 

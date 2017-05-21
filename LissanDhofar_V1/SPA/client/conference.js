@@ -26,23 +26,14 @@
         $scope.sortKey = keyname;   //set the sortKey to the param passed
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     }
-
-
+    conService.getConHome().then(function (response) {
+        $scope.conHome = response.data.
+        }, function () {
+            alert('error please check your code')
+        });
+   
     $scope.Action = 'Add';
 
-    //object to hold the conference data for addition
-    //$scope.confr = {};
-    //display conference list
-    //getAllConferences();
-    //function getAllConferences() {
-    //    var conLst = conService.getAllCon();
-    //    debugger;
-    //    conLst.then(function (con) {
-    //        $scope.cLst = con.data.cnfLst; //here we are getting the list of all conferences, because the ajax call will return two parameters, one contains the list of conference, and the other the total number of conferences
-    //    }, function () {
-    //        alert('Error in getting records');
-    //    });
-    //}
     getAllConToDisply()
     // get all conferences with total no. to be used in the  conference admin page, for udating conferences
     function getAllConToDisply() {
@@ -57,7 +48,6 @@
 
     // Update selected conference, and add it to the database
     $scope.AddOrUpdateCon = function () {
-        debugger;
         if ($scope.Action == 'Update') {
             var getData = conService.updateCon($scope.confr);
             getData.then(function (msg) {
@@ -113,6 +103,8 @@
     $scope.clearForNewCon = function () {
         $scope.confr.cTitle = "";
         $scope.confr.cdetails = "";
+        $scope.confr.cmessage = "";
+        $scope.confr.cvision = "";
         $scope.confr.cimg = "";
         $scope.confr.cstatus = false;
         $scope.Action = 'Add';
@@ -123,9 +115,16 @@
     function cleanFields() {
         $scope.confr.cTitle = "";
         $scope.confr.cdetails = "";
+        $scope.confr.cmessage = "";
+        $scope.confr.cvision = "";
         $scope.confr.cimg = "";
         $scope.confr.cstatus = false;
         $scope.Action = 'Add';
+    }
+
+    //this function is used to prevent html tags from showing up
+    $scope.trustAsHtml = function (html) {
+        return $sce.trustAsHtml(html);
     }
 }]);
 

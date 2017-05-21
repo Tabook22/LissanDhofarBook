@@ -1240,6 +1240,7 @@
     <Content Include="SPA\client\services\conService.js" />
     <Content Include="SPA\client\views\home.html" />
     <Content Include="SPA\client\views\partials\about.html" />
+    <Content Include="SPA\client\views\partials\confDetails.html" />
     <Content Include="SPA\client\views\partials\page1.html" />
     <Content Include="SPA\client\views\test.html" />
     <Content Include="SPA\getDataService.js" />

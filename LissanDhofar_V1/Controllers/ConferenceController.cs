@@ -14,8 +14,16 @@ namespace LissanDhofar_V1.Controllers
         {
             return View();
         }
+        //Get conference to display on the front page
+        public JsonResult getConHome()
+        {
+            DhofarDb db = new DhofarDb();
+            var getCon = db.Conferences.Where(x => x.cstatus == "0").FirstOrDefault();
+            return Json(getCon, JsonRequestBehavior.AllowGet);
+        }
+
         //get All conferences
-       
+
         public JsonResult getAllcnf()
         {
             using (DhofarDb db = new DhofarDb())
@@ -77,6 +85,8 @@ namespace LissanDhofar_V1.Controllers
                     var conList = db.Conferences .Where(x => x.confId == no).FirstOrDefault();
                     conList.cTitle = conf.cTitle;
                     conList.cdetails= conf.cdetails;
+                    conList.cmessage = conf.cmessage;
+                    conList.cvision  = conf.cvision;
                     conList.cimg = conf.cimg;
                     conList.cstatus = conf.cstatus;
                     db.SaveChanges();

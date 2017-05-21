@@ -27,7 +27,7 @@
         return response;
     }
 
-
+    
     //update conference
     this.updateCon = function (conf) {
         var response = $http({

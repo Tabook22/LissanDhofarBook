@@ -37,6 +37,21 @@ var myApp; //this is important because if we put it inside the (function(){ var 
                     }]
                 }
             })
+            .state('confDetails', {
+                url: '/confDetails',
+                templateUrl: '/SPA/client/views/partials/confDetails.html',
+                controller: 'conferenceCtrl',
+                resolve: {
+                    confDetail: ['$http', function ($http,) {
+                        return $http({
+                            url: "/Conference/getConHome",
+                            method: "GET",
+                        }).then(function (res) {
+                            return res.data;
+                        });
+                    }]
+                }
+            })
             //.state('page1', {
             //    url: '/page1/:postTitle',
             //    templateUrl: '/SPA/client/views/partials/page1.html',
