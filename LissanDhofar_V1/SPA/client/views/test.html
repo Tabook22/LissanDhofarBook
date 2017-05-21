@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html ng-app="mainApp">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My ASP.NET Application</title>
+    <!--CSS-->
+
+    <!--angular library-->
+    <script src="../../../Scripts/angular.js"></script>
+    <script src="../../../Scripts/angular-route.min.js"></script>
+    <script src="../../../Scripts/angular-ui-router.min.js"></script>
+    <script src="../../../Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <!--customer javascript-->
+    <script src="spa/client/myApp.js"></script>
+    <script src="spa/client/homeController.js"></script>
+    <script src="spa/client/articleController.js"></script>
+    <script src="spa/client/controllers/conlstController.js"></script>
+
+</head>
+<body ng-controller="newsCtrl">
+    <ul>
+        <li ng-repeat="n in sNews">
+            <div class="item">
+                <div class="item-title">
+                    <h2>{{n.post_title}}</h2>
+                    <div class="border-bottom"></div>
+                    <!--<span>{{n.post_adate | dateFilter | date:"dd/MM/yyyy"}}</span>-->
+                </div>
+                <p style="max-height:70px;">
+                    {{n.post_status}}
+                </p>
+            </div>
+        </li>
+    </ul>
+</body>
+</html>

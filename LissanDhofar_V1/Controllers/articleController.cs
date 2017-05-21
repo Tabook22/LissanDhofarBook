@@ -61,7 +61,7 @@ namespace LissanDhofar_V1.Controllers
             {
                 var art = (from a in db.Articles
                            join b in db.Posts on a.PostId equals b.PostId
-                           where a.Location == "دليل الندوات و المؤتمرات"
+                           where a.Location == "دليل الندوات و المؤتمرات" && b.post_status ==0
                            select new
                            {
                                a.ArticleId,
@@ -72,7 +72,8 @@ namespace LissanDhofar_V1.Controllers
                                b.post_data,
                                b.post_status,
                                b.post_adate,
-                               b.post_img
+                               b.post_img,
+                               b.post_img_title
                            }).ToList();
 
                // var getlst = db.Articles.
@@ -254,13 +255,14 @@ namespace LissanDhofar_V1.Controllers
         }
 
         //get all the articles which will be used in conference list
-        public JsonResult getAllArtGuide(string postTitle)
+        public JsonResult getAllArtGuide(string PstId)
         {
+           int pId = Convert.ToInt32(PstId);
             using (DhofarDb db = new DhofarDb())
             {
                 var art = (from a in db.Articles
                            join b in db.Posts on a.PostId equals b.PostId
-                           where a.Location == "دليل الندوات و المؤتمرات" && b.post_title == postTitle
+                           where a.Location == "دليل الندوات و المؤتمرات" && b.PostId == pId
                            select new
                            {
                                a.ArticleId,
@@ -271,11 +273,84 @@ namespace LissanDhofar_V1.Controllers
                                b.post_data,
                                b.post_status,
                                b.post_adate,
-                               b.post_img
+                               b.post_img,
+                               b.post_img_title
                            }).FirstOrDefault();
                 //Article art = db.Articles.Where(x => x.ArticleId == aid).FirstOrDefault();
                 return Json(art, JsonRequestBehavior.AllowGet);
             }
+
+        }
+
+        //get article which will be used as site introduction
+        public JsonResult getIntro()
+        {
+            using (DhofarDb db = new DhofarDb())
+            {
+                var art = (from a in db.Articles
+                           join b in db.Posts on a.PostId equals b.PostId
+                           where a.Location == "المقدمة" && b.post_status == 0
+                           select new
+                           {
+                               a.ArticleId,
+                               a.Location,
+                               a.PostId,
+                               a.order,
+                               b.post_title,
+                               b.post_data,
+                               b.post_status,
+                               b.post_adate,
+                               b.post_img,
+                               b.post_img_title
+                           }).FirstOrDefault();
+                //Article art = db.Articles.Where(x => x.ArticleId == aid).FirstOrDefault();
+                return Json(art, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        //get articles which will be used in news list
+        public JsonResult getNews()
+        {
+            using (DhofarDb db = new DhofarDb())
+            {
+            var art = (from a in db.Articles
+                       join b in db.Posts on a.PostId equals b.PostId
+                       where a.Location == "الأخبار" && b.post_status == 0
+                       select new
+                       {
+                           a.ArticleId,
+                           a.Location,
+                           b.PostId,
+                           a.order,
+                           b.post_title,
+                           b.post_data,
+                           b.post_status,
+                           b.post_adate,
+                           b.post_img,
+                           b.post_img_title
+                       }).Distinct().ToList();
+            //Article art = db.Articles.Where(x => x.ArticleId == aid).FirstOrDefault();
+            return Json(art, JsonRequestBehavior.AllowGet);
+
+               // var getlst = db.Articles.
+               //Join(db.Posts,
+               //a => a.PostId, b => b.PostId,
+               //(a, b) => new VMArtPost
+               //{
+               //    ArticleId = a.ArticleId,
+               //    Location = a.Location,
+               //    PostId = a.PostId,
+               //    order = a.order,
+               //    post_title = b.post_title,
+               //    post_status = b.post_status,
+               //    post_adate = b.post_adate,
+               //    post_img = b.post_img
+               //}).Where(x=>x.post_status==1).ToList();
+
+               // return Json(getlst.OrderByDescending(x => x.ArticleId), JsonRequestBehavior.AllowGet);
+            }
+
 
         }
     }

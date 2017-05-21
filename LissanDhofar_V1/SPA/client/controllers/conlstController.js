@@ -14,17 +14,44 @@
 }]);
 
 myApp.controller("conLst", ["$scope", "$sce", "conLstService", function ($scope, $sce,conLstService) {
-    getAllConferences()
+    getAllConferences();
     function getAllConferences() {
         var getData = conLstService.getConList();
         getData.then(function (res) {
             $scope.allConf = res.data;
         });
     }
+}]);
+//--------------------------------------------Introduction controller ---------------------------------------------------------
+myApp.controller("introCtrl", ["$scope", "$sce", "conLstService", function ($scope, $sce, conLstService) {
+    //get article which is used as introduciton
+    getIntroduction();
+    function getIntroduction() {
 
+        var getData = conLstService.getIntro();
+        getData.then(function (res) {
+            $scope.siteIntro = res.data;
+        });
+    }
     $scope.trustAsHtml = function (html) {
         return $sce.trustAsHtml(html);
+    };
+
+}]);
+//--------------------------------------------News controller ---------------------------------------------------------
+myApp.controller("newsCtrl", ["$scope", "$sce", "conLstService", function ($scope, $sce, conLstService) {
+    //get article which is used as introduciton
+    getNewsLst();
+    function getNewsLst() {
+        var getData = conLstService.getNews();
+        getData.then(function (res) {
+            $scope.sNews = res.data;
+        });
     }
+    $scope.trustAsHtml = function (html) {
+        return $sce.trustAsHtml(html);
+    };
+
 }]);
 
 //Another way to check for our code wither it safe or not, is to define a filter which works in exactly the same way as the trustAsHtml function above:
@@ -35,14 +62,46 @@ myApp.controller("conLst", ["$scope", "$sce", "conLstService", function ($scope,
 //        return $sce.trustAsHtml(html);
 //    };
 //});
+
+//******************************** Services **************************************************************
+//********************************************************************************************************
+
 myApp.service("conLstService", ["$http", function ($http) {
     //get all articles which will be used inside the conference list
     this.getConList = function () {
         var response = $http({
-            method: "post",
+            method: "get",
             url: "/article/getAllConArtciles",
         });
         return response
     }
 
+    //get the introduction which will be used inside the main page
+    this.getIntro = function () {
+        var response = $http({
+            method: "get",
+            url: "/article/getIntro",
+        });
+        return response
+    }
+    this.getNews = function () {
+        var response = $http({
+            method: "get",
+            url: "/article/getNews",
+        });
+        return response
+    }
 }]);
+
+
+//******************************** Filters ***************************************************************
+//********************************************************************************************************
+//filter for date becasue of json datetime issue
+myApp.filter("dateFilter", function () {
+    return function (item) {
+        if (item != null) {
+            return new Date(parseInt(item.substr(6)));
+        }
+        return "";
+    };
+});

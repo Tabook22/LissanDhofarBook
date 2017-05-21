@@ -6,7 +6,6 @@ myApp.controller("articleController", ["$scope", "newsLstService", function ($sc
     //========================================================================================================================//
     getAllNewsForHomePage();
     function getAllNewsForHomePage() {
-        debugger;
         var getData = newsLstService.allNews();
         debugger;
         getData.then(function (nws) {

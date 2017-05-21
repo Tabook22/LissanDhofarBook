@@ -1,6 +1,6 @@
 ﻿myApp.controller("articleController", ["$scope", "articleService", "newsLstService", function ($scope, articleService, newsLstService) {
     //elements to fill the dropdownlist
-    $scope.artGroups = ["العنوان الرئيسي", "الشريط المتحرك","دليل الندوات و المؤتمرات", "الصور المتحركة", "قائمة الأخبار", "الخبر الرئيسي"];
+    $scope.artGroups = ["المقدمة","دليل الندوات و المؤتمرات", "الأخبار", "الخبر الرئيسي"];
     //post object used to get data from the article from
     $scope.divArticleAdd = true;
     $scope.divArticleEdit = false;

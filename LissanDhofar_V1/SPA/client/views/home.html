@@ -24,9 +24,9 @@
                     <img src="../../../Content/images/conf1_2.png" style="margin-bottom:20px;" class="img-responsive" />
                     <a class="btn btn-default cbtn-more-info wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" ui-sref="about" role="button">مزيد من المعلومات</a>
                 </div>
-               <div class="col-md-6">
-                   <img src="../../../Content/images/conf1_1.png" class="img-responsive" />
-               </div>
+                <div class="col-md-6">
+                    <img src="../../../Content/images/conf1_1.png" class="img-responsive" />
+                </div>
             </div>
         </div>
     </div><!-- .container close -->
@@ -39,18 +39,20 @@ about-us start
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="block">
-                    <img class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms" src="Content/images/cooker-img.png" alt="cooker-img">
+                <div class="block" ng-controller="introCtrl">
+                    <img class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms" src="{{siteIntro.post_img}}" alt="gm-Image">
                     <h1 class="heading wow fadeInUp" data-wow-duration="400ms" data-wow-delay="500ms">
-                        <span>د.علي سهيل تبوك</span> </br>  المدير التنفيذي <span></span>
+                        <span style="font-size:24px;">{{siteIntro.post_title}}</span>
+
+                        <!--<span>د.علي سهيل تبوك</span> </br>  المدير التنفيذي <span></span>-->
                     </h1>
-                    <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="600ms">
 
-                        متخصصون في الدراسات و البحوث و المؤتمرات و الندوات العلمية و الدولية و الحملات التوعوية ” ، هكذا يعرف مركز الشرق الأوسط للاستشارات و الدراسات الاجتماعية نفسه باختصار في مواقع التواصل الاجتماعي ، المركز الذي أنشئ في يونيو 2012 ليتخذ من ” الإسهام في تأسيس مجتمع المعرفة عن طريق تبني إجراء مشروعات البحوث والدراسات الاجتماعية والتنموية” جزءا من رؤيته و ” أن يكون مصدر إشعاع معرفي وتنويري للمجتمع العماني لتقديم الاستشارات والدراسات بهدف تقديم حلول عملية لتنمية المجتمع من خلال بحوث علمية منهجية
+                    <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="600ms" ng-bind-html="trustAsHtml(siteIntro.post_data)">
                     </p>
-                    <a class="btn btn-default btn-more-info wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" ui-sref="about" role="button">مزيد من المعلومات</a>
+                   
+                        <!--<a class="btn btn-default btn-more-info wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" ui-sref="page1({PstId:{{siteIntro.PostId}}})" role="button">مزيد من المعلومات</a>-->
 
-                </div>
+</div>
             </div><!-- .col-md-12 close -->
         </div><!-- .row close -->
     </div><!-- .containe close -->
@@ -67,73 +69,20 @@ blog start
                     <ul>
                         <li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="300ms" ng-repeat="art in allConf">
                             <div class="blog-img">
-                                <img src="{{art.post_img}}" alt="blog-img" class="img-responsive">
+                                <img src="{{art.post_img}}" alt="blog-img" class="img-responsive" style="width:293px;height:220px;">
                             </div>
                             <div class="content-right">
-                                <a ui-sref="page1({postTitle: art.post_title})">
-                                  {{art.post_title}}
+                                <a ui-sref="page1({PstId:{{art.PostId}}})" style="color:#FE530A;font-weight:bold;font-size:16px">
+                                    {{art.post_title}}
                                 </a>
                                 <!--<h3 style="font-size:14px;">ندوة ريسوت الاقتصاد والتنمية</h3>-->
                                 <div ng-bind-html="trustAsHtml(showArts.post_data)"></div>
-                                <p style="height:65px;overflow:hidden;"  ng-bind-html="trustAsHtml(art.post_data)"></p><span>...</span>
+                                <p style="height:65px;overflow:hidden;" ng-bind-html="trustAsHtml(art.post_data)"></p><span>...</span>
                             </div>
                         </li>
-                        <!--<li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="400ms">
-                            <div class="blog-img">
-                                <img src="Content/images/blog/blog-img-2.jpg" alt="blog-img">
-                            </div>
-                            <div class="content-right">
-                                <h3 style="font-size:14px;">ندوة مجلس الشورى</h3>
-                                <p>جاءت الندوة من منطلق الدور الهام والحيوي الذي ...</p>
-                            </div>
-                        </li>
-                        <li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="500ms">
-                            <div class="content-left">
-                                <a ui-sref="page1({postTitle:'ندوة الشباب وريادة الأعمال'})">
-                                    ندوة الشباب وريادة الأعمال
-                                </a>
-                              
-                                <p>من أكثر القضايا التي تقلق صناع القرار والمسؤولين في السلطنة اليوم هي ...</p>
-                            </div>
-                            <div class="blog-img-2">
-                                <img src="Content/images/blog/blog-img-3.jpg" alt="blog-img">
-                            </div>
-                        </li>
-                        <li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="600ms">
-                            <div class="content-left">
-                                <h3>ندوة المسؤولية لاجتماعية</h3>
-                                <p>إيمانا من المقام السامي لمولانا حضرة صاحب الجلالة السلطان قابوس ...</p>
-                            </div>
-                            <div class="blog-img-2">
-                                <img src="Content/images/blog/blog-img-4.jpg" alt="blog-img">
-                            </div>
-                        </li>
-                        <li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="700ms">
-                            <div class="blog-img">
-                                <img src="Content/images/blog/blog-img-5.jpg" alt="blog-img">
-                            </div>
-                            <div class="content-right">
-                                <h3>ندوة مساءلة الأحداث</h3>
-                                <p>بداية ﻻ ﺸﻙ ﺃﻥ ﻤﺸﻜﻠﺔ ﺠﻨﻭﺡ ﺍﻷﺤﺩﺍﺙ ﻭﻜﻴﻔﻴﺔ ﻤﻭﺍﺠﻬﺘﻬﺎ ﻤﻥ ﺃﻫﻡ ...</p>
-                            </div>
-                        </li>
-                        <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="800ms">
-                            <div class="blog-img">
-                                <img src="Content/images/blog/blog-img-6.jpg" alt="blog-img">
-                            </div>
-                            <div class="content-right">
-                                <h3 style="font-size:14px;">
-                                    <a ui-sref="page1({postTitle:'الحملة الوطنية لمخاطر تقنية المعلومات'})">
-                                        الحملة الوطنية لمخاطر تقنية المعلومات
-                                    </a>
-                                   
-                                
-                                </h3>
-                                <p>وجهت شريعتنا السمحاء وحثت على أهمية التكافل الاجتماعي ...</p>
-                            </div>
-                        </li>-->
+
                     </ul>
-                    <a class="btn btn-default btn-more-info wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" href="#" role="button">مزيد من المعلومات</a>
+                    <!--<a class="btn btn-default btn-more-info wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" href="#" role="button" style="width:285px;">مزيد من المعلومات</a>-->
                 </div>
             </div><!-- .col-md-12 close -->
         </div><!-- .row close -->
@@ -146,8 +95,8 @@ price start
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="block">
-                    <h1 class="heading wow fadeInUp" data-wow-duration="300ms" data-wow-delay="300ms">قائمة<span>أخبار</span>  <span>الموقع</span></h1>
+                <div class="block" ng-controller="newsCtrl">
+                    <h1 class="heading wow fadeInUp" data-wow-duration="300ms" data-wow-delay="300ms"><span>أخبار</span>  <span>الموقع</span></h1>
                     <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms">
                         متخصصون في الدراسات و البحوث و المؤتمرات و الندوات العلمية و الدولية و الحملات التوعوية
                     </p>
@@ -156,77 +105,20 @@ price start
                             <h3>القائمة <span>الرئيسية</span></h3>
                         </div>
                         <ul>
-                            <!--<li ng-repeat="ns in lstNewsHome" class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="300ms">
+                            <li ng-repeat="n in sNews">
                                 <div class="item">
                                     <div class="item-title">
-                                        <h2>{{ns.post_title}}</h2>
+                                        <h2>
+                                            <a ui-sref="page1({PstId:{{n.PostId}}})" style="color:#000;font-weight:bold;font-size:16px">
+                                                {{n.post_title}}
+                                            </a>
+                                        </h2>
                                         <div class="border-bottom"></div>
-                                        <span>18-19 إبريل 2017</span>
+                                        <span>{{n.post_adate | dateFilter | date:"dd/MM/yyyy"}}</span>
                                     </div>
-                                    <p>
-                                        ضمن  فعاليات الحملة الوطنية للحماية من الإبتزار الإلكتروني " معاً ضد الإبتزار الإلكتروني"  م
-                                    </p>
-                                </div>-->
-  
-                               
-                            <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms">
-                                <div class="item">
-                                    <div class="item-title">
-                                        <h2>حملة أحذر تأمن</h2>
-                                        <div class="border-bottom"></div>
-                                        <span>10 إبريل 2017</span>
-                                    </div>
-                                    <p>
-                                        تدشين  حملة وعي بأمن المعلومات الذي تنفذها قسم تقنية المعلومات بمحافظة الوسطى التعليمية تحت شعار
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="500ms">
-                                <div class="item">
-                                    <div class="item-title">
-                                        <h2>الحملة الوطنية للحماية من الإبتزار الإلكتروني</h2>
-                                        <div class="border-bottom"></div>
-                                        <span>10 إبريل 2017</span>
-                                    </div>
-                                    <p>
-                                        برنامج الحملة الوطنية للحماية من الابتزاز الإلكتروني في مرحلتها قبل الأخيرة بولاية هيماء
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="600ms">
-                                <div class="item">
-                                    <div class="item-title">
-                                        <h2>الحملة الوطنية للحماية من الإبتزار الإلكتروني</h2>
-                                        <div class="border-bottom"></div>
-                                        <span>10 إبريل 2017</span>
-                                    </div>
-                                    <p>
-                                        تستكمل الحملة الوطنية للحماية من الابتزاز الإلكتروني مسيرتها في محافظة الوسطى بولاية هيماء .
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="700ms">
-                                <div class="item">
-                                    <div class="item-title">
-                                        <h2>الحملة الوطنية للحماية من الإبتزار الإلكتروني</h2>
-                                        <div class="border-bottom"></div>
-                                        <span>5 إبريل 2017</span>
-                                    </div>
-                                    <p>
-                                        شكرا بكل الكلمات لإدارة مدرسة البندر الجديد على حفاوة الضيافة والاستقبال لتقديم محاضرات حول الابتزاز الإلكتروني في ولاية جعلان بني بو علي
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="800ms">
-                                <div class="item">
-                                    <div class="item-title">
-                                        <h2>الخصوصية في هاتفك لحمايتك وحماية بياناتك ومعلوماتك</h2>
-                                        <div class="border-bottom"></div>
-                                        <span>7 مارس 2017</span>
-                                    </div>
-                                    <p>
-                                        من المهم ضبط إعدادات الخصوصية في هاتفك لحمايتك وحماية بياناتك ومعلوماتك عند استخدامك لوسائل الإعلام الإجتماعي
-                                    </p>
+
+                                    <p style="max-height:70px; overflow:hidden" ng-bind-html="trustAsHtml(showArts.post_data)"></p>
+
                                 </div>
                             </li>
                         </ul>

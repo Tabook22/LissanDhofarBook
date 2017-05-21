@@ -5,8 +5,8 @@ var myApp; //this is important because if we put it inside the (function(){ var 
 // because in javascript if we declare any varialbe it will be seen globly, and name conflict can occure, this can be considered a negative thing in javascript 
 (function () {
     myApp = angular.module("mainApp", ['ui.router', 'ui.bootstrap']);
-    myApp.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
-
+    myApp.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
+        
         // default route
         $urlRouterProvider.otherwise('/');
 
@@ -22,7 +22,7 @@ var myApp; //this is important because if we put it inside the (function(){ var 
                 controller: 'homeCtrl'
             })
             .state('page1', {
-                url: '/page1/:postTitle',
+                url: '/page1/:PstId',
                 templateUrl: '/SPA/client/views/partials/page1.html',
                 controller: 'conDetails',
                 resolve: {
@@ -30,7 +30,7 @@ var myApp; //this is important because if we put it inside the (function(){ var 
                         return $http({
                             url: "/article/getAllArtGuide",
                             method: "GET",
-                            params: { postTitle: $stateParams.postTitle }
+                            params: { PstId: $stateParams.PstId }
                         }).then(function (res) {
                             return res.data;
                         });
@@ -57,6 +57,8 @@ var myApp; //this is important because if we put it inside the (function(){ var 
                 templateUrl: 'home/contact',
                 controller: 'homeCtrl'
             })
+
+        //$locationProvider.html5Mode(true);
     }]);
 
 })();
