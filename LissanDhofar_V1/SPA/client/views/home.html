@@ -14,44 +14,26 @@
         text-transform: uppercase;
         transition: all 0.3s ease 0s;
     }
-</style>
-<section id="slider">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12" ng-controller="conferenceCtrl">
-                <div>
-                    <img src="{{conHome.cimg}}" style="margin-bottom:10px;" class="img-responsive" />
-                    <!--<img src="../../../Content/images/conf1_2.png" style="margin-bottom:20px;" class="img-responsive" />-->
-                    <a class="btn btn-default cbtn-more-info wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" ui-sref="about" role="button">مزيد من المعلومات</a>
-                </div>
-                <!--<div class="col-md-6">
-                    <h3 style="color:#ff530a;font-weight:600px;">{{conHome.cTitle}}</h3>
-                   <p ng-bind-html="trustAsHtml(conHome.cdetails)" style="height:200px;overflow:hidden;">
-                   </p>
-                </div>-->
-            </div>
-        </div>
-    </div><!-- .container close -->
-</section><!-- slider close -->
-<!-- slider close -->
+    .cimg-fade {
+        animation: fading 10s infinite
+    }
 
-<!--<section id="slider">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-6">
-                    <img src="../../../Content/images/conf1.png" style="margin-bottom:10px;" class="img-responsive" />
-                    <img src="../../../Content/images/conf1_2.png" style="margin-bottom:20px;" class="img-responsive" />
-                    <a class="btn btn-default cbtn-more-info wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" ui-sref="about" role="button">مزيد من المعلومات</a>
-                </div>
-                <div class="col-md-6">
-                    <img src="../../../Content/images/conf1_1.png" class="img-responsive" />
-                </div>
-            </div>
-        </div>
-    </div><!-- .container close -->
-</section><!-- slider close -->
-<!-- slider close -->-->
+    @keyframes fading {
+        0% {
+            opacity: 0
+        }
+
+        50% {
+            opacity: 1
+        }
+
+        100% {
+            opacity: 0
+        }
+    }
+</style>
+<ng-include src="'/SPA/client/views/partials/conference.html'"></ng-include>
+<!-- slider close -->
 <!--
 about-us start
 ============================== -->
@@ -69,7 +51,8 @@ about-us start
 
                     <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="600ms" ng-bind-html="trustAsHtml(siteIntro.post_data)">
                     </p>
-                   
+                   <p>
+                   </p>
                         <!--<a class="btn btn-default btn-more-info wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" ui-sref="page1({PstId:{{siteIntro.PostId}}})" role="button">مزيد من المعلومات</a>-->
 
 </div>

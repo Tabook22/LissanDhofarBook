@@ -67,6 +67,25 @@ myApp.controller("conferenceCtrl", ["$scope", "$sce", "conLstService", function 
             });
     }
 
+    //this function is used to animate the conference images in homepage
+
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("conImages");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 9000);
+    }
+
+
+    //this function will be used to remove html tags from the details
     $scope.trustAsHtml = function (html) {
         return $sce.trustAsHtml(html);
     };
