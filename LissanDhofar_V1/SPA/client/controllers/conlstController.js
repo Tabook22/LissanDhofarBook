@@ -55,40 +55,26 @@ myApp.controller("newsCtrl", ["$scope", "$sce", "conLstService", function ($scop
 }]);
 
 //--------------------------------------------Conference controller ---------------------------------------------------------
-myApp.controller("conferenceCtrl", ["$scope", "$sce", "conLstService", function ($scope, $sce, conLstService) {
+
+myApp.controller("conCtrl", ["$scope", "$sce", "conLstService", function ($scope, $sce, conLstService) {
     //get conference to display on the homepage
+    //$scope.conHome = {};
     getConferenceHome();
     function getConferenceHome() {
-        conLstService.getConHome().then(function (response) {
+        var getData = conLstService.getConHome();
+        getData.then(function (response) {
             $scope.conHome = response.data;
-           
-        }, function () {
-                alert('error please check your code')
-            });
+        });
     }
-
-    //this function is used to animate the conference images in homepage
-
-    var myIndex = 0;
-    carousel();
-
-    function carousel() {
-        var i;
-        var x = document.getElementsByClassName("conImages");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        myIndex++;
-        if (myIndex > x.length) { myIndex = 1 }
-        x[myIndex - 1].style.display = "block";
-        setTimeout(carousel, 9000);
-    }
-
-
     //this function will be used to remove html tags from the details
     $scope.trustAsHtml = function (html) {
         return $sce.trustAsHtml(html);
     };
+
+    //carusole
+    $scope.myInterval = 5000;
+    var slides = $scope.conHome;// $scope.slides = [];
+    
 
 }]);
 

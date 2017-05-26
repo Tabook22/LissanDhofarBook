@@ -1,0 +1,28 @@
+﻿<section id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block" ng-controller="conLst">
+                    <h1 class="heading">دليل <span>الندوات</span> و <span>المؤتمرات</span></h1>
+                    <ul>
+                        <li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="300ms" ng-repeat="art in allConf">
+                            <div class="blog-img">
+                                <img src="{{art.post_img}}" alt="blog-img" class="img-responsive" style="width:293px;height:220px;">
+                            </div>
+                            <div class="content-right">
+                                <a ui-sref="page1({PstId:{{art.PostId}}})" style="color:#FE530A;font-weight:bold;font-size:16px">
+                                    {{art.post_title}}
+                                </a>
+                                <!--<h3 style="font-size:14px;">ندوة ريسوت الاقتصاد والتنمية</h3>-->
+                                <div ng-bind-html="trustAsHtml(showArts.post_data)"></div>
+                                <p style="height:65px;overflow:hidden;" ng-bind-html="trustAsHtml(art.post_data)"></p><span>...</span>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <!--<a class="btn btn-default btn-more-info wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" href="#" role="button" style="width:285px;">مزيد من المعلومات</a>-->
+                </div>
+            </div><!-- .col-md-12 close -->
+        </div><!-- .row close -->
+    </div><!-- .containe close -->
+</section>

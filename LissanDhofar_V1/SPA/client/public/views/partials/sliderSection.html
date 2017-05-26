@@ -1,0 +1,59 @@
+﻿<!DocType html>
+<head>
+
+    <!--<link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../js/angular-ui-router.min.js"></script>
+    <script src="../../js/ui-bootstrap-tpls-0.13.0.min.js"></script>
+    <script src="../../../myApp.js"></script>
+    <script src="../../../controllers/conlstController.js"></script>-->
+<style>
+    .carousel-indicators {
+  bottom:5px;
+    }
+    .carousel-caption a:link{
+        color:#fff;
+
+    }
+    .carousel-control.left {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 100%);
+        background-repeat: repeat-x;
+    }
+    .carousel-control.right {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 100%);
+        background-repeat: repeat-x;
+    }
+</style>
+</head>
+<body ng-app="mainApp">
+    <section id="slider"  ng-controller="conCtrl">
+        <div id="img-s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <div>
+                                <carousel interval="myInterval" style="height: 396px;">
+                                    <slide ng-repeat="slide in conHome" active="slide.active">
+                                        <img ng-src="{{slide.cimg}}" style="margin:auto; max-height:391px; width:100%;">
+                                        <div class="carousel-caption" style="background-color:#222;color:#fff;opacity:0.5; margin:0; left:0;right:0; bottom:0;">
+                                            <!--<h4>Slide {{$index}}</h4>-->
+                                            <p style="font-size:16px;font-weight:bold;color:#fff;">
+                                                <a href="#" style="text-decoration:none;">
+                                                    {{slide.cTitle}}
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </slide>
+                                    
+                                </carousel>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div><!-- .container close -->
+            </div>
+        </div>
+    </section>
+</body>
+</html>

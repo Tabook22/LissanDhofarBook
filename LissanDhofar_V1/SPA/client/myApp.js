@@ -13,17 +13,17 @@ var myApp; //this is important because if we put it inside the (function(){ var 
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: '/SPA/client/views/home.html',
+                templateUrl: '/SPA/client/public/views/home.html',
                 controller: 'homeCtrl'
             })
             .state('about', {
                 url: '/about',
-                templateUrl: '/SPA/client/views/partials/about.html',
+                templateUrl: '/SPA/client/public/views/partials/about.html',
                 controller: 'homeCtrl'
             })
             .state('page1', {
                 url: '/page1/:PstId',
-                templateUrl: '/SPA/client/views/partials/page1.html',
+                templateUrl: '/SPA/client/public/views/partials/page1.html',
                 controller: 'conDetails',
                 resolve: {
                     artDetail: ['$http', '$stateParams', function ($http, $stateParams) {
@@ -39,7 +39,7 @@ var myApp; //this is important because if we put it inside the (function(){ var 
             })
             .state('confDetails', {
                 url: '/confDetails',
-                templateUrl: '/SPA/client/views/partials/confDetails.html',
+                templateUrl: '/SPA/client/public/views/partials/confDetails.html',
                 controller: 'conferenceCtrl',
                 resolve: {
                     confDetail: ['$http', function ($http,) {
@@ -59,12 +59,12 @@ var myApp; //this is important because if we put it inside the (function(){ var 
             //})
             .state('dic', {
                 url: '/dic',
-                templateUrl: '/SPA/client/views/partials/dic.html',
+                templateUrl: '/SPA/client/public//views/partials/dic.html',
                 controller: 'homeCtrl'
             })
             .state('letters', {
                 url: '/letters',
-                templateUrl: '/SPA/client/views/partials/letter.html',
+                templateUrl: '/SPA/client/public//views/partials/letter.html',
                 controller: 'homeCtrl'
             })
             .state('contact', {
@@ -75,5 +75,4 @@ var myApp; //this is important because if we put it inside the (function(){ var 
 
         //$locationProvider.html5Mode(true);
     }]);
-
 })();

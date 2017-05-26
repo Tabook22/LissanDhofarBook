@@ -17,9 +17,11 @@ namespace LissanDhofar_V1.Controllers
         //Get conference to display on the front page
         public JsonResult getConHome()
         {
-            DhofarDb db = new DhofarDb();
-            var getCon = db.Conferences.Where(x => x.cstatus == "0").FirstOrDefault();
-            return Json(getCon, JsonRequestBehavior.AllowGet);
+            using (DhofarDb db = new DhofarDb())
+            {
+                var getCon = db.Conferences.Where(x => x.cstatus == "0").ToList();
+                return Json(getCon, JsonRequestBehavior.AllowGet);
+            }
         }
 
         //get All conferences
