@@ -8,7 +8,7 @@ var myApp; //this is important because if we put it inside the (function(){ var 
     myApp.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
         
         // default route
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/'); //this page should open on page load
 
         $stateProvider
             .state('home', {
@@ -52,19 +52,30 @@ var myApp; //this is important because if we put it inside the (function(){ var 
                     }]
                 }
             })
-            //.state('page1', {
-            //    url: '/page1/:postTitle',
-            //    templateUrl: '/SPA/client/views/partials/page1.html',
-            //    controller: 'conLst'
-            //})
+            .state('coninfo', {
+                url: '/coninfo/:confId',
+                templateUrl: '/SPA/client/public/views/partials/coninfo.html',
+                controller: 'conInfoCtrl',
+                resolve: {
+                    conInfoDetails: ['$http', '$stateParams', function ($http, $stateParams) {
+                        return $http({
+                            url: "/Conference/getConfInfo",
+                            method: "GET",
+                            params: { confId: $stateParams.confId }
+                        }).then(function (res) {
+                            return res.data;
+                        });
+                    }]
+                }
+            })
             .state('dic', {
                 url: '/dic',
-                templateUrl: '/SPA/client/public//views/partials/dic.html',
+                templateUrl: '/SPA/client/public/views/partials/dic.html',
                 controller: 'homeCtrl'
             })
             .state('letters', {
                 url: '/letters',
-                templateUrl: '/SPA/client/public//views/partials/letter.html',
+                templateUrl: '/SPA/client/public/views/partials/letter.html',
                 controller: 'homeCtrl'
             })
             .state('contact', {
@@ -72,7 +83,8 @@ var myApp; //this is important because if we put it inside the (function(){ var 
                 templateUrl: 'home/contact',
                 controller: 'homeCtrl'
             })
-
         //$locationProvider.html5Mode(true);
+        //$locationProvider.hashPrefix('');
+        
     }]);
 })();

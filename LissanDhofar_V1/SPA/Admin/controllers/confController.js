@@ -1,4 +1,4 @@
-﻿myApp.controller("conferenceCtrl", ["$scope", "$http", "conService", function ($scope, $http, conService) {
+﻿myApp.controller("confController", ["$scope", "$http", "confService", function ($scope, $http, confService) {
     //Setting Tinymce editor --------------------------------------------------------------------------------------
     $scope.updateHtml = function () {
         $scope.tinymceHtml = $sce.trustAsHtml(ctrl.tinymce);
@@ -20,24 +20,24 @@
         theme: 'modern'
     };
 
-
     //sorting
     $scope.sort = function (keyname) {
         $scope.sortKey = keyname;   //set the sortKey to the param passed
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     }
-    conService.getConHome().then(function (response) {
-        $scope.conHome = response.data.
-        }, function () {
-            alert('error please check your code')
-        });
+
+    //confService.getConHome().then(function (response) {
+    //    $scope.conHome = response.data.
+    //    }, function () {
+    //        alert('error please check your code')
+    //    });
    
     $scope.Action = 'Add';
 
     getAllConToDisply()
     // get all conferences with total no. to be used in the  conference admin page, for udating conferences
     function getAllConToDisply() {
-        conService.getAllCon().then(function (response) {
+        confService.getAllCon().then(function (response) {
             $scope.conferences = response.data.cnfLst; //here we are getting the list of all conferences,
             $scope.tCon = response.data.totalcn;//here we are getting the total number of conferences,
         }, function () {
@@ -49,7 +49,7 @@
     // Update selected conference, and add it to the database
     $scope.AddOrUpdateCon = function () {
         if ($scope.Action == 'Update') {
-            var getData = conService.updateCon($scope.confr);
+            var getData = confService.updateCon($scope.confr);
             getData.then(function (msg) {
                 getAllConToDisply();
                 cleanFields();
@@ -58,7 +58,7 @@
                 alert('Error in updating record');
             });
         } else {
-            var getData = conService.addCon($scope.confr);
+            var getData = confService.addCon($scope.confr);
             getData.then(function (msg) {
                 $scope.Action = 'Add';
                 getAllConToDisply();
@@ -75,7 +75,7 @@
     $scope.delCon = function (conf) {
         if (window.confirm('هل تريد حذف المؤتمر الذي عنوانه  ' + conf.cTitle + '?'))//Popup window will open to confirm
             //here am getting the selected post for delete
-            var getData = conService.delCon(conf.confId);
+            var getData = confService.delCon(conf.confId);
         getData.then(function (con) {
             getAllConToDisply();
             alert(con.data);
@@ -89,7 +89,7 @@
     // Get selected conference for edit
     $scope.editCon = function (conf) {
         //here am getting the selected con for editing
-        var getData = conService.getConById(conf.confId);
+        var getData = confService.getConById(conf.confId);
         getData.then(function (res) {
             $scope.confr = res.data;
             $scope.Action = "Update";

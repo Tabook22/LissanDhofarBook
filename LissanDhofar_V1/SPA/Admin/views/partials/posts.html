@@ -1,0 +1,93 @@
+﻿<!--<script src="//code.jquery.com/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
+
+
+<h2 class="text-center">Questions</h2>
+{{message}}
+
+<br />
+Rows to display:
+<select ng-model="rowToDisplay">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="100">100</option>
+</select>
+<br /><br />
+
+<a href="/#/addQuestion" class="btn btn-primary">Add Question</a>
+<br />
+<br />
+<div class="col-md-12">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th ng-click="sortData('post_title')">
+                   post_title
+                    <div ng-class="getSortClass('post_title')"></div>
+                </th>
+                <th ng-click="sortData('post_adate')">
+                    post_adate
+                    <div ng-class="getSortClass('post_adate')"></div>
+                </th>
+                <th ng-click="sortData('post_data')">
+                   post_data
+                    <div ng-class="getSortClass('post_data')"></div>
+                </th>
+                <th ng-click="sortData('post_excerpt')">
+                    post_excerpt
+                    <div ng-class="getSortClass('post_excerpt')"></div>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tr ng-repeat="post in listOfPosts | limitTo : rowToDisplay | orderBy : '-Date' : reverseSort ">
+            <td>{{post.post_title}}</td>
+            <td>{{post.post_adate}}</td>
+            <td>{{post.post_data}}</td>
+            <td>{{post.post_excerpt}}</td>
+            <td><a href="#/editQuestion/{{post.PostId}}">Edit</a></td>
+            <td><a href="#/deleteQuestion" ng-click="deletePost(post.PostId)">Delete</a></td>
+        </tr>
+    </table>
+</div>
+
+
+<!--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-1">
+    Launch Modal 1
+</button>-->
+<!--<div class="modal fade" id="modal-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Ask Question</h4>
+            </div>
+            <div class="modal-body">
+
+                <div ng-style="myStyle">
+                    <form name="AddQuestionForm" ng-submit="addQuestionToDB();" class="form-group">
+                        <div class="form-group">
+                            <label for="Question.Title">Title</label>
+                            <input type="text" id="title" class="form-control" ng-model="Question.Title" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="Question.Questions">Questions</label>
+                            <input type="text" id="question" class="form-control" ng-model="Question.Questions" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-primary" data-dismiss="modal" ng-disabled="AddQuestionForm.$invalid" ng-click="myStyle={'pointer-events':'none'}" />
+                        </div>
+                    </form>
+                    <br />
+                    <a href="/#/questionPage" class="btn btn-success" data-dismiss="modal">Go to Question list page</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>-->

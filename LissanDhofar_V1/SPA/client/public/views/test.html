@@ -21,20 +21,11 @@
     <script src="spa/client/controllers/conlstController.js"></script>
 
 </head>
-<body ng-controller="newsCtrl">
-    <ul>
-        <li ng-repeat="n in sNews">
-            <div class="item">
-                <div class="item-title">
-                    <h2>{{n.post_title}}</h2>
-                    <div class="border-bottom"></div>
-                    <!--<span>{{n.post_adate | dateFilter | date:"dd/MM/yyyy"}}</span>-->
-                </div>
-                <p style="max-height:70px;">
-                    {{n.post_status}}
-                </p>
-            </div>
-        </li>
-    </ul>
+<body>
+    <form method="post" ng-controller="TinyMceController">
+        <textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel"></textarea>
+        <button ng-click="getContent()">Get content</button>
+        <button ng-click="setContent()">Set content</button>
+    </form>
 </body>
 </html>

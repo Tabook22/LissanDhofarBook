@@ -225,7 +225,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 --*/
 #slider {
     position:relative;
-  padding: 0px 0px;
+  padding: 20px 0px;
 }
 #slider .block {
   padding: 0px 40px;

@@ -54,7 +54,7 @@ myApp.controller("newsCtrl", ["$scope", "$sce", "conLstService", function ($scop
 
 }]);
 
-//--------------------------------------------Conference controller ---------------------------------------------------------
+//--------------------------------------------Conference  controller ---------------------------------------------------------
 
 myApp.controller("conCtrl", ["$scope", "$sce", "conLstService", function ($scope, $sce, conLstService) {
     //get conference to display on the homepage
@@ -76,6 +76,39 @@ myApp.controller("conCtrl", ["$scope", "$sce", "conLstService", function ($scope
     var slides = $scope.conHome;// $scope.slides = [];
     
 
+}]);
+
+//--------------------------------------------Conference information and reigstration ---------------------------------------------------------
+myApp.controller("conInfoCtrl", ["$scope", "$sce", "conLstService", "conInfoDetails", function ($scope, $sce, conLstService, conInfoDetails) {
+    
+    $scope.conInfo = conInfoDetails;
+
+    $scope.gotoIntro = function () {
+        // set the location.hash to the id of
+        // the element you wish to scroll to.
+        $location.hash('Intro');
+        // call $anchorScroll()
+        $anchorScroll();
+    };
+    $scope.gotoGuides = function () {
+        // set the location.hash to the id of
+        // the element you wish to scroll to.
+        $location.hash('Guides');
+        // call $anchorScroll()
+        $anchorScroll();
+    };
+    $scope.gotoAud = function () {
+        // set the location.hash to the id of
+        // the element you wish to scroll to.
+        $location.hash('Aud');
+        // call $anchorScroll()
+        $anchorScroll();
+    };
+
+    //this function will be used to remove html tags from the details
+    $scope.trustAsHtml = function (html) {
+        return $sce.trustAsHtml(html);
+    };
 }]);
 
 //Another way to check for our code wither it safe or not, is to define a filter which works in exactly the same way as the trustAsHtml function above:

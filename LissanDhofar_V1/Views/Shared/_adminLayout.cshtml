@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="ar-om" dir="rtl" ng-app="myApp">
+<html lang="ar-om" dir="rtl" ng-app="adminApp">
 <head>
     <base href="/" />
     <meta charset="utf-8" />
@@ -22,12 +22,12 @@
     <!--angular library-->
    
     <script src="~/Scripts/angular.js"></script>
-    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/angular-ui-router.min.js"></script>
+    @*<script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>*@
+    <script src="~/Scripts/ui-bootstrap-tpls-0.13.0.min.js"></script>
     <script src="~/Scripts/dirPagination.js"></script>
     <script src="~/Scripts/angular-messages.js"></script>
     <script src="~/Scripts/ui-tinymce.js"></script>
-    <script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>
-    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
     <script src="~/SPA/angular-ui-bootstrap-modal.js"></script>
   
     <!--DropZone Library-->
@@ -35,14 +35,14 @@
     <!-- ng-dropzone -->
     <script src="~/Content/js/ng-dropzone.min.js"></script>
     <!--customer javascript-->
-    <script src="~/SPA/App.js"></script>
-    <script src="~/SPA/getDataService.js"></script>
+    <script src="~/SPA/Admin/myApp.js"></script>
+    @*<script src="~/SPA/getDataService.js"></script>
     <script src="~/SPA/postController.js"></script>
     <script src="~/SPA/articleService.js"></script>
     <script src="~/SPA/articleController.js"></script>
-    <script src="~/SPA/MyCtrl.js"></script>
-    <script src="~/SPA/client/services/conService.js"></script>
-    <script src="~/SPA/client/conference.js"></script>
+    <script src="~/SPA/MyCtrl.js"></script>*@
+    <script src="~/SPA/Admin/services/confService.js"></script>
+    <script src="~/SPA/Admin/controllers/confController.js"></script>
     @*<script src="~/SPA/ngDroZone.js"></script>*@
 
 </head>
@@ -59,6 +59,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>
+                        <a ui-sref="AddConf">
+                            إضافة مؤتمر
+                        </a>
+                    </li>
                     <li>@Html.ActionLink("الرئسيه", "index", "admin")</li>
                     <li>@Html.ActionLink("المقالات", "postLst",  "post")</li>
                     <li>@Html.ActionLink("المجموعات الإخبارية", "index", "article")</li>
