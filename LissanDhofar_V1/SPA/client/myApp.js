@@ -8,7 +8,7 @@ var myApp; //this is important because if we put it inside the (function(){ var 
     myApp.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
         
         // default route
-        $urlRouterProvider.otherwise('/'); //this page should open on page load
+        $urlRouterProvider.otherwise('/'); //this is the default route
 
         $stateProvider
             .state('home', {

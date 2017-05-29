@@ -1262,6 +1262,8 @@
     <Content Include="Scripts\ui-tinymce.js" />
     <Content Include="Scripts\ui-tinymce.min.js" />
     <Content Include="SPA\Admin\controllers\adminController.js" />
+    <Content Include="SPA\Admin\controllers\articleController _old.js" />
+    <Content Include="SPA\Admin\services\articleService.js" />
     <Content Include="SPA\Admin\services\confService.js" />
     <Content Include="SPA\Admin\views\home.html" />
     <Content Include="SPA\Admin\lib\js\App.js" />
@@ -1276,11 +1278,9 @@
     <Content Include="SPA\Admin\views\partials\EditPost.html" />
     <Content Include="SPA\Admin\views\partials\posts.html" />
     <Content Include="SPA\Admin\views\partials\test.html" />
-    <Content Include="SPA\articleController.js" />
-    <Content Include="SPA\articleService.js" />
     <Content Include="SPA\angular-ui-bootstrap-modal.js" />
-    <Content Include="SPA\client\controllers\articleController.js" />
     <Content Include="SPA\Admin\controllers\confController.js" />
+    <Content Include="SPA\Admin\controllers\articleController.js" />
     <Content Include="SPA\client\controllers\conferenceInfo.js" />
     <Content Include="SPA\client\controllers\conlstController.js" />
     <Content Include="SPA\client\public\css\adim-panels.css" />
@@ -1402,6 +1402,8 @@
     <Content Include="SPA\client\public\js\vendor\modernizr-2.6.2.min.js" />
     <Content Include="SPA\client\public\js\wow.min.js" />
     <Content Include="SPA\client\public\views\partials\coninfo.html" />
+    <Content Include="SPA\client\public\views\partials\footer.html" />
+    <Content Include="SPA\client\public\views\partials\header.html" />
     <Content Include="SPA\client\services\conService.js" />
     <Content Include="SPA\client\public\views\home.html" />
     <Content Include="SPA\client\public\views\partials\about.html" />
@@ -1414,7 +1416,6 @@
     <Content Include="SPA\client\public\views\partials\page1.html" />
     <Content Include="SPA\client\public\views\partials\subscribeSection.html" />
     <Content Include="SPA\client\public\views\test.html" />
-    <Content Include="SPA\getDataService.js" />
     <Content Include="SPA\client\controllers\homeController.js" />
     <Content Include="SPA\client\myApp.js" />
     <Content Include="SPA\MainController.js" />

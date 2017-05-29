@@ -79,7 +79,7 @@ myApp.controller("conCtrl", ["$scope", "$sce", "conLstService", function ($scope
 }]);
 
 //--------------------------------------------Conference information and reigstration ---------------------------------------------------------
-myApp.controller("conInfoCtrl", ["$scope", "$sce", "conLstService", "conInfoDetails", function ($scope, $sce, conLstService, conInfoDetails) {
+myApp.controller("conInfoCtrl", ["$scope", "$sce", "conLstService", "conInfoDetails", "$location", "$anchorScroll", function ($scope, $sce, conLstService, conInfoDetails,$location,$anchorScroll) {
     
     $scope.conInfo = conInfoDetails;
 

@@ -1,51 +1,105 @@
-﻿<section id="confInfo">
-    <div class="container">
+﻿<style>
+    #conf-list {
+        margin: 0;
+        padding: 0;
+    }
+
+        #conf-list li {
+            display: inline-block;
+            padding: 0 20px;
+            border-left: 1px solid #888;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #ccc;
+            line-height: 40px;
+        }
+
+    .nav-tabs > li > a {
+        border: 1px solid #888 !important;
+        color: #222;
+    }
+    .nav-tabs > li.active > a {
+        border-bottom: 1px solid #fff !important;
+    }
+        .nav-tabs > li > a:hover {
+            border: 1px solid #ccc;
+        }
+
+    .nav-tabs > li {
+        float: right;
+    }
+
+    .uib-tab a {
+        background-color: #c1c1c1;
+    }
+
+    .tab-content {
+        background-color: #fff;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+    }
+</style>
+
+<section id="confInfo" style="background:#f1f1f1;">
+    <div class="container" style="background:#fff;">
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
                     <img ng-src="{{conInfo.cimg}}" style="margin:auto; max-height:391px; width:100%;">
-                    <div class="col-md-2">
-                        <table>
-                            <tr>
-                                <td>
-                                    <a href="../../../../../download/conf.pdf">
-                                        <img src="../../../../../Content/images/pdf-library-rc.jpg" />
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="../../../../../download/conf.pdf">
-                                        ملف المؤتمر
-                                    </a>
-
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-10">
-                        <h2 style="margin-top:40px; background-color:#EDE9EA;height:50px; padding:5px;"><span style="color:#000;">عنوان المؤتمر :{{conInfo.cTitle}}</span></h2>
-                    </div>
                     <div class="row">
-                        <div class="col-md-12">
-                           <ul>
-                               <li><a ng-click="gotoIntro()">المقدمة</a></li>
-                               <li><a ng-click="gotoGuides()">المحاور</a></li>
-                               <li><a ng-click="gotoAud()">المستهدفون من المؤتمر</a></li>
-                               <li><a href=""></a></li>
-                           </ul>
+                        <div class="col-md-2">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <a href="../../../../../download/conf.pdf">
+                                            <img src="../../../../../Content/images/pdf-library-rc.jpg" />
+                                        </a>
+                                    </td>
+                                    <!--<td>
+                                        <a href="../../../../../download/conf.pdf">
+                                            ملف المؤتمر
+                                        </a>
+
+                                    </td>-->
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-10">
+                            <!--<h2 style="margin-top:40px; background-color:#EDE9EA;height:50px; padding:5px;"><span style="color:#000;">عنوان المؤتمر :{{conInfo.cTitle}}</span></h2>-->
                         </div>
                     </div>
 
 
-                    <p style="font-size:12px;font-weight:bold;color:#ccc;">
-                        <!--<span>التاريخ:</span>
-                        <span>{{conInfo.cdate | dateFilter | date:"dd/MM/yyyy"}}</span>-->
-                    </p>
-                    <a id="Guides"></a>
-                    <div ng-bind-html="trustAsHtml(conInfo.cmessage)"></div>
-                    <a id="Intro"></a>
-                    <div ng-bind-html="trustAsHtml(conInfo.cdetails)"></div>
-                    <a id="Aud"></a>
-                    <div ng-bind-html="trustAsHtml(conInfo.cvision)"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <uib-tabset active="activeForm">
+                                <uib-tab index="0" heading="المقدمة">
+
+                                    <div ng-bind-html="trustAsHtml(conInfo.cdetails)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                </uib-tab>
+                                <uib-tab index="1" heading="المحاور">
+                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                </uib-tab>
+                                <uib-tab index="2" heading="المستهدفون من المؤتمر">
+                                    <div ng-bind-html="trustAsHtml(conInfo.cmessage)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                </uib-tab>
+                                <uib-tab index="3" heading="الجهة المنظمة">
+                                    <div ng-bind-html="trustAsHtml(conInfo.corgnizer)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                </uib-tab>
+                                <uib-tab index="4" heading="التسهيلات">
+                                    <div ng-bind-html="trustAsHtml(conInfo.cfacilities)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                </uib-tab>
+                                <uib-tab index="5" heading="التسجيل">
+                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                </uib-tab>
+                                <uib-tab index="6" heading="English">
+                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                </uib-tab>
+                            </uib-tabset>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>

@@ -1,1 +1,63 @@
-﻿<ui-view style="padding-top:0px;"></ui-view>
+﻿@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="ar-om" dir="rtl" ng-app="mainApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My ASP.NET Application</title>
+    <!--CSS-->
+    <!--Bootstrap-->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.css">
+    <!-- Font-awesome.min css -->
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="~/Content/css/animate.min.css">
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <!-- Responsive Stylesheet -->
+    <link rel="stylesheet" href="~/Content/css/responsive.css">
+
+    <!--Jquery-->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!-- Owl Carsousle -->
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+
+    <!--angular library-->
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-ui-router.min.js"></script>
+    @*<script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>*@
+    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    @*<script src="~/Scripts/ui-bootstrap-tpls-0.13.0.min.js"></script>*@
+  
+    <!--customer javascript-->
+    <script src="~/spa/client/myApp.js"></script>
+    <script src="~/spa/client/controllers/homeController.js"></script>
+    <script src="~/spa/client/controllers/articleController.js"></script>
+    <script src="~/spa/client/controllers/conlstController.js"></script>
+    <!-- Js -->
+    <script src="~/Content/js/vendor/modernizr-2.6.2.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+    <script>window.jQuery || document.write('<script src="~/Content/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script src="~/Content/js/jquery.nav.js"></script>
+    <script src="~/Content/js/jquery.sticky.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/plugins.js"></script>
+    <script src="~/Content/js/wow.min.js"></script>
+    <script src="~/Content/js/main.js"></script>
+
+</head>
+<body>
+    @*<!--Header starts-->
+    <ng-include src="'/SPA/client/public/views/partials/header.html'"></ng-include>
+    <!-- Header ends -->*@
+    <ui-view style="padding-top:0px;"></ui-view>
+    @*<!--Footer starts-->
+    <ng-include src="'/SPA/client/public/views/partials/footer.html'"></ng-include>
+    <!--Footer ends-->*@
+</body>
+
+</html>
+

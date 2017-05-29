@@ -96,7 +96,10 @@ namespace LissanDhofar_V1.Controllers
                     conList.cTitle = conf.cTitle;
                     conList.cdetails= conf.cdetails;
                     conList.cmessage = conf.cmessage;
+                    conList.corgnizer = conf.corgnizer;
+                    conList.cguidelines = conf.cguidelines;
                     conList.cvision  = conf.cvision;
+                    conList.cfacilities = conf.cfacilities;
                     conList.cimg = conf.cimg;
                     conList.cstatus = conf.cstatus;
                     db.SaveChanges();
