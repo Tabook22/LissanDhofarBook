@@ -59,22 +59,93 @@ myApp.controller("newsCtrl", ["$scope", "$sce", "conLstService", function ($scop
 myApp.controller("conCtrl", ["$scope", "$sce", "conLstService", function ($scope, $sce, conLstService) {
     //get conference to display on the homepage
     //$scope.conHome = {};
+    $scope.myInterval = 5000;
+    $scope.noWrapSlides = false;
+    $scope.active = 0;
+    var slides = $scope.slides = [];
+    var currIndex = 0;
+
+
     getConferenceHome();
+
     function getConferenceHome() {
         var getData = conLstService.getConHome();
         getData.then(function (response) {
+            count=response.data.length;
             $scope.conHome = response.data;
         });
+
+       
+
     }
     //this function will be used to remove html tags from the details
     $scope.trustAsHtml = function (html) {
         return $sce.trustAsHtml(html);
     };
 
-    //carusole
-    $scope.myInterval = 5000;
-    var slides = $scope.conHome;// $scope.slides = [];
-    
+    ////carusole
+    //$scope.myInterval = 5000;
+    //var slides = $scope.conHome;// $scope.slides = [];
+
+    $scope.addSlide = function () {
+        var newWidth = 600 + slides.length + 1;
+        slides.push({
+            image: 'https://media-cdn.tripadvisor.com/media/photo-s/01/43/4f/83/salalah.jpg',
+            text: ['Nice image', 'Awesome photograph', 'That is so cool', 'I love that'][slides.length % 4],
+            id: currIndex++
+        });
+    };
+
+    //$scope.addSlide = function () {
+    //    var newWidth = 600 + slides.length + 1;
+    //    slides.push({
+    //        image: getImg[i].cimg, /*'https://media-cdn.tripadvisor.com/media/photo-s/01/43/4f/83/salalah.jpg',*/
+    //        text: ['Nice image', 'Awesome photograph', 'That is so cool', 'I love that'][slides.length % 4],
+    //        id: currIndex++
+    //    });
+    //};
+
+    $scope.randomize = function () {
+        var indexes = generateIndexesArray();
+        assignNewIndexesToSlides(indexes);
+    };
+
+    for (var i = 0; i < 4; i++) {
+        $scope.addSlide();
+    }
+
+    // Randomize logic below
+
+    function assignNewIndexesToSlides(indexes) {
+        for (var i = 0, l = slides.length; i < l; i++) {
+            slides[i].id = indexes.pop();
+        }
+    }
+
+    function generateIndexesArray() {
+        var indexes = [];
+        for (var i = 0; i < currIndex; ++i) {
+            indexes[i] = i;
+        }
+        return shuffle(indexes);
+    }
+
+    // http://stackoverflow.com/questions/962802#962890
+    function shuffle(array) {
+        var tmp, current, top = array.length;
+
+        if (top) {
+            while (--top) {
+                current = Math.floor(Math.random() * (top + 1));
+                tmp = array[current];
+                array[current] = array[top];
+                array[top] = tmp;
+            }
+        }
+
+        return array;
+    }
+
 
 }]);
 
@@ -82,28 +153,6 @@ myApp.controller("conCtrl", ["$scope", "$sce", "conLstService", function ($scope
 myApp.controller("conInfoCtrl", ["$scope", "$sce", "conLstService", "conInfoDetails", "$location", "$anchorScroll", function ($scope, $sce, conLstService, conInfoDetails,$location,$anchorScroll) {
     
     $scope.conInfo = conInfoDetails;
-
-    $scope.gotoIntro = function () {
-        // set the location.hash to the id of
-        // the element you wish to scroll to.
-        $location.hash('Intro');
-        // call $anchorScroll()
-        $anchorScroll();
-    };
-    $scope.gotoGuides = function () {
-        // set the location.hash to the id of
-        // the element you wish to scroll to.
-        $location.hash('Guides');
-        // call $anchorScroll()
-        $anchorScroll();
-    };
-    $scope.gotoAud = function () {
-        // set the location.hash to the id of
-        // the element you wish to scroll to.
-        $location.hash('Aud');
-        // call $anchorScroll()
-        $anchorScroll();
-    };
 
     //this function will be used to remove html tags from the details
     $scope.trustAsHtml = function (html) {

@@ -28,83 +28,127 @@
     th {
         cursor: pointer;
     }
+   /* this is for the conference tabs*/
+    .nav-tabs > li > a {
+        border: 1px solid #888 !important;
+        color: #222;
+    }
+
+    .nav-tabs > li.active > a {
+        /*border-bottom: 1px solid #fff !important;*/
+    }
+
+    .nav-tabs > li > a:hover {
+        border: 1px solid #ccc;
+    }
+
+    .nav-tabs > li {
+        float: right;
+    }
+
+    .uib-tab a {
+        background-color: #E9ECE5;
+    }
+
+    .tab-content {
+        background-color: #E9ECE5;
+        border: 1px solid #ccc;
+   
+        padding: 10px;
+    }
 </style>
 <div ng-controller="confController">
     <h2>قائمه المؤتمرات</h2>
     <div class="row" style="margin-top:60px;">
-        <div class="col-md-7 pst-add-pst">
+        <div class="col-md-8">
             <h3 style="font-weight:bold;border-bottom:1px solid #ccc;text-align:center">{{Action === "Add" ? "إضافة مؤتمر جديد" : "تعديل المؤتمر "}}</h3>
             <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
             <form name="confForm" ng-submit="AddOrUpdateCon()" novalidate>
-                <!-- Post Title -->
-                <!-- Adding Conditional Classes ng-class. The way it works is ng-class="{ <class-you-want> : <expression to be evaluated > }"-->
-                <div class="form-group" ng-class="{ 'has-error' : confForm.cTitle.$invalid && !confForm.cTitle.$pristine }">
-                    <label>عنوان المؤتمر:</label>
-                    <input type="text" name="cTitle" class="form-control" ng-model="confr.cTitle" required ng-minlength="10" ng-maxlength="200">
-                    <div class="error-msgs" ng-messages="confForm.cTitle.$error">
-                        <p ng-message="minlength">العنوان قصير جداً</p>
-                        <p ng-message="maxlength">العنوان طويل جداً</p>
-                        <p ng-message="required">الرجاء كتابة عنوان للموضوع</p>
-                        <!--<p ng-show="confForm.cTitle.$invalid && !confForm.cTitle.$pristine" class="help-block">الرجاء كتابة عنوان للموضوع</p>
-                        <p ng-show="confForm.cTitle.$error.minlength" class="help-block">العنوان قصير جداً</p>
-                        <p ng-show="confForm.cTitle.$error.maxlength" class="help-block">العنوان طويل جداً</p>-->
-                    </div>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <input type="radio" ng-model="confr.cstatus" name="pstatus" value="0" />
-                    <span style="padding-right:10px;">
-                        نشر
-                    </span>
+                <uib-tabset active="activeForm">
+                    <uib-tab index="0" heading="المقدمة">
+                        <!-- Post Title -->
+                        <!-- Adding Conditional Classes ng-class. The way it works is ng-class="{ <class-you-want> : <expression to be evaluated > }"-->
+                        <div class="form-group" ng-class="{ 'has-error' : confForm.cTitle.$invalid && !confForm.cTitle.$pristine }">
+                            <label>عنوان المؤتمر:</label>
+                            <input type="text" name="cTitle" class="form-control" ng-model="confr.cTitle" required ng-minlength="10" ng-maxlength="200">
+                            <div class="error-msgs" ng-messages="confForm.cTitle.$error">
+                                <p ng-message="minlength">العنوان قصير جداً</p>
+                                <p ng-message="maxlength">العنوان طويل جداً</p>
+                                <p ng-message="required">الرجاء كتابة عنوان للموضوع</p>
+                                <!--<p ng-show="confForm.cTitle.$invalid && !confForm.cTitle.$pristine" class="help-block">الرجاء كتابة عنوان للموضوع</p>
+                    <p ng-show="confForm.cTitle.$error.minlength" class="help-block">العنوان قصير جداً</p>
+                    <p ng-show="confForm.cTitle.$error.maxlength" class="help-block">العنوان طويل جداً</p>-->
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <input type="radio" ng-model="confr.cstatus" name="pstatus" value="0" />
+                            <span style="padding-right:10px;">
+                                نشر
+                            </span>
 
-                    <br />
-                    <input type="radio" ng-model="confr.cstatus" name="pstatus" value="1" />
-                    <span style="padding-right:10px;">
-                        مسودة
-                    </span>
-                    <br />
-                </div>
+                            <br />
+                            <input type="radio" ng-model="confr.cstatus" name="pstatus" value="1" />
+                            <span style="padding-right:10px;">
+                                مسودة
+                            </span>
+                            <br />
+                        </div>
 
-                <!-- Post Details-->
-                <hr />
-                <div class="form-group">
-                    <h3>مقدمة المؤتمر</h3>
-                    <textarea ui-tinymce="tinymceOptions" ng-model="confr.cdetails"></textarea>
-                </div>
-                <div class="form-group">
-                    <h3>محاور المؤتمر</h3>
-                    <textarea ui-tinymce="tinymceOptions" ng-model="confr.cguidelines"></textarea>
-                </div>
-                <div class="form-group">
-                    <h3>الجهة المنظمة للمؤتمر</h3>
-                    <textarea ui-tinymce="tinymceOptions" ng-model="confr.corgnizer"></textarea>
-                </div>
-                <div class="form-group">
-                    <h3>المستهدفون في المؤتمر</h3>
-                    <textarea ui-tinymce="tinymceOptions" ng-model="confr.cmessage"></textarea>
-                </div>
-                <div class="form-group">
-                    <h3>التسهيلات</h3>
-                    <textarea ui-tinymce="tinymceOptions" ng-model="confr.cfacilities"></textarea>
-                </div>
-                <hr />
-                <!-- Post Main Image -->
-                <div class="form-group">
-                    <label>الصورة الرئيسية:</label>
-                    <input type="text" name="post_img" ng-model="confr.cimg" class="form-control">
-                    <img src="{{confr.cimg}}" class="img-responsive" />
-                </div>
-                <!-- SUBMIT BUTTON -->
-                <!--here we disabled the submit button. We only want it disabled if our form is $invalid.-->
-                <button type="submit" class="btn btn-primary" ng-disabled="confForm.$invalid">إرسال</button>
-                <!--<input type="button" id="btnSave" class="form-control btn-space" value="Submit" ng-click="InsertData()" />*-->
-            </form>
+                        <!-- Post Details-->
+                        <hr />
+                        <div class="form-group">
+                            <h3>مقدمة المؤتمر</h3>
+                            <textarea ui-tinymce="tinymceOptions" ng-model="confr.cdetails"></textarea>
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="1" heading="محاور المؤتمر">
+                        <div class="form-group">
+                            <h3>محاور المؤتمر</h3>
+                            <textarea ui-tinymce="tinymceOptions" ng-model="confr.cguidelines"></textarea>
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="2" heading="الجهة المنظمة للمؤتمر">
+                        <div class="form-group">
+                            <h3>الجهة المنظمة للمؤتمر</h3>
+                            <textarea ui-tinymce="tinymceOptions" ng-model="confr.corgnizer"></textarea>
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="3" heading="المستهدفون في المؤتمر">
+                        <div class="form-group">
+                            <h3>المستهدفون في المؤتمر</h3>
+                            <textarea ui-tinymce="tinymceOptions" ng-model="confr.cmessage"></textarea>
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="4" heading="التسهيلات">
+                        <div class="form-group">
+                            <h3>التسهيلات</h3>
+                            <textarea ui-tinymce="tinymceOptions" ng-model="confr.cfacilities"></textarea>
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="5" heading="الصورة الرئيسية">
+                        <hr />
+                        <!-- Post Main Image -->
+                        <div class="form-group">
+                            <label>الصورة الرئيسية:</label>
+                            <input type="text" name="post_img" ng-model="confr.cimg" class="form-control">
+                            <img src="{{confr.cimg}}" class="img-responsive" />
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+                    <div class="form-group" style="margin-top:20px;">
+                        <!-- SUBMIT BUTTON -->
+                        <!--here we disabled the submit button. We only want it disabled if our form is $invalid.-->
+                        <button type="submit" class="btn btn-primary" ng-disabled="confForm.$invalid">إرسال</button>
+                        <!--<input type="button" id="btnSave" class="form-control btn-space" value="Submit" ng-click="InsertData()" />*-->
+                        </div>
+</form>
 
         </div>
         <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
         <!--List of conferences------------------------------------------------------------------------------------------------------------------------------------>
         <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
-        <div class="col-md-4 col-md-offset-1 pst-lst">
+        <div class="col-md-4 pst-lst">
             <div>
                 <button class="btn btn-default" ng-click="clearForNewCon()">إنشاءمؤتمر جديد</button><br />
                 <span>إجمالي عدد الؤتمرات</span><span class="badge" style="background-color:#19a6d1;margin-right:10px;color:#fff;font-weight:bold;">{{tCon}}</span>
@@ -129,18 +173,18 @@
                         <td>
                             {{conf.cTitle}}
                         </td>
-                        <td>
+                        <!--<td>
                             {{conf.cdate | dateFilter | date:"dd/MM/yyyy"}}
-                        </td>
+                        </td>-->
                     </tr>
                 </table>
-                <dir-pagination-controls max-size="5"
+                <dir-pagination-controls max-size="10"
                                          direction-links="true"
                                          boundary-links="true">
                 </dir-pagination-controls>
             </div>
         </div>
-        <div ng-view>
-        </div>
+        <!--<div ng-view>
+        </div>-->
     </div>
 </div>

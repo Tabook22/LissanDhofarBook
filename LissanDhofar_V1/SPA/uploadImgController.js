@@ -1,7 +1,8 @@
 ﻿myApp.config(function (dropzoneOpsProvider) {
     dropzoneOpsProvider.setOptions({
         url: '/uploadFiles/SaveUploadedFile',
-        acceptedFiles: 'image/jpeg, images/jpg, image/png',
+        //acceptedFiles: 'image/jpeg, images/jpg, image/png',
+        acceptedFiles: 'image/*,application/pdf, .doc, .doc',
         addRemoveLinks: true,
         dictDefaultMessage: 'Click to add or drop photos',
         dictRemoveFile: 'Remove photo',
@@ -68,6 +69,25 @@ myApp.controller("uploadImgController", ["$scope", "uploadImgService", "$timeout
             console.info('File added from dropzone 1.', file);
         }
     };
+
+    //Handle events for dropzone
+    //Visit http://www.dropzonejs.com/#events for more events
+    $scope.dzCallbacks = {
+        'addedfile': function (file) {
+            $scope.newFile = file;
+        },
+        'success': function (file, xhr) {
+            //console.log(file, xhr);
+            //this list images when dropzone starts and after each addition 
+            getAllImgs();
+        }
+
+    };
+
+}]);
+
+myApp.controller('uploadFilesController', ["$scope", "uploadImgService", "$timeout", function ($scope, uploadImgService, $timeout) {
+    alert("أستغفر الله و أتوب إلية");
 
     //Handle events for dropzone
     //Visit http://www.dropzonejs.com/#events for more events

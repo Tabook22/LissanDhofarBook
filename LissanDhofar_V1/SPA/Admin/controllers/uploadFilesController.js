@@ -1,6 +1,6 @@
 ﻿myApp.config(function (dropzoneOpsProvider) {
     dropzoneOpsProvider.setOptions({
-        url: '/uploadFiles/SaveUploadedFile',
+        url: '/uploadFiles/SaveUploadedFile2',
         acceptedFiles: 'image/*,application/pdf, .doc, .doc',
         addRemoveLinks: true,
         dictDefaultMessage: 'Click to add or drop photos',
@@ -9,8 +9,8 @@
     });
 });
 
-myApp.controller('uploadFilesController', ["$scope", "uploadImgService", "$timeout", function ($scope, uploadImgService, $timeout){
-
+myApp.controller('uploadFilesController', ["$scope", "uploadImgService", "$timeout", function ($scope, uploadImgService, $timeout) {
+    alert("أستغفر الله و أتوب إلية");
     //modal
 
     $scope.open = function () {

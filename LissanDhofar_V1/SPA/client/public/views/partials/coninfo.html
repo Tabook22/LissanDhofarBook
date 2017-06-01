@@ -1,4 +1,6 @@
-﻿<style>
+﻿<script src="../../../../Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+
+<style>
     #conf-list {
         margin: 0;
         padding: 0;
@@ -74,26 +76,32 @@
                         <div class="col-md-12">
                             <uib-tabset active="activeForm">
                                 <uib-tab index="0" heading="المقدمة">
-
-                                    <div ng-bind-html="trustAsHtml(conInfo.cdetails)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                    <div style="padding:20px;">
+                                        <div ng-bind-html="trustAsHtml(conInfo.cdetails)"></div>
+                                    </div>
+                                    
                                 </uib-tab>
                                 <uib-tab index="1" heading="المحاور">
-                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
                                 </uib-tab>
                                 <uib-tab index="2" heading="المستهدفون من المؤتمر">
-                                    <div ng-bind-html="trustAsHtml(conInfo.cmessage)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                    <div ng-bind-html="trustAsHtml(conInfo.cmessage)" ></div>
                                 </uib-tab>
                                 <uib-tab index="3" heading="الجهة المنظمة">
-                                    <div ng-bind-html="trustAsHtml(conInfo.corgnizer)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                    <div ng-bind-html="trustAsHtml(conInfo.corgnizer)"></div>
                                 </uib-tab>
                                 <uib-tab index="4" heading="التسهيلات">
-                                    <div ng-bind-html="trustAsHtml(conInfo.cfacilities)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+
+                                    <div style="padding:20px;">
+                                        <div ng-bind-html="trustAsHtml(conInfo.cfacilities)"></div>
+                                    </div>
+                                   
                                 </uib-tab>
                                 <uib-tab index="5" heading="التسجيل">
-                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
                                 </uib-tab>
                                 <uib-tab index="6" heading="English">
-                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)" style="border-bottom:1px solid #808080; padding-bottom:20px;padding-top:20px"></div>
+                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
                                 </uib-tab>
                             </uib-tabset>
                         </div>

@@ -9,21 +9,28 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/admin.css" rel="stylesheet" />
     <link href="~/Content/adim-panels.css" rel="stylesheet" />
+
     <!--DropZone-->
     <link href="~/Scripts/dropzone/dropzone.min.css" rel="stylesheet" />
+
     <!--ngDropZone-->
     <link href="~/Content/ng-dropzone.min.css" rel="stylesheet" />
+
     <!--font awsome-->
     <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+
     <!--Jquery-->
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
     <!--Tinymce-->
     <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+
     <!--angular library-->
-   
     <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/angular-sanitize.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls-2.5.0.js"></script>
     <script src="~/Scripts/angular-ui-router.min.js"></script>
-    <script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>
 
     @*<script src="~/Scripts/ui-bootstrap-tpls-0.13.0.min.js"></script>*@
     <script src="~/Scripts/dirPagination.js"></script>
@@ -31,7 +38,6 @@
     <script src="~/Scripts/ui-tinymce.js"></script>
     @*<script src="~/SPA/angular-ui-bootstrap-modal.js"></script>*@
 
-    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
     <!--DropZone Library-->
     <script src="~/Scripts/dropzone/dropzone.min.js"></script>
     <!-- ng-dropzone -->
@@ -42,10 +48,12 @@
     <script src="~/SPA/postController.js"></script>*@
     <script src="~/SPA/Admin/services/articleService.js"></script>
     <script src="~/SPA/admin/controllers/articleController.js"></script>
-
-    @*<script src="~/SPA/MyCtrl.js"></script>*@
+    <script src="~/SPA/admin/controllers/uploadFilesController.js"></script>
+    <script src="~/SPA/admin/controllers/uploadImgController.js"></script>
     <script src="~/SPA/Admin/services/confService.js"></script>
+    <script src="~/SPA/Admin/services/getDataService.js"></script>
     <script src="~/SPA/Admin/controllers/confController.js"></script>
+    <script src="~/SPA/Admin/controllers/postController.js"></script>
     @*<script src="~/SPA/ngDroZone.js"></script>*@
 
 </head>
@@ -65,6 +73,21 @@
                     <li>
                         <a ui-sref="AddConf">
                             إضافة مؤتمر
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="uploadImg">
+                            إضافة صور
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="uploadfile">
+                            تحميل ملفات المؤتمرات
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="addPost">
+                          إضافة مقالة
                         </a>
                     </li>
                     <li>@Html.ActionLink("الرئسيه", "index", "admin")</li>

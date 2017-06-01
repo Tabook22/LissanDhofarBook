@@ -1,7 +1,7 @@
 ﻿myApp.config(function (dropzoneOpsProvider) {
     dropzoneOpsProvider.setOptions({
         url: '/uploadFiles/SaveUploadedFile',
-        acceptedFiles: 'image/*,application/pdf, .doc, .doc',
+        acceptedFiles: 'image/jpeg, images/jpg, image/png',
         addRemoveLinks: true,
         dictDefaultMessage: 'Click to add or drop photos',
         dictRemoveFile: 'Remove photo',
@@ -9,7 +9,9 @@
     });
 });
 
-myApp.controller('uploadFilesController', ["$scope", "uploadImgService", "$timeout", function ($scope, uploadImgService, $timeout){
+
+myApp.controller("uploadImgController", ["$scope", "uploadImgService", "$timeout", function ($scope, uploadImgService, $timeout) {
+
 
     //modal
 
@@ -42,7 +44,7 @@ myApp.controller('uploadFilesController', ["$scope", "uploadImgService", "$timeo
 
     //delete image
     $scope.dImg = function (img) {
-        var confirm = window.confirm('هل تريد حذف الصورة التي عنوانها ' + '?');
+        var confirm = window.confirm('هل تريد حذف الصورة التي عنوانها '+ '?');
         if (!confirm) {
             return false;
         }
@@ -52,8 +54,7 @@ myApp.controller('uploadFilesController', ["$scope", "uploadImgService", "$timeo
             alert(res.data);
             getAllImgs();
         }, function () {
-            alert("حصل خطاء أثناء حذف الصورة")
-        });
+        alert("حصل خطاء أثناء حذف الصورة")});
     }
 
     $scope.dzOptions = {
@@ -95,7 +96,7 @@ myApp.service("uploadImgService", ["$http", function ($http) {
         return $http({
             method: "GET",
             url: "/uploadFiles/delImgs",
-            params: { id: JSON.stringify(imgid) }
+            params:{id: JSON.stringify(imgid)}
         });
     };
 

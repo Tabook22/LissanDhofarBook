@@ -58,7 +58,7 @@ namespace LissanDhofar_V1.Controllers
                     {
                         int size = file.ContentLength;
 
-                        var path = Path.Combine(Server.MapPath("~/UploadedFiles"));
+                        var path = Path.Combine(Server.MapPath("~/UploadedFiles/images"));
                         string pathString = System.IO.Path.Combine(path.ToString());
                         //var fileName1 = Path.GetFileName(file.FileName);
                         var fileName1 =Guid.NewGuid() + Path.GetExtension(file.FileName);
@@ -94,7 +94,56 @@ namespace LissanDhofar_V1.Controllers
             }
         }
 
+        public ActionResult SaveUploadedFile2()
+        {
+            bool isSavedSuccessfully = true;
+            string msg = string.Empty;
+            string fName = "";
+            try
+            {
+                foreach (string fileName in Request.Files)
+                {
+                    HttpPostedFileBase file = Request.Files[fileName];
+                    fName = file.FileName;
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        int size = file.ContentLength;
 
+                        var path = Path.Combine(Server.MapPath("~/UploadedFiles/conf"));
+                        string pathString = System.IO.Path.Combine(path.ToString());
+                        //var fileName1 = Path.GetFileName(file.FileName);
+                        var fileName1 = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                        bool isExists = System.IO.Directory.Exists(pathString);
+                        if (!isExists) System.IO.Directory.CreateDirectory(pathString);
+                        var uploadpath = string.Format("{0}\\{1}", pathString, fileName1);
+                        file.SaveAs(uploadpath);
+                        using (DhofarDb db = new DhofarDb())
+                        {
+                            UploadedFile uf = new UploadedFile();
+                            uf.FileName = fileName1;
+                            uf.FileSize = size;
+                            db.UploadedFiles.Add(uf);
+                            db.SaveChanges();
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                isSavedSuccessfully = false;
+            }
+            if (isSavedSuccessfully)
+            {
+                msg = "تم رفعل الملف بنجاح";
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                msg = "حصل خطاء أثناء رفع الملف";
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpPost]
         public JsonResult SaveFiles(string description)
         {
@@ -110,7 +159,7 @@ namespace LissanDhofar_V1.Controllers
 
                 try
                 {
-                    file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles"), fileName));
+                    file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles/conf"), fileName));
 
                     UploadedFile f = new UploadedFile
                     {
