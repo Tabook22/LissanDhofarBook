@@ -1,0 +1,25 @@
+﻿
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title"> قائمة الصور</h3>
+</div>
+<div class="modal-body" id="modal-body" style="background-color:#E9ECE5;">
+    <ul id="imgSlst">
+        <li ng-repeat="item in items">
+            <a href="#" ng-click="$event.preventDefault(); selected.item ='UploadedFiles/images/' + item.FileName">
+                <img src="UploadedFiles/images/{{ item.FileName }}" class="img-responsive" style="height:100px;" />
+            </a>
+        </li>
+    </ul>
+
+    <!--Selected: <b>{{ selected.item.FileName }}</b>-->
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
+<!-- this to display what has been selected from the modal-->
+<!--<div class="row marketing">
+    <div ng-show="selected">
+    <img src="UploadedFiles/images/{{selected}}" />
+    </div>
+</div>-->

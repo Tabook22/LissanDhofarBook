@@ -34,7 +34,9 @@
     }
     #imgSlst li{
         display:inline-block;
+        padding:5px;
     }
+
 </style>
 <div>
     <div ng-controller="postController">
@@ -42,31 +44,7 @@
 
 
 
-            <script type="text/ng-template" id="myModalContent.html">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
-                </div>
-                <div class="modal-body" id="modal-body">
-                    <ul id="imgSlst">
-                        <li ng-repeat="item in items">
-                            <a href="#" ng-click="$event.preventDefault(); selected.item = item.FileName">
-                            <img src="UploadedFiles/images/{{ item.FileName }}" class="img-responsive" style="height:100px;" />
-                            </a>
-                        </li>
-                    </ul>
-                    Selected: <b>{{ selected.item.FileName }}</b>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-                </div>
-            </script>
-            <!-- this to display what has been selected from the modal-->
-            <div class="row marketing">
-                <div ng-show="selected">
-                <img src="UploadedFiles/images/{{ selected }}" />
-                </div>
-            </div>
+            
 
 
 
@@ -118,15 +96,26 @@
 
                     <!-- Post Main Image -->
                     <div class="form-group">
-                        <label>الصورة الرئيسية:</label>
-                        <input type="text" name="post_img" ng-model="post.post_img" class="form-control">
-                        <img src="{{post.post_img}}" class="img-responsive" />
-                        <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>رابط الصورة الرئيسية:</label>
+                                <input type="text" name="post_img" ng-model="selImg.post_img" style="font-size:9px;" class="form-control">
+                                <label>عنوان الصورة:</label>
+                                <input type="text" name="post_img_title" ng-model="post.post_img_title" class="form-control">
+                            </div>
+                            <div class="col-md-5" style="background-color:#E9ECE5;">
+                                <img src="{{selImg.post_img}}" style="max-height:400px; padding:5px;" class="img-responsive" />
+                                <button type="button" class="btn btn-default" ng-click="open()">
+                                   قائمة الصور
+                                </button>
+                            </div>
+                        </div>
+                        
                     </div>
                     <!-- Post Main Image title -->
                     <div class="form-group">
-                        <label>عنوان الصورة:</label>
-                        <input type="text" name="post_img_title" ng-model="post.post_img_title" class="form-control">
+                        <!--<label>عنوان الصورة:</label>
+                        <input type="text" name="post_img_title" ng-model="post.post_img_title" class="form-control">-->
                     </div>
                     <!-- SUBMIT BUTTON -->
                     <!--here we disabled the submit button. We only want it disabled if our form is $invalid.-->

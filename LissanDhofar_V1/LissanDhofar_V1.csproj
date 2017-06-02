@@ -1254,7 +1254,7 @@
     <Content Include="SPA\Admin\PostPartials\AddPost.html" />
     <Content Include="SPA\Admin\PostPartials\EditPost.html" />
     <Content Include="SPA\Admin\PostPartials\posts.html" />
-    <Content Include="SPA\Admin\views\modal\exampl.html" />
+    <Content Include="SPA\Admin\views\modal\myModalContent.html" />
     <Content Include="SPA\Admin\views\partials\AddConf.html" />
     <Content Include="SPA\Admin\views\partials\AddPost.html" />
     <Content Include="SPA\Admin\views\partials\EditPost.html" />

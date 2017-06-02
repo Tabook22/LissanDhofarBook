@@ -1,4 +1,4 @@
-﻿myApp.controller("postController", ["$scope", "$http", "$uibModal", "$sce", "getDataService", "imgService", function ($scope, $http, $uibModal, $sce, getDataService, imgService) {
+﻿myApp.controller("postController", ["$scope", "$http", "$uibModal", "$sce", "getDataService", "imgService","holder", function ($scope, $http, $uibModal, $sce, getDataService, imgService,holder) {
     var $ctrl = this;
     //Setting Tinymce editor --------------------------------------------------------------------------------------
     $scope.updateHtml = function () {
@@ -28,7 +28,11 @@
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     }
 
-    //Check the status of the form
+    //select image for the post, the value of the images comes for the facotry function
+    //holder, becasue when we choosed the image and click ok button then holder.get()
+    //get called and filled with required image
+    $scope.selImg = holder.get();
+
 
     //test calling asp.net mvc controller and action---------------------------------------------------------------
     getAllPostsToDisply();
@@ -46,11 +50,11 @@
     $scope.Action = 'Add';
     // Get selected post for edit
     $scope.editPost = function (post) {
-        debugger;
         //here am getting the selected post for editing
         var getData = getDataService.getPostById(post.PostId);
         getData.then(function (pst) {
             $scope.post = pst.data;
+            $scope.selImg.post_img = $scope.post.post_img;
             //$scope.PostId = pst.PostId;
             //$scope.post_title = pst.post_title;
             //$scope.post_data = pst.post_data;
@@ -69,6 +73,7 @@
         debugger;
         if ($scope.Action == 'Update') {
             //the problem is here in this part Post.PostId = $scope.PostId;
+            $scope.post.post_img = $scope.selImg.post_img
             var getData = getDataService.updatePosts($scope.post);
             getData.then(function (msg) {
                 getAllPostsToDisply();
@@ -78,6 +83,7 @@
                 alert('Error in updating record');
             });
         } else {
+            $scope.post.post_img=$scope.selImg.post_img;
             var getData = getDataService.addPosts($scope.post);
             getData.then(function (msg) {
                 $scope.Action = 'Add';
@@ -104,14 +110,16 @@
 
     //clear form for new post
     $scope.clearForNewPost = function () {
-
-        $scope.post.post_title = "";
-        $scope.post.post_data = "";
-        $scope.post.post_img = "";
-        $scope.post.post_img_title = "";
-        $scope.post.post_status = false;
+        $scope.post_title = "";
+        $scope.post_data = "";
+        $scope.post_img = "";
+        $scope.post_img_title = "";
+        $scope.post_status = false;
         $scope.Action = 'Add';
-
+        //this used to clean the factory holder
+        holder.set();
+        $scope.selImg = holder.get();
+        alert(JSON.stringify($scope.selImg));
     }
 
     //Clean Fields
@@ -122,50 +130,29 @@
         $scope.post.post_img_title = "";
         $scope.post.post_status = false;
         $scope.Action = 'Add';
+        $scope.post.post_img = '';
     }
 
-    //modal
-    //$scope.open = function () {
-    //    var modalInstance = $uibModal.open({
-    //        //animation: true,
-    //        //ariaLabelledBy: 'modal-title',
-    //        //ariaDescribedBy: 'modal-body',
-    //        templateUrl: 'myModalContent.html'
-    //        //controller: 'postController'
-    //    });
-    //    modalInstance.result.then(function (selectedItem) {
-    //        $scope.selected = selectedItem;
-    //    }, function () {
-    //        $log.info('Modal dismissed at: ' + new Date());
-    //    });
-    //};
+    //******************************************************************************************************
+    //modal----------------------------------------------------------------------------------------------- *
+    //******************************************************************************************************
 
-    //$scope.toggleAnimation = function () {
-    //    $scope.animationsEnabled = !$scope.animationsEnabled;
-    //};
-    //$scope.ok = function () {
-    //    alert("أستغفر الله و أتوب إلية");
-    //   // $modalInstance.close();
-    //};
-
-    //$scope.cancel = function () {
-    //    $modalInstance.dismiss('cancel');
-    //};
+    // this functin is used to get all the images which will be used inside the modal
     showAllImages();
     function showAllImages () {
-        alert("أستغفر الله و اتوب إلية");
         var getData = imgService.getAllImages();
         getData.then(function (res) {
             $scope.items = res.data;
         });
     };
 
+
     $scope.animationsEnabled = true;
 
     $scope.open = function (size) {
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
-            templateUrl: 'myModalContent.html',
+            templateUrl: '/SPA/Admin/views/modal/myModalContent.html',
             controller: 'ModalInstanceCtrl',
             size: size,
             resolve: {
@@ -185,23 +172,23 @@
     $scope.toggleAnimation = function () {
         $scope.animationsEnabled = !$scope.animationsEnabled;
     };
-
-
+   
 }]);
 
 //The ModalInstanceCtrl controller will be called when the modal is initiated in the $scope.open = function (...controller: 'ModalInstanceCtrl',..) in postController.
-myApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
-
+myApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, holder) {
     $scope.items = items;
     $scope.selected = {
         item: $scope.items[0]
-    };
-
+    }; 
     $scope.ok = function () {
+        //$uibModalInstance.close($scope.selected.item);
+        //$postController.post.post_img = $scope.selected.item
+      
+        holder.set($scope.selected.item);  
         $uibModalInstance.close($scope.selected.item);
-        //$uibModalInstance.close();
-    };
 
+    };
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
@@ -217,4 +204,20 @@ myApp.service("imgService", function ($http) {
         });
         return response;
     };
+});
+
+//factory service to hold the selected images from modal and then display those image.
+//facotry is one of the best moethod used to share data between controllers, here the images selected in ModalInstanceCtrl and used in postController
+myApp.factory("holder", function () {
+    var saveImg = {};
+    function set(data) {
+        saveImg.post_img = data;//'UploadedFiles/images/' + data;
+    }
+    function get() {
+        return saveImg;
+    }
+    return {
+        set: set,
+        get:get
+    }
 });
