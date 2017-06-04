@@ -1,0 +1,62 @@
+﻿
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../../css/flexslider.css" rel="stylesheet" />
+    <style type="text/css">
+        .flex-caption {
+            width: 96%;
+            padding: 2%;
+            left: 0;
+            bottom: 0;
+            background: rgba(0,0,0,.5);
+            color: #fff;
+            text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        li.css a {
+            border-radius: 0;
+        }
+    </style>
+
+    <section class="slider">
+        <div class="flexslider">
+            <ul class="slides">
+                <li>
+                    <img src="https://tpc.googlesyndication.com/simgad/7098070523605376956" />
+                    <p class="flex-caption">Adventurer Cheesecake Brownie</p>
+                </li>
+                <li>
+                    <img src="https://tpc.googlesyndication.com/simgad/7098070523605376956" />
+                    <p class="flex-caption">Adventurer Lemon</p>
+                </li>
+                <li>
+                    <img src="https://tpc.googlesyndication.com/simgad/7098070523605376956" />
+                    <p class="flex-caption">Adventurer Donut</p>
+                </li>
+                <li>
+                    <img src="https://tpc.googlesyndication.com/simgad/7098070523605376956" />
+                    <p class="flex-caption">Adventurer Caramel</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
+    <!-- FlexSlider -->
+    <script defer src="../../js/jquery.flexslider.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            SyntaxHighlighter.all();
+        });
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>

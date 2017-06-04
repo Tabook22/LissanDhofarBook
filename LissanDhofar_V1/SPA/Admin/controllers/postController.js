@@ -1,4 +1,4 @@
-﻿myApp.controller("postController", ["$scope", "$http", "$uibModal", "$sce", "getDataService", "imgService","holder", function ($scope, $http, $uibModal, $sce, getDataService, imgService,holder) {
+﻿myApp.controller("postController", ["$scope", "$http", "$uibModal", "$sce", "getDataService", "imgService", "holder", function ($scope, $http, $uibModal, $sce, getDataService, imgService,holder) {
     var $ctrl = this;
     //Setting Tinymce editor --------------------------------------------------------------------------------------
     $scope.updateHtml = function () {
@@ -28,6 +28,7 @@
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     }
 
+    //----------------------------------------------------------------------------------------------------
     //select image for the post, the value of the images comes for the facotry function
     //holder, becasue when we choosed the image and click ok button then holder.get()
     //get called and filled with required image
@@ -78,7 +79,6 @@
             getData.then(function (msg) {
                 getAllPostsToDisply();
                 cleanFields();
-                alert(msg.data);
             }, function () {
                 alert('Error in updating record');
             });
@@ -119,7 +119,6 @@
         //this used to clean the factory holder
         holder.set();
         $scope.selImg = holder.get();
-        alert(JSON.stringify($scope.selImg));
     }
 
     //Clean Fields
@@ -131,6 +130,8 @@
         $scope.post.post_status = false;
         $scope.Action = 'Add';
         $scope.post.post_img = '';
+        holder.set();
+        $scope.selImg = holder.get();
     }
 
     //******************************************************************************************************

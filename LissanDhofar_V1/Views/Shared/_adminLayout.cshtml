@@ -31,6 +31,9 @@
     <script src="~/Scripts/angular-sanitize.js"></script>
     <script src="~/Scripts/ui-bootstrap-tpls-2.5.0.js"></script>
     <script src="~/Scripts/angular-ui-router.min.js"></script>
+    <!--file upload-->
+    <script src="~/SPA/Admin/lib/js/ng-file-upload-shim.js"></script>
+    <script src="~/SPA/Admin/lib/js/ng-file-upload.js"></script>
 
     @*<script src="~/Scripts/ui-bootstrap-tpls-0.13.0.min.js"></script>*@
     <script src="~/Scripts/dirPagination.js"></script>
@@ -54,6 +57,7 @@
     <script src="~/SPA/Admin/services/getDataService.js"></script>
     <script src="~/SPA/Admin/controllers/confController.js"></script>
     <script src="~/SPA/Admin/controllers/postController.js"></script>
+
     @*<script src="~/SPA/ngDroZone.js"></script>*@
 
 </head>
@@ -90,10 +94,12 @@
                           إضافة مقالة
                         </a>
                     </li>
-                    <li>@Html.ActionLink("الرئسيه", "index", "admin")</li>
-                    <li>@Html.ActionLink("المقالات", "postLst",  "post")</li>
-                    <li>@Html.ActionLink("المجموعات الإخبارية", "index", "article")</li>
-
+                    <li>
+                        <a ui-sref="addArticle">
+                            المجموعات الإخبارية
+                        </a>
+                    </li>
+            
                     <li>@Html.ActionLink("البريد", "msg", "contact")</li>
                 </ul>
 

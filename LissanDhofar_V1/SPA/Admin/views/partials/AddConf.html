@@ -56,6 +56,7 @@
    
         padding: 10px;
     }
+
 </style>
 <div ng-controller="confController">
     <h2>قائمه المؤتمرات</h2>
@@ -81,6 +82,11 @@
                             </div>
                         </div>
                         <hr />
+                        <div>
+                            <p>This is include</p>
+                            <ng-include src="'/SPA/Admin/views/partials/addFileUplad.html'"></ng-include>
+                        </div>
+                        <hr/>
                         <div class="form-group">
                             <input type="radio" ng-model="confr.cstatus" name="pstatus" value="0" />
                             <span style="padding-right:10px;">
@@ -128,12 +134,27 @@
                     </uib-tab>
                     <uib-tab index="5" heading="الصورة الرئيسية">
                         <hr />
-                        <!-- Post Main Image -->
                         <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>رابط الصورة الرئيسية:</label>
+                                    <input type="text" name="post_img" ng-model="selImg.post_img" style="font-size:9px;" class="form-control">
+                                </div>
+                                <div class="col-md-5" style="background-color:#E9ECE5;">
+                                    <img src="{{selImg.post_img}}" style="max-height:400px; padding:5px;" class="img-responsive" />
+                                    <button type="button" class="btn btn-default" ng-click="open()">
+                                        قائمة الصور
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Post Main Image -->
+                        <!--<div class="form-group">
                             <label>الصورة الرئيسية:</label>
                             <input type="text" name="post_img" ng-model="confr.cimg" class="form-control">
                             <img src="{{confr.cimg}}" class="img-responsive" />
-                        </div>
+                        </div>-->
                     </uib-tab>
                 </uib-tabset>
                     <div class="form-group" style="margin-top:20px;">
@@ -165,13 +186,13 @@
                             <span class="glyphicon sort-icon" ng-show="sortKey=='cTitle'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                         </th>
                     </tr>
-                    <tr dir-paginate="conf in conferences |orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                    <tr dir-paginate="confr in conferences |orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
                         <td style="width:80px;">
-                            <span ng-click="delCon(conf)" class="btnRed"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-                            <span ng-click="editCon(conf)" class="btnAdd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                            <span ng-click="delCon(confr)" class="btnRed"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                            <span ng-click="editCon(confr)" class="btnAdd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
                         </td>
                         <td>
-                            {{conf.cTitle}}
+                            {{confr.cTitle}}
                         </td>
                         <!--<td>
                             {{conf.cdate | dateFilter | date:"dd/MM/yyyy"}}

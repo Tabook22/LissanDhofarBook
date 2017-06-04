@@ -31,7 +31,58 @@ namespace LissanDhofar_V1.Controllers
             return View();
         }
 
+        //here we are going to save conference files
+        public JsonResult getSelectedFile()
+        {
 
+            bool isSavedSuccessfully = true;
+            string msg = string.Empty;
+            string fName = "";
+            try
+            {
+                foreach (string fileName in Request.Files)
+                {
+                    HttpPostedFileBase file = Request.Files[fileName];
+                    fName = file.FileName;
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        int size = file.ContentLength;
+
+                        var path = Path.Combine(Server.MapPath("~/UploadedFiles/conf"));
+                        string pathString = System.IO.Path.Combine(path.ToString());
+                        //var fileName1 = Path.GetFileName(file.FileName);
+                        var fileName1 = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                        bool isExists = System.IO.Directory.Exists(pathString);
+                        if (!isExists) System.IO.Directory.CreateDirectory(pathString);
+                        var uploadpath = string.Format("{0}\\{1}", pathString, fileName1);
+                        file.SaveAs(uploadpath);
+                        using (DhofarDb db = new DhofarDb())
+                        {
+                            UploadedFile uf = new UploadedFile();
+                            uf.FileName = fileName1;
+                            uf.FileSize = size;
+                            db.UploadedFiles.Add(uf);
+                            db.SaveChanges();
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                isSavedSuccessfully = false;
+            }
+            if (isSavedSuccessfully)
+            {
+                msg = "تم رفعل الملف بنجاح";
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                msg = "حصل خطاء أثناء رفع الملف";
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
+        }
         //get all images
         public JsonResult getAllImg()
         {
@@ -43,6 +94,7 @@ namespace LissanDhofar_V1.Controllers
             }
         }
 
+        //Here we are going to save site images
         public ActionResult SaveUploadedFile()
         {
             bool isSavedSuccessfully = true;
@@ -94,96 +146,96 @@ namespace LissanDhofar_V1.Controllers
             }
         }
 
-        public ActionResult SaveUploadedFile2()
-        {
-            bool isSavedSuccessfully = true;
-            string msg = string.Empty;
-            string fName = "";
-            try
-            {
-                foreach (string fileName in Request.Files)
-                {
-                    HttpPostedFileBase file = Request.Files[fileName];
-                    fName = file.FileName;
-                    if (file != null && file.ContentLength > 0)
-                    {
-                        int size = file.ContentLength;
+        //public ActionResult SaveUploadedFile2()
+        //{
+        //    bool isSavedSuccessfully = true;
+        //    string msg = string.Empty;
+        //    string fName = "";
+        //    try
+        //    {
+        //        foreach (string fileName in Request.Files)
+        //        {
+        //            HttpPostedFileBase file = Request.Files[fileName];
+        //            fName = file.FileName;
+        //            if (file != null && file.ContentLength > 0)
+        //            {
+        //                int size = file.ContentLength;
 
-                        var path = Path.Combine(Server.MapPath("~/UploadedFiles/conf"));
-                        string pathString = System.IO.Path.Combine(path.ToString());
-                        //var fileName1 = Path.GetFileName(file.FileName);
-                        var fileName1 = Guid.NewGuid() + Path.GetExtension(file.FileName);
-                        bool isExists = System.IO.Directory.Exists(pathString);
-                        if (!isExists) System.IO.Directory.CreateDirectory(pathString);
-                        var uploadpath = string.Format("{0}\\{1}", pathString, fileName1);
-                        file.SaveAs(uploadpath);
-                        using (DhofarDb db = new DhofarDb())
-                        {
-                            UploadedFile uf = new UploadedFile();
-                            uf.FileName = fileName1;
-                            uf.FileSize = size;
-                            db.UploadedFiles.Add(uf);
-                            db.SaveChanges();
+        //                var path = Path.Combine(Server.MapPath("~/UploadedFiles/conf"));
+        //                string pathString = System.IO.Path.Combine(path.ToString());
+        //                //var fileName1 = Path.GetFileName(file.FileName);
+        //                var fileName1 = Guid.NewGuid() + Path.GetExtension(file.FileName);
+        //                bool isExists = System.IO.Directory.Exists(pathString);
+        //                if (!isExists) System.IO.Directory.CreateDirectory(pathString);
+        //                var uploadpath = string.Format("{0}\\{1}", pathString, fileName1);
+        //                file.SaveAs(uploadpath);
+        //                using (DhofarDb db = new DhofarDb())
+        //                {
+        //                    UploadedFile uf = new UploadedFile();
+        //                    uf.FileName = fileName1;
+        //                    uf.FileSize = size;
+        //                    db.UploadedFiles.Add(uf);
+        //                    db.SaveChanges();
 
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                isSavedSuccessfully = false;
-            }
-            if (isSavedSuccessfully)
-            {
-                msg = "تم رفعل الملف بنجاح";
-                return Json(msg, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                msg = "حصل خطاء أثناء رفع الملف";
-                return Json(msg, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpPost]
-        public JsonResult SaveFiles(string description)
-        {
-            string Message, fileName, actualFileName;
-            Message = fileName = actualFileName = string.Empty;
-            bool flag = false;
-            if (Request.Files != null)
-            {
-                var file = Request.Files[0];
-                actualFileName = file.FileName;
-                fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-                int size = file.ContentLength;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        isSavedSuccessfully = false;
+        //    }
+        //    if (isSavedSuccessfully)
+        //    {
+        //        msg = "تم رفعل الملف بنجاح";
+        //        return Json(msg, JsonRequestBehavior.AllowGet);
+        //    }
+        //    else
+        //    {
+        //        msg = "حصل خطاء أثناء رفع الملف";
+        //        return Json(msg, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+        //[HttpPost]
+        //public JsonResult SaveFiles(string description)
+        //{
+        //    string Message, fileName, actualFileName;
+        //    Message = fileName = actualFileName = string.Empty;
+        //    bool flag = false;
+        //    if (Request.Files != null)
+        //    {
+        //        var file = Request.Files[0];
+        //        actualFileName = file.FileName;
+        //        fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+        //        int size = file.ContentLength;
 
-                try
-                {
-                    file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles/conf"), fileName));
+        //        try
+        //        {
+        //            file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles/conf"), fileName));
 
-                    UploadedFile f = new UploadedFile
-                    {
-                        FileName = actualFileName,
-                        FilePath = fileName,
-                        Description = description,
-                        FileSize = size
-                    };
-                    using (DhofarDb dc = new DhofarDb())
-                    {
-                        dc.UploadedFiles.Add(f);
-                        dc.SaveChanges();
-                        Message = "File uploaded successfully";
-                        flag = true;
-                    }
-                }
-                catch (Exception)
-                {
-                    Message = "File upload failed! Please try again";
-                }
+        //            UploadedFile f = new UploadedFile
+        //            {
+        //                FileName = actualFileName,
+        //                FilePath = fileName,
+        //                Description = description,
+        //                FileSize = size
+        //            };
+        //            using (DhofarDb dc = new DhofarDb())
+        //            {
+        //                dc.UploadedFiles.Add(f);
+        //                dc.SaveChanges();
+        //                Message = "File uploaded successfully";
+        //                flag = true;
+        //            }
+        //        }
+        //        catch (Exception)
+        //        {
+        //            Message = "File upload failed! Please try again";
+        //        }
 
-            }
-            return new JsonResult { Data = new { Message = Message, Status = flag } };
-        }
+        //    }
+        //    return new JsonResult { Data = new { Message = Message, Status = flag } };
+        //}
 
         //Delete Images
         public JsonResult delImgs(string id)

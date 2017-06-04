@@ -1,4 +1,4 @@
-﻿myApp.controller("confController", ["$scope", "$http", "confService", function ($scope, $http, confService) {
+﻿myApp.controller("confController", ["$scope", "$uibModal", "$http", "confService", "imgService", "holder", function ($scope, $uibModal, $http, confService, imgService, holder) {
     //Setting Tinymce editor --------------------------------------------------------------------------------------
     $scope.updateHtml = function () {
         $scope.tinymceHtml = $sce.trustAsHtml(ctrl.tinymce);
@@ -26,6 +26,14 @@
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     }
 
+    $scope.confr = {};
+    //----------------------------------------------------------------------------------------------------
+    //select image for the post, the value of the images comes for the facotry function
+    //holder, becasue when we choosed the image and click ok button then holder.get()
+    //get called and filled with required image
+    $scope.selImg = holder.get();
+
+
     //confService.getConHome().then(function (response) {
     //    $scope.conHome = response.data.
     //    }, function () {
@@ -49,6 +57,7 @@
     // Update selected conference, and add it to the database
     $scope.AddOrUpdateCon = function () {
         if ($scope.Action == 'Update') {
+            $scope.confr.cimg = $scope.selImg.post_img
             var getData = confService.updateCon($scope.confr);
             getData.then(function (msg) {
                 getAllConToDisply();
@@ -58,6 +67,7 @@
                 alert('Error in updating record');
             });
         } else {
+            $scope.confr.cimg = $scope.selImg.post_img
             var getData = confService.addCon($scope.confr);
             getData.then(function (msg) {
                 $scope.Action = 'Add';
@@ -72,7 +82,7 @@
 
 
     //Delete conference
-    $scope.delCon = function (conf) {
+    $scope.delCon = function (confr) {
         if (window.confirm('هل تريد حذف المؤتمر الذي عنوانه  ' + conf.cTitle + '?'))//Popup window will open to confirm
             //here am getting the selected post for delete
             var getData = confService.delCon(conf.confId);
@@ -91,6 +101,7 @@
         //here am getting the selected con for editing
         var getData = confService.getConById(conf.confId);
         getData.then(function (res) {
+            $scope.selImg.post_img = $scope.confr.cimg;
             $scope.confr = res.data;
             $scope.Action = "Update";
         },
@@ -108,7 +119,8 @@
         $scope.confr.cimg = "";
         $scope.confr.cstatus = false;
         $scope.Action = 'Add';
-
+        holder.set();
+        $scope.selImg = holder.get();
     }
 
     //Clean Fields
@@ -121,12 +133,122 @@
         $scope.confr.cstatus = false;
         $scope.Action = 'Add';
     }
-
+    holder.set();
+    $scope.selImg = holder.get(); 
     //this function is used to prevent html tags from showing up
     $scope.trustAsHtml = function (html) {
         return $sce.trustAsHtml(html);
     }
+    //******************************************************************************************************
+    //modal----------------------------------------------------------------------------------------------- *
+    //******************************************************************************************************
+
+    // this functin is used to get all the images which will be used inside the modal
+    showAllImages();
+    function showAllImages() {
+        var getData = imgService.getAllImages();
+        getData.then(function (res) {
+            $scope.items = res.data;
+        });
+    };
+
+
+    $scope.animationsEnabled = true;
+
+    $scope.open = function (size) {
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: '/SPA/Admin/views/modal/myModalContent.html',
+            controller: 'ModalInstanceCtrl',
+            size: size,
+            resolve: {
+                items: function () {
+                    return $scope.items;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    $scope.toggleAnimation = function () {
+        $scope.animationsEnabled = !$scope.animationsEnabled;
+    };
+
 }]);
+
+//The ModalInstanceCtrl controller will be called when the modal is initiated in the $scope.open = function (...controller: 'ModalInstanceCtrl',..) in postController.
+myApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, holder) {
+    $scope.items = items;
+    $scope.selected = {
+        item: $scope.items[0]
+    };
+    $scope.ok = function () {
+        //$uibModalInstance.close($scope.selected.item);
+        //$postController.post.post_img = $scope.selected.item
+
+        holder.set($scope.selected.item);
+        $uibModalInstance.close($scope.selected.item);
+
+    };
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+});
+
+//this is upload controller used to upload the conference files
+myApp.controller('uploadFileCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+    $scope.uploadPic = function (file) {
+        file.upload = Upload.upload({
+            url: '/uploadFiles/getSelectedFile',
+            data: { username: $scope.username, file: file },
+        });
+
+        file.upload.then(function (response) {
+            $timeout(function () {
+                file.result = response.data;
+            });
+        }, function (response) {
+            if (response.status > 0)
+                $scope.errorMsg = response.status + ': ' + response.data;
+        }, function (evt) {
+            // Math.min is to fix IE which reports 200% sometimes
+            file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });
+    }
+}]);
+
+//service to get all the images and put them inside the ui modal for selection
+myApp.service("imgService", function ($http) {
+    this.getAllImages = function () {
+        var response = $http({
+            method: "Get",
+            url: "/uploadFiles/getAllImg",
+            dataType: "Json"
+        });
+        return response;
+    };
+});
+
+//factory service to hold the selected images from modal and then display those image.
+//facotry is one of the best moethod used to share data between controllers, here the images selected in ModalInstanceCtrl and used in postController
+myApp.factory("holder", function () {
+    var saveImg = {};
+    function set(data) {
+        saveImg.post_img = data;//'UploadedFiles/images/' + data;
+    }
+    function get() {
+        return saveImg;
+    }
+    return {
+        set: set,
+        get: get
+    }
+});
 
 //filter for date becasue of json datetime issue
 myApp.filter("dateFilter", function () {

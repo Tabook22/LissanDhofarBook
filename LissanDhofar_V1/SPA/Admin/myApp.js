@@ -5,7 +5,18 @@ var myApp; //this is important because if we put it inside the (function(){ var 
 // because in javascript if we declare any varialbe it will be seen globly, and name conflict can occure, this can be considered a negative thing in javascript 
 (function () {
     //myApp = angular.module("adminApp", ['ui.router', 'ui.bootstrap']);
-    myApp = angular.module("adminApp", ['ui.router', 'ngAnimate', 'ngSanitize','ui.bootstrap', 'ui.tinymce', 'ngMessages', 'angularUtils.directives.dirPagination', 'thatisuday.dropzone', 'ui.bootstrap.modal']);
+    myApp = angular.module("adminApp", [
+        'ui.router',
+        'ngAnimate',
+        'ngSanitize',
+        'ui.bootstrap',
+        'ui.tinymce',
+        'ngMessages',
+        'angularUtils.directives.dirPagination',
+        'thatisuday.dropzone',
+        'ui.bootstrap.modal',
+        'ngFileUpload'
+    ]);
     myApp.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
         // default route
         $urlRouterProvider.otherwise('/');
@@ -34,6 +45,11 @@ var myApp; //this is important because if we put it inside the (function(){ var 
             .state('addPost', {
                 url: '/addPost',
                 templateUrl: '/SPA/Admin/views/partials/addPost.html',
+                controller: 'confController'
+            })
+            .state('addArticle', {
+                url: '/addArticle',
+                templateUrl: '/SPA/Admin/views/partials/addArticles.html',
                 controller: 'confController'
             })
             //.state('page1', {
