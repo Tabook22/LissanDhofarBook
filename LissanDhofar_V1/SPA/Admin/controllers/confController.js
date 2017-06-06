@@ -201,7 +201,7 @@ myApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items
 });
 
 //this is upload controller used to upload the conference files
-myApp.controller('uploadFileCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+myApp.controller('uploadFileCtrl', ['$scope', 'Upload', '$timeout', 'fileService', function ($scope, Upload, $timeout, fileService) {
     $scope.uploadPic = function (file) {
         file.upload = Upload.upload({
             url: '/uploadFiles/getSelectedFile',
@@ -219,7 +219,34 @@ myApp.controller('uploadFileCtrl', ['$scope', 'Upload', '$timeout', function ($s
             // Math.min is to fix IE which reports 200% sometimes
             file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
         });
+
+      
+
     }
+    //Display all uploaded files
+    DisplayAllConFiles();
+        function DisplayAllConFiles() {
+            alert("أستغفر الله و أتوب إلية");
+           var getData = fileService.getAllConFls();
+            debugger;
+            getData.then(function (pst) {
+                $scope.allFiles = pst.data;
+            }, function () {
+                alert('Error in getting records');
+            });
+
+        }
+    //Delete upload file
+        $scope.delFile = function (fId) {
+            var confirm = window.confirm('هل تريد حذف الصورة التي عنوانها ' + '?');
+            if (!confirm) {
+                return false;
+            }
+            var getData = fileService.delFiles();
+            getData.then(function (res) {
+                alert(res.data);
+            }, function () { alert("No file deleted!")});
+        }
 }]);
 
 //service to get all the images and put them inside the ui modal for selection
@@ -233,6 +260,32 @@ myApp.service("imgService", function ($http) {
         return response;
     };
 });
+
+//service to get all the uploaded conference files and display them on addFileUplad.html page
+myApp.service("fileService", function ($http) {
+    //get all files from database
+    this.getAllConFls = function () {
+        var response = $http({
+            method: "Get",
+            url: "/uploadFiles/getAllconFiles",
+            dataType: "Json"
+        });
+        return response;
+    };
+
+    //del file
+    this.delFiles = function (fid) {
+        
+        var response = $http({
+            method: "Get",
+            url: "/uploadFiles/delFiles",
+            dataType: "Json",
+            params: { id: JSON.stringify(imgid) }
+        });
+        return response;
+    };
+});
+
 
 //factory service to hold the selected images from modal and then display those image.
 //facotry is one of the best moethod used to share data between controllers, here the images selected in ModalInstanceCtrl and used in postController

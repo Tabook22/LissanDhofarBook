@@ -52,6 +52,11 @@ var myApp; //this is important because if we put it inside the (function(){ var 
                 templateUrl: '/SPA/Admin/views/partials/addArticles.html',
                 controller: 'confController'
             })
+            .state('con-files', {
+                url: '/addconfiles',
+                templateUrl: '/SPA/Admin/views/partials/addFileUplad.html',
+                controller: 'confController'
+            })
             //.state('page1', {
             //    url: '/page1/:PstId',
             //    templateUrl: '/SPA/client/public/views/partials/page1.html',

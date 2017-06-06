@@ -165,6 +165,7 @@
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\artOrder.cs" />
     <Compile Include="Models\Conference.cs" />
+    <Compile Include="Models\confile.cs" />
     <Compile Include="Models\conInfo.cs" />
     <Compile Include="Models\DhofarDb.cs" />
     <Compile Include="Models\Image.cs" />

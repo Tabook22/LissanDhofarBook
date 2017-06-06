@@ -34,7 +34,7 @@ namespace LissanDhofar_V1.Controllers
         //here we are going to save conference files
         public JsonResult getSelectedFile()
         {
-
+            string fdes = Request.Form["name"];
             bool isSavedSuccessfully = true;
             string msg = string.Empty;
             string fName = "";
@@ -58,10 +58,11 @@ namespace LissanDhofar_V1.Controllers
                         file.SaveAs(uploadpath);
                         using (DhofarDb db = new DhofarDb())
                         {
-                            UploadedFile uf = new UploadedFile();
-                            uf.FileName = fileName1;
-                            uf.FileSize = size;
-                            db.UploadedFiles.Add(uf);
+                            confile uf = new confile();
+                            uf.filename = fileName1;
+                            uf.filedesc = "";
+                            uf.fdate = DateTime.Now;
+                            db.confiles.Add(uf);
                             db.SaveChanges();
 
                         }
@@ -88,10 +89,21 @@ namespace LissanDhofar_V1.Controllers
         {
             using (DhofarDb db = new DhofarDb())
             {
-                List<UploadedFile> uf = db.UploadedFiles.Select(x=>x).ToList();
+                List<UploadedFile> uf = db.UploadedFiles.Select(x => x).ToList();
                 return Json(uf, JsonRequestBehavior.AllowGet);
 
             }
+        }
+
+        //Get all uploaded conference files
+        public JsonResult getAllconFiles()
+        {
+            using (DhofarDb db = new DhofarDb())
+            {
+                List<confile> confls = db.confiles.Select(x => x).ToList();
+                return Json(confls, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         //Here we are going to save site images
@@ -113,7 +125,7 @@ namespace LissanDhofar_V1.Controllers
                         var path = Path.Combine(Server.MapPath("~/UploadedFiles/images"));
                         string pathString = System.IO.Path.Combine(path.ToString());
                         //var fileName1 = Path.GetFileName(file.FileName);
-                        var fileName1 =Guid.NewGuid() + Path.GetExtension(file.FileName);
+                        var fileName1 = Guid.NewGuid() + Path.GetExtension(file.FileName);
                         bool isExists = System.IO.Directory.Exists(pathString);
                         if (!isExists) System.IO.Directory.CreateDirectory(pathString);
                         var uploadpath = string.Format("{0}\\{1}", pathString, fileName1);
@@ -240,29 +252,60 @@ namespace LissanDhofar_V1.Controllers
         //Delete Images
         public JsonResult delImgs(string id)
         {
-           int imgId = Convert.ToInt32(id);
+            int imgId = Convert.ToInt32(id);
             string msg = string.Empty;
-            using(DhofarDb db=new DhofarDb())
+            using (DhofarDb db = new DhofarDb())
             {
                 UploadedFile up = db.UploadedFiles.Where(x => x.FileId == imgId).FirstOrDefault();
-                string file_name= up.FileName;
+                string file_name = up.FileName;
                 db.UploadedFiles.Remove(up);
                 db.SaveChanges();
 
                 //delete image from uploadfiles folder
-                string path = Server.MapPath("~/UploadedFiles/"+ file_name);
+                string path = Server.MapPath("~/UploadedFiles/" + file_name);
                 FileInfo file = new FileInfo(path);
                 if (file.Exists)//check file exsit or not
                 {
                     file.Delete();
-      
+
                 }
                 else
                 {
-                   
+
                 }
 
                 msg = " تم حذف الصورة بنجاح";
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        //delete uploaded files
+        public JsonResult delFiles(string id)
+        {
+            int fId = Convert.ToInt32(id);
+            string msg = string.Empty;
+            using (DhofarDb db = new DhofarDb())
+            {
+                confile up = db.confiles.Where(x => x.fId == fId).FirstOrDefault();
+                string file_name = up.filename;
+                db.confiles.Remove(up);
+                db.SaveChanges();
+
+                //delete image from uploadfiles folder
+                string path = Server.MapPath("~/UploadedFiles/conf/" + file_name);
+                FileInfo file = new FileInfo(path);
+                if (file.Exists)//check file exsit or not
+                {
+                    file.Delete();
+
+                }
+                else
+                {
+
+                }
+
+                msg = " تم حذف الملف بنجاح";
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
 

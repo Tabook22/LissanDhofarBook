@@ -1,66 +1,93 @@
 ﻿<style>
     .thumb {
-        width: 24px;
-        height: 24px;
+        width: 60px;
+        height: 60px;
         float: none;
         position: relative;
         top: 7px;
+        padding: 10px;
     }
 
     form .progress {
         line-height: 15px;
     }
 </style>
-
 <div ng-controller="uploadFileCtrl">
-    <form name="myForm">
-        <div class="form-group">
-            <label>
-                أسم الملف:
-            </label>
-            <lable>
-                <input type="text" name="userName" ng-model="username" size="31" required>
-                <i ng-show="myForm.userName.$error.required">*required</i>
-            </lable>
-
-        </div>
-        <div class="form-group">
-            <label>
-                <input type="file" ngf-select ng-model="picFile" name="file"
-                       accept="image/*" ngf-max-size="2MB" required
-                       ngf-model-invalid="errorFile">
-            </label>
-            <label>
-                <i ng-show="myForm.file.$error.required" style="color:red">*required</i><br>
-                <i ng-show="myForm.file.$error.maxSize" style="color:red;">
-                    File too large
-                    {{errorFile.size / 1000000|number:1}}MB: max 2M
-                </i>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile" class="btn btn-default">Remove</button>
-            </label>
-            <label>
-                <button ng-click="uploadPic(picFile)" class="btn btn-default">
-                    Submit
-                </button>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                <span class="progress" ng-show="picFile.progress >= 0">
-                    <div style="width:{{picFile.progress}}%"
-                         ng-bind="picFile.progress + '%'"></div>
-                </span>
-
-            </label>
-            <label>
-                <span ng-show="picFile.result">Upload Successful</span>
-                <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-            </label>
+    <div class="row" style="padding:10px;margin-top:40px;border:1px solid #888;background-color:#FAFAFA;height:500px;">
+        <div class="col-md-6" style="padding:10px;">
+            <table class="table">
+                <tr>
+                    <th>م</th>
+                    <th>أسم الملف</th>
+                    <th>وصف الملف</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="fs in allFiles">
+                    <td>{{$index +1}}</td>
+                    <td>{{fs.filename}}</td>
+                    <td>{{fs.filedesc}}</td>
+                    <td><span ng-click="delFile(fs.fId)" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></span></td>
+                    <td></td>
+                </tr>
+            </table>
         </div>
 
-    </form>
+        <div class="col-md-6" style="padding:10px;background-color:#ececec">
+            <form name="myForm">
+                <div class="form-group">
+                    <label>
+                        أسم الملف:
+                    </label>
+                    <lable>
+                        <input type="text" name="userName" ng-model="username" size="31" required>
+                        <i ng-show="myForm.userName.$error.required">*required</i>
+                    </lable>
+
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="file" ngf-select ng-model="picFile" name="file"
+                               accept="image/*" ngf-max-size="2MB" required
+                               ngf-model-invalid="errorFile">
+                    </label>
+                    <label>
+                        <i ng-show="myForm.file.$error.required" style="color:red">*required</i><br>
+                        <i ng-show="myForm.file.$error.maxSize" style="color:red;">
+                            File too large
+                            {{errorFile.size / 1000000|number:1}}MB: max 2M
+                        </i>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile" class="btn btn-default">حذف</button>
+                    </label>
+                    <br />
+                    <label>
+                        <button ng-click="uploadPic(picFile)" class="btn btn-default">
+                            رفع الملف
+                        </button>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <span class="progress" ng-show="picFile.progress >= 0">
+                            <div style="width:{{picFile.progress}}%"
+                                 ng-bind="picFile.progress + '%'"></div>
+                        </span>
+
+                    </label>
+                    <label>
+                        <span ng-show="picFile.result">Upload Successful</span>
+                        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                    </label>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
 </div>
+
+
