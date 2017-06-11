@@ -210,6 +210,7 @@
     <Content Include="Content\images\conf1_2.png" />
     <Content Include="Content\images\gm.png" />
     <Content Include="Content\images\header.jpg" />
+    <Content Include="Content\images\IMG_6692.JPG" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\ml.jpg" />
     <Content Include="Content\images\overlay-pattern.png" />
@@ -224,6 +225,8 @@
     <Content Include="Content\images\photo\photo-3.jpg" />
     <Content Include="Content\images\photo\photo-4.jpg" />
     <Content Include="Content\images\siteLogo.png" />
+    <Content Include="Content\images\sitePattern.png" />
+    <Content Include="Content\images\siteTitle.png" />
     <Content Include="Content\images\slider\a07.png" />
     <Content Include="Content\images\slider\find-out-more-bt.png" />
     <Content Include="Content\images\slider\loading.gif" />
@@ -244,6 +247,8 @@
     <Content Include="Content\images\slider\s8t.jpg" />
     <Content Include="Content\images\subscribe-bg.jpg" />
     <Content Include="Content\images\VideoFiles.png" />
+    <Content Include="Content\images\Website 1.png" />
+    <Content Include="Content\images\Website 3.png" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery.nav.js" />
     <Content Include="Content\js\jquery.sticky.js" />

@@ -34,7 +34,7 @@ namespace LissanDhofar_V1.Controllers
         //here we are going to save conference files
         public JsonResult getSelectedFile()
         {
-            string fdes = Request.Form["name"];
+            string fdes = Request.Form["username"];
             bool isSavedSuccessfully = true;
             string msg = string.Empty;
             string fName = "";
@@ -60,7 +60,7 @@ namespace LissanDhofar_V1.Controllers
                         {
                             confile uf = new confile();
                             uf.filename = fileName1;
-                            uf.filedesc = "";
+                            uf.filedesc = fdes;
                             uf.fdate = DateTime.Now;
                             db.confiles.Add(uf);
                             db.SaveChanges();

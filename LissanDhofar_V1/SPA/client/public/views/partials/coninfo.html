@@ -1,4 +1,5 @@
-﻿<script src="../../../../Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+﻿
+<script src="../../../../../Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
 
 <style>
     #conf-list {
@@ -20,12 +21,14 @@
         border: 1px solid #888 !important;
         color: #222;
     }
+
     .nav-tabs > li.active > a {
         border-bottom: 1px solid #fff !important;
     }
-        .nav-tabs > li > a:hover {
-            border: 1px solid #ccc;
-        }
+
+    .nav-tabs > li > a:hover {
+        border: 1px solid #ccc;
+    }
 
     .nav-tabs > li {
         float: right;
@@ -40,21 +43,123 @@
         border-left: 1px solid #ccc;
         border-right: 1px solid #ccc;
     }
-</style>
 
+    .topBanner {
+        height: 150px;
+        background-color: #277cc0;
+        background-image: url("../../../../../Content/images/sitePattern.png");
+    }
+
+    .siteTitle {
+        border: 1px solid #1d69a6;
+        padding: 10px;
+        background-color: #fff;
+        width: 620px;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        margin-top: 10px;
+        margin-left: -350px;
+    }
+
+        .siteTitle img {
+            width: 600px;
+        }
+
+    .navbar-inverse {
+        background-color: #277cc0;
+        border-color: #ccc;
+    }
+
+    .navbar {
+        border-radius: 0;
+    }
+
+    .nav > li > a {
+        color: #fff !important;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+        .nav > li > a:hover {
+            color: #999 !important;
+        }
+
+    .bottomBanner {
+        margin-top: 40px;
+        padding-top: 20px;
+        color: #fff;
+        font-weight: bold;
+        height: 150px;
+        background-color: #277cc0;
+        background-image: url("../../../../../Content/images/sitePattern.png");
+    }
+
+        .bottomBanner img {
+            width: 50px;
+            height:50px;
+        }
+    .bottomBanner img {
+        width: 100px;
+    }
+    .sitebLogo {
+        border: 1px solid #1d69a6;
+        padding: 10px;
+        background-color: #fff;
+        width: 120px;
+        top: 50%;
+        position: absolute;
+        margin-top: 10px;
+        margin-left: -350px;
+    }
+    
+</style>
 <section id="confInfo" style="background:#f1f1f1;">
-    <div class="container" style="background:#fff;">
+    <div class="topBanner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="siteTitle">
+                    <img src="../../../../../Content/images/Website 1.png" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="topMenu">
+        <nav role="navigation" class="navbar navbar-inverse">
+            <div class="container">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="home">عن المركز</a>
+                    <li><a href="aboutus">إتصل بنا</a>
+                    <li><a class="active" href="products">الصفحة الرئيسية</a>
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+    <div class="container" style="background:#fff; margin-top:-30px;padding:20px 0;">
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
                     <img ng-src="{{conInfo.cimg}}" style="margin:auto; max-height:391px; width:100%;">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <table>
                                 <tr>
-                                    <td>
+                                    <td style="text-align:center;">
                                         <a href="../../../../../download/conf.pdf">
                                             <img src="../../../../../Content/images/pdf-library-rc.jpg" />
+                                            <label>
+                                                ملف المؤتمر
+                                            </label>
+                                        </a>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="../../../../../download/conf.pdf">
+                                            <img src="../../../../../Content/images/pdf-library-rc.jpg" />
+                                            <label>
+                                                ملف التسجيل في المؤتمر
+                                            </label>
                                         </a>
                                     </td>
                                     <!--<td>
@@ -63,6 +168,9 @@
                                         </a>
 
                                     </td>-->
+                                </tr>
+                                <tr>
+                                    <td></td>
                                 </tr>
                             </table>
                         </div>
@@ -79,13 +187,13 @@
                                     <div style="padding:20px;">
                                         <div ng-bind-html="trustAsHtml(conInfo.cdetails)"></div>
                                     </div>
-                                    
+
                                 </uib-tab>
                                 <uib-tab index="1" heading="المحاور">
                                     <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
                                 </uib-tab>
                                 <uib-tab index="2" heading="المستهدفون من المؤتمر">
-                                    <div ng-bind-html="trustAsHtml(conInfo.cmessage)" ></div>
+                                    <div ng-bind-html="trustAsHtml(conInfo.cmessage)"></div>
                                 </uib-tab>
                                 <uib-tab index="3" heading="الجهة المنظمة">
                                     <div ng-bind-html="trustAsHtml(conInfo.corgnizer)"></div>
@@ -95,7 +203,7 @@
                                     <div style="padding:20px;">
                                         <div ng-bind-html="trustAsHtml(conInfo.cfacilities)"></div>
                                     </div>
-                                   
+
                                 </uib-tab>
                                 <uib-tab index="5" heading="التسجيل">
                                     <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
@@ -107,6 +215,44 @@
                         </div>
                     </div>
 
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottomBanner">
+        <div class="row">
+            <div id="bottomWrapper" class="container " style="background-color:#277CC0; border:1px solid #ccc;">
+                <div class="col-md-9">
+                    <table class="ftable">
+                        <tr>
+                            <td style="text-align:left">البريد الألكتروني</td>
+                            <td>info@mecoman.net</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">أرقام الهواتف</td>
+                            <td>
+                                الفاكس\ ٠٠٩٦٨٢٣٣٢٠٠٠٢
+                                <br/>
+                                الهاتف \٠٠٩٦٨٢٣٣٢٠٠٠٠
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">
+                                العنوان
+                            </td>
+                            <td>
+                                مبنى النهضة سنتر - السعادة - الدور الثاني - شقة ٢٣٠
+                                <br />
+                                محافظة ظفار-  سلطنه عمان- صلالة
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-3">
+                    <div class="sitebLogo">
+                        <img src="../../../../../Content/images/siteLogo.png" class="img-responsive" />
+                    </div>
 
                 </div>
             </div>

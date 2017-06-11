@@ -56,7 +56,7 @@ myApp.controller("newsCtrl", ["$scope", "$sce", "conLstService", function ($scop
 
 //--------------------------------------------Conference  controller ---------------------------------------------------------
 
-myApp.controller("conCtrl", ["$scope", "$sce", "conLstService", function ($scope, $sce, conLstService) {
+myApp.controller("conCtrl", ["$scope","$http", "$sce", "conLstService","$location","$window", function ($scope,$http, $sce, conLstService,$location,$window) {
     //get conference to display on the homepage
     //$scope.conHome = {};
     $scope.myInterval = 5000;
@@ -65,7 +65,8 @@ myApp.controller("conCtrl", ["$scope", "$sce", "conLstService", function ($scope
     var slides = $scope.slides = [];
     var currIndex = 0;
 
-
+    //windows redirect to conference detail page
+ 
     getConferenceHome();
 
     function getConferenceHome() {
@@ -206,6 +207,18 @@ myApp.service("conLstService", ["$http", function ($http) {
         });
         return response;
     }
+
+    //get Conference based on ID
+    this.getConfById = function (confId) {
+        var response = $http({
+            url: "/Conference/getConfInfo",
+            method: "GET",
+            params: { confId: confId }
+        });
+        return response;
+    }
+    
+
 }]);
 
 

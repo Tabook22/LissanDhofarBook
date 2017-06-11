@@ -1,37 +1,68 @@
-﻿<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div>
-                <div class="block">
-                    <h2 class="heading">
-                        <span>
-                            {{showArts.post_title}}
-                            <!--الحملة الوطنية لمخاطر تقنية المعلومات-->
-                        </span>
+﻿<!DOCTYPE html>
+<html lang="ar-om" dir="rtl" ng-app="mainApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My ASP.NET Application</title>
+    <!--CSS-->
+    <!--Bootstrap-->
+    <link href="../../../../../Content/bootstrap.min.css" rel="stylesheet" />
 
-                    </h2>
-                    <p style="font-size:9px;font-weight:bold;color:#ccc;">
-                        <span>التاريخ:</span>
-                        <span>{{showArts.post_adate | dateFilter | date:"dd/MM/yyyy"}}</span>
-                    </p>
+    <!--Jquery-->
+    <script src="../../../../../Scripts/jquery-1.10.2.min.js"></script>
 
-                    <div ng-bind-html="trustAsHtml(showArts.post_data)"></div>
-                    <!--<div ng-bind-html="showArts.post_data"></div>-->
-                    <!--{{showArts.post_data"}}-->
+
+    <!--angular library-->
+    <script src="../../../../../Scripts/angular.js"></script>
+    <script src="../../../../../Scripts/angular-ui-router.min.js"></script>
+    <script src="../../../../../Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="../../../../../Scripts/ui-bootstrap-tpls-0.13.0.min.js"></script>
+    <!--customer javascript-->
+    <script src="../../../myApp.js"></script>
+    <script src="../../../controllers/conlstController.js"></script>
+    <!-- Js -->
+    <script src="../../../../../Content/js/vendor/modernizr-2.6.2.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+    
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div>
+                    <div class="block">
+                        <h2 class="heading">
+                            <span>
+                                {{showArts.post_title}}
+                                <!--الحملة الوطنية لمخاطر تقنية المعلومات-->
+                            </span>
+
+                        </h2>
+                        <p style="font-size:9px;font-weight:bold;color:#ccc;">
+                            <span>التاريخ:</span>
+                            <span>{{showArts.post_adate | dateFilter | date:"dd/MM/yyyy"}}</span>
+                        </p>
+
+                        <div ng-bind-html="trustAsHtml(showArts.post_data)"></div>
+                        <!--<div ng-bind-html="showArts.post_data"></div>-->
+                        <!--{{showArts.post_data"}}-->
+                    </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <figure>
+                    <img src="{{showArts.post_img}}" class="img-responsive" style="height:200px;" />
+                    <figcaption style="font-size:10px;font-weight:bold;font-style:italic;color:#888;">{{showArts.post_img_title}}</figcaption>
+                </figure>
+                <!--<img src="{{showArts.post_img}}" class="img-responsive" style="height:200px;" />
+                <p>
+                    <span>{{showArts.post_img_title}}</span>
+                </p>-->
+                <!--<img src="../../../../Content/images/photo/p2.JPG" class="img-responsive" style="height:200px;" />-->
+                <!--<img src="../../../../Content/images/photo/p3.JPG" class="img-responsive" style="height:200px;" />-->
+            </div>
         </div>
-        <div class="col-md-4">
-            <figure>
-                <img src="{{showArts.post_img}}" class="img-responsive" style="height:200px;" />
-                <figcaption style="font-size:10px;font-weight:bold;font-style:italic;color:#888;">{{showArts.post_img_title}}</figcaption>
-            </figure>
-            <!--<img src="{{showArts.post_img}}" class="img-responsive" style="height:200px;" />
-            <p>
-                <span>{{showArts.post_img_title}}</span>
-            </p>-->
-            <!--<img src="../../../../Content/images/photo/p2.JPG" class="img-responsive" style="height:200px;" />-->
-            <!--<img src="../../../../Content/images/photo/p3.JPG" class="img-responsive" style="height:200px;" />-->
         </div>
-    </div>
-</div>
+</body>
+
+</html>

@@ -1,12 +1,4 @@
-﻿<!DocType html>
-<head>
-
-    <!--<link href="../../css/bootstrap.min.css" rel="stylesheet" />
-    <script src="../../js/angular.min.js"></script>
-    <script src="../../js/angular-ui-router.min.js"></script>
-    <script src="../../js/ui-bootstrap-tpls-0.13.0.min.js"></script>
-    <script src="../../../myApp.js"></script>
-    <script src="../../../controllers/conlstController.js"></script>-->
+﻿
 <style>
     .carousel-indicators {
   bottom:5px;
@@ -26,9 +18,10 @@
     .carousel-caption a:link{
         color:#fff;
     }
+    .crImgLnk{
+        cursor:pointer;
+    }
 </style>
-</head>
-<body ng-app="mainApp">
     <section id="slider"  ng-controller="conCtrl">
         <div id="img-s">
             <div class="container">
@@ -41,11 +34,14 @@
                                         <a ui-sref="coninfo({confId:{{slide.confId}}})" style="color:#fff;font-weight:bold;font-size:16px">
                                             <img ng-src="{{slide.cimg}}" style="margin:auto; max-height:391px; width:100%;">
                                         </a>
-                                        
+                                        <!--<a class="crImgLnk" ng-click="goConference(slide.confId)" style="color:#fff;font-weight:bold;font-size:16px">
+                                            <img ng-src="{{slide.cimg}}" style="margin:auto; max-height:391px; width:100%;">
+                                        </a>-->
                                         <div class="carousel-caption" style="background-color:#222;color:#fff;opacity:0.5; margin:0; left:0;right:0; bottom:0;">
                                             <!--<h4>Slide {{$index}}</h4>-->
                                             <p style="font-size:16px;font-weight:bold;color:#fff;">
                                                 <a ui-sref="coninfo({confId:{{slide.confId}}})" style="color:#fff;font-weight:bold;font-size:16px">
+                                              
                                                     {{slide.cTitle}}
                                                 </a>
                                             </p>
@@ -61,5 +57,4 @@
             </div>
         </div>
     </section>
-</body>
-</html>
+

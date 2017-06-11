@@ -1,4 +1,4 @@
-﻿myApp.controller("confController", ["$scope", "$uibModal", "$http", "confService", "imgService", "holder", function ($scope, $uibModal, $http, confService, imgService, holder) {
+﻿myApp.controller("confController", ["$scope", "$uibModal", "$http", "confService", "imgService", "fileService", "holder", function ($scope, $uibModal, $http, confService, imgService, fileService, holder) {
     //Setting Tinymce editor --------------------------------------------------------------------------------------
     $scope.updateHtml = function () {
         $scope.tinymceHtml = $sce.trustAsHtml(ctrl.tinymce);
@@ -139,6 +139,8 @@
     $scope.trustAsHtml = function (html) {
         return $sce.trustAsHtml(html);
     }
+
+
     //******************************************************************************************************
     //modal----------------------------------------------------------------------------------------------- *
     //******************************************************************************************************
@@ -179,6 +181,54 @@
         $scope.animationsEnabled = !$scope.animationsEnabled;
     };
 
+
+    //Get all the uploaded files for conference
+    //Display all uploaded files
+    DisplayConfFiles();
+    function DisplayConfFiles() {
+        var getData = fileService.getAllConFls();
+        getData.then(function (pst) {
+            $scope.selectConfFiles = pst.data;
+        }, function () {
+            alert('Error in getting records');
+        });
+
+    }
+    //$scope.updateCFile = function () {
+    //    alert("أستغفر الله و أتوب إلية");
+    //    var getFile = ($scope.selectedFiles) ? $scope.selectedFiles : "sss";
+    //    alert(getFile);
+    //    $scope.confr.cfile = getFile;
+    //}
+    //$scope.selfiles = {};
+    $scope.checkselection = function (item) {
+        $scope.confr.crfile = item.filename;
+    }
+    $scope.checkselection2 = function (item) {
+        $scope.confr.cfile = item.filename;
+    }
+
+
+    //$scope.GetValue = function (filecon) {
+    //    var fileN = $scope.selectedFiles;
+    //    var fileD = $.grep($scope.selectConfFiles, function (filecon) {
+    //        return filecon.filename == fileN;
+    //    })[0].filename;
+    //    $window.alert("Selected Value: " + fileN + "\nSelected Text: " + fileD);
+    //}
+
+    //$scope.GetValue = function (fruit) {
+    //    var fruitId = $scope.ddlFruits;
+    //    var fruitName = $.grep($scope.Fruits, function (fruit) {
+    //        return fruit.Id == fruitId;
+    //    })[0].Name;
+    //    $window.alert("Selected Value: " + fruitId + "\nSelected Text: " + fruitName);
+    //}
+    //$scope.updateTypecode = function () {
+    //    var a = ($scope.selectedFile) ? $scope.selectedFile : "";
+    //    alert(a);
+    //    $scope.confr.crfile = a;
+    //}
 }]);
 
 //The ModalInstanceCtrl controller will be called when the modal is initiated in the $scope.open = function (...controller: 'ModalInstanceCtrl',..) in postController.
@@ -207,10 +257,10 @@ myApp.controller('uploadFileCtrl', ['$scope', 'Upload', '$timeout', 'fileService
             url: '/uploadFiles/getSelectedFile',
             data: { username: $scope.username, file: file },
         });
-
         file.upload.then(function (response) {
             $timeout(function () {
                 file.result = response.data;
+                DisplayAllConFiles();
             });
         }, function (response) {
             if (response.status > 0)
@@ -219,16 +269,12 @@ myApp.controller('uploadFileCtrl', ['$scope', 'Upload', '$timeout', 'fileService
             // Math.min is to fix IE which reports 200% sometimes
             file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
         });
-
-      
-
+       
     }
     //Display all uploaded files
     DisplayAllConFiles();
         function DisplayAllConFiles() {
-            alert("أستغفر الله و أتوب إلية");
            var getData = fileService.getAllConFls();
-            debugger;
             getData.then(function (pst) {
                 $scope.allFiles = pst.data;
             }, function () {
@@ -242,12 +288,17 @@ myApp.controller('uploadFileCtrl', ['$scope', 'Upload', '$timeout', 'fileService
             if (!confirm) {
                 return false;
             }
-            var getData = fileService.delFiles();
+            var getData = fileService.delFiles(fId);
             getData.then(function (res) {
                 alert(res.data);
+                DisplayAllConFiles();
             }, function () { alert("No file deleted!")});
         }
 }]);
+
+//******************************************************************************************************
+// services
+//******************************************************************************************************
 
 //service to get all the images and put them inside the ui modal for selection
 myApp.service("imgService", function ($http) {
@@ -275,12 +326,11 @@ myApp.service("fileService", function ($http) {
 
     //del file
     this.delFiles = function (fid) {
-        
         var response = $http({
             method: "Get",
             url: "/uploadFiles/delFiles",
             dataType: "Json",
-            params: { id: JSON.stringify(imgid) }
+            params: { id: JSON.stringify(fid) }
         });
         return response;
     };
