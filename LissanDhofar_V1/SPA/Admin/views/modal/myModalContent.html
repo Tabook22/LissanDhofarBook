@@ -15,8 +15,8 @@
 <div class="modal-body" id="modal-body" style="background-color:#E9ECE5;">
     <ul id="imgSlst">
         <li ng-repeat="item in items">
-            <a href="#" ng-click="$event.preventDefault(); selected.item ='UploadedFiles/images/' + item.FileName">
-                <img src="UploadedFiles/images/{{ item.FileName }}" class="img-responsive" style="height:100px;" />
+            <a href="#" ng-click="$event.preventDefault(); selected.item ='/UploadedFiles/images/' + item.FileName">
+                <img src="/UploadedFiles/images/{{ item.FileName }}" class="img-responsive" style="height:100px;" />
             </a>
         </li>
     </ul>

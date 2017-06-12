@@ -112,7 +112,7 @@
         margin-top: 10px;
         margin-left: -350px;
     }
-    
+
 </style>
 <section id="confInfo" style="background:#f1f1f1;">
     <div class="topBanner">
@@ -129,9 +129,9 @@
         <nav role="navigation" class="navbar navbar-inverse">
             <div class="container">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="home">عن المركز</a>
-                    <li><a href="aboutus">إتصل بنا</a>
-                    <li><a class="active" href="products">الصفحة الرئيسية</a>
+                    <li><a ui-sref="home">الصفحة الرئيسية</a>
+                    <!--<li><a href="aboutus">إتصل بنا</a>
+                    <li><a class="active" href="products">الصفحة الرئيسية</a>-->
                 </ul>
             </div>
 
@@ -147,18 +147,20 @@
                             <table>
                                 <tr>
                                     <td style="text-align:center;">
-                                        <a href="../../../../../download/conf.pdf">
+                                        <a href="../../../../../UploadedFiles/conf/{{conInfo.cfile}}">
                                             <img src="../../../../../Content/images/pdf-library-rc.jpg" />
                                             <label>
-                                                ملف المؤتمر
+                                                ملف المؤتمر</br>
+                                                Conference file
                                             </label>
                                         </a>
                                     </td>
                                     <td style="text-align:center;">
-                                        <a href="../../../../../download/conf.pdf">
+                                        <a href="../../../../../UploadedFiles/conf/{{conInfo.crfile}}">
                                             <img src="../../../../../Content/images/pdf-library-rc.jpg" />
                                             <label>
-                                                ملف التسجيل في المؤتمر
+                                                ملف التسجيل في المؤتمر</br>
+                                                Conference Registration
                                             </label>
                                         </a>
                                     </td>
@@ -190,13 +192,19 @@
 
                                 </uib-tab>
                                 <uib-tab index="1" heading="المحاور">
-                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
+                                    <div style="padding:20px;">
+                                        <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
+                                    </div>
                                 </uib-tab>
                                 <uib-tab index="2" heading="المستهدفون من المؤتمر">
-                                    <div ng-bind-html="trustAsHtml(conInfo.cmessage)"></div>
+                                    <div style="padding:20px;">
+                                        <div ng-bind-html="trustAsHtml(conInfo.cmessage)"></div>
+                                    </div>
                                 </uib-tab>
                                 <uib-tab index="3" heading="الجهة المنظمة">
-                                    <div ng-bind-html="trustAsHtml(conInfo.corgnizer)"></div>
+                                    <div style="padding:20px;">
+                                        <div ng-bind-html="trustAsHtml(conInfo.corgnizer)"></div>
+                                    </div>
                                 </uib-tab>
                                 <uib-tab index="4" heading="التسهيلات">
 
@@ -205,12 +213,16 @@
                                     </div>
 
                                 </uib-tab>
-                                <uib-tab index="5" heading="التسجيل">
-                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
-                                </uib-tab>
-                                <uib-tab index="6" heading="English">
-                                    <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
-                                </uib-tab>
+                                <!--<uib-tab index="5" heading="التسجيل">
+                                    <div style="padding:20px;">
+                                        <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
+                                    </div>
+                                </uib-tab>-->
+                                <!--<uib-tab index="6" heading="English">
+                                    <div style="padding:20px;">
+                                        <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
+                                    </div>
+                                </uib-tab>-->
                             </uib-tabset>
                         </div>
                     </div>
@@ -233,7 +245,7 @@
                             <td style="text-align:left">أرقام الهواتف</td>
                             <td>
                                 الفاكس\ ٠٠٩٦٨٢٣٣٢٠٠٠٢
-                                <br/>
+                                <br />
                                 الهاتف \٠٠٩٦٨٢٣٣٢٠٠٠٠
                             </td>
                         </tr>

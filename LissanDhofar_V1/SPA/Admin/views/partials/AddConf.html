@@ -155,32 +155,37 @@
                         </div>-->
                     </uib-tab>
                     <uib-tab index="6" heading="ملفات المؤتمر">
-                        <div class="col-md-6">
-                            <div class="panel panel-default" style="margin-top:20px;">
-                                <div class="panel-heading">الرجاء إختيار ملف تسجيل المؤتمر</div>
-                                <div class="panel-body">
-                                    <select ng-model="selfiles" ng-change="checkselection(selfiles)"
-                                            ng-options="x as x.filedesc for x in selectConfFiles">
-                                        <option value="">Select Account</option>
-                                    </select>
-                                    <h4>وصف الملف: {{selfiles.filedesc}}</h4>
-                                    <input type="text" name="crfile" ng-model="confr.crfile" class="form-control" />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default" style="margin-top:20px;">
+                                    <div class="panel-heading">الرجاء إختيار ملف تسجيل المؤتمر</div>
+                                    <div class="panel-body">
+                                        <select ng-model="selfiles" ng-change="checkselection(selfiles)"
+                                                ng-options="x as x.filedesc for x in selectConfFiles">
+                                            <option value="">Select Account</option>
+                                        </select>
+                                        <h4>وصف الملف: {{selfiles.filedesc}}</h4>
+                                        <input type="text" name="crfile" ng-model="confr.crfile" class="form-control" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="panel panel-default" style="margin-top:20px;">
-                                <div class="panel-heading">الرجاء إختيار الملف</div>
-                                <div class="panel-body">
-                                    <select ng-model="selfiles2" ng-change="checkselection2(selfiles2)"
-                                            ng-options="x as x.filedesc for x in selectConfFiles">
-                                        <option value="">Select Account</option>
-                                    </select>
-                                    <h4>وصف الملف: {{selfiles2.filedesc}}</h4>
-                                    <input type="text" id="cfile" name="cfile" ng-model="confr.cfile" class="form-control" />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default" style="margin-top:20px;">
+                                    <div class="panel-heading">الرجاء إختيار الملف</div>
+                                    <div class="panel-body">
+                                        <select ng-model="selfiles2" ng-change="checkselection2(selfiles2)"
+                                                ng-options="x as x.filedesc for x in selectConfFiles">
+                                            <option value="">Select Account</option>
+                                        </select>
+                                        <h4>وصف الملف: {{selfiles2.filedesc}}</h4>
+                                        <input type="text" id="cfile" name="cfile" ng-model="confr.cfile" class="form-control" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
                     </uib-tab>
                 </uib-tabset>
                 <div class="form-group" style="margin-top:20px;">
@@ -212,13 +217,13 @@
                             <span class="glyphicon sort-icon" ng-show="sortKey=='cTitle'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                         </th>
                     </tr>
-                    <tr dir-paginate="confr in conferences |orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                    <tr dir-paginate="lstconfr in conferences |orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
                         <td style="width:80px;">
-                            <span ng-click="delCon(confr)" class="btnRed"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-                            <span ng-click="editCon(confr)" class="btnAdd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                            <span ng-click="delCon(lstconfr)" class="btnRed"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                            <span ng-click="editCon(lstconfr)" class="btnAdd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
                         </td>
                         <td>
-                            {{confr.cTitle}}
+                            {{lstconfr.cTitle}}
                         </td>
                         <!--<td>
                             {{conf.cdate | dateFilter | date:"dd/MM/yyyy"}}

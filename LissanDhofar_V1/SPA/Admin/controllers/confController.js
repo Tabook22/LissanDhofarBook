@@ -82,10 +82,10 @@
 
 
     //Delete conference
-    $scope.delCon = function (confr) {
-        if (window.confirm('هل تريد حذف المؤتمر الذي عنوانه  ' + conf.cTitle + '?'))//Popup window will open to confirm
+    $scope.delCon = function (lstconfr) {
+        if (window.confirm('هل تريد حذف المؤتمر الذي عنوانه  ' + lstconfr.cTitle + '?'))//Popup window will open to confirm
             //here am getting the selected post for delete
-            var getData = confService.delCon(conf.confId);
+            var getData = confService.delCon(lstconfr.confId);
         getData.then(function (con) {
             getAllConToDisply();
             alert(con.data);
@@ -97,11 +97,11 @@
     };
 
     // Get selected conference for edit
-    $scope.editCon = function (conf) {
+    $scope.editCon = function (lstconf) {
         //here am getting the selected con for editing
-        var getData = confService.getConById(conf.confId);
+        var getData = confService.getConById(lstconf.confId);
         getData.then(function (res) {
-            $scope.selImg.post_img = $scope.confr.cimg;
+            $scope.selImg.post_img = $scope.confr.cimg; //passing conference image to be displayed 
             $scope.confr = res.data;
             $scope.Action = "Update";
         },
@@ -183,7 +183,6 @@
 
 
     //Get all the uploaded files for conference
-    //Display all uploaded files
     DisplayConfFiles();
     function DisplayConfFiles() {
         var getData = fileService.getAllConFls();
@@ -194,41 +193,14 @@
         });
 
     }
-    //$scope.updateCFile = function () {
-    //    alert("أستغفر الله و أتوب إلية");
-    //    var getFile = ($scope.selectedFiles) ? $scope.selectedFiles : "sss";
-    //    alert(getFile);
-    //    $scope.confr.cfile = getFile;
-    //}
-    //$scope.selfiles = {};
+    
     $scope.checkselection = function (item) {
         $scope.confr.crfile = item.filename;
     }
     $scope.checkselection2 = function (item) {
         $scope.confr.cfile = item.filename;
     }
-
-
-    //$scope.GetValue = function (filecon) {
-    //    var fileN = $scope.selectedFiles;
-    //    var fileD = $.grep($scope.selectConfFiles, function (filecon) {
-    //        return filecon.filename == fileN;
-    //    })[0].filename;
-    //    $window.alert("Selected Value: " + fileN + "\nSelected Text: " + fileD);
-    //}
-
-    //$scope.GetValue = function (fruit) {
-    //    var fruitId = $scope.ddlFruits;
-    //    var fruitName = $.grep($scope.Fruits, function (fruit) {
-    //        return fruit.Id == fruitId;
-    //    })[0].Name;
-    //    $window.alert("Selected Value: " + fruitId + "\nSelected Text: " + fruitName);
-    //}
-    //$scope.updateTypecode = function () {
-    //    var a = ($scope.selectedFile) ? $scope.selectedFile : "";
-    //    alert(a);
-    //    $scope.confr.crfile = a;
-    //}
+    
 }]);
 
 //The ModalInstanceCtrl controller will be called when the modal is initiated in the $scope.open = function (...controller: 'ModalInstanceCtrl',..) in postController.
@@ -241,7 +213,7 @@ myApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items
         //$uibModalInstance.close($scope.selected.item);
         //$postController.post.post_img = $scope.selected.item
 
-        holder.set($scope.selected.item);
+        holder.set($scope.selected.item); // here the image comes from the modal template (which found inside views/modal/myModalContent.html
         $uibModalInstance.close($scope.selected.item);
 
     };
