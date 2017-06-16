@@ -130,8 +130,7 @@
     //========================================================================================================================//
     getAllNewsForHomePage();
     function getAllNewsForHomePage() {
-        alert("أستغفر الله و أتوب إلية");
-        debugger;
+        //debugger;
         var getData = newsLstService.allNews();
         debugger;
         getData.then(function (nws) {

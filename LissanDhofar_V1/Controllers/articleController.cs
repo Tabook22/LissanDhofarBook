@@ -20,7 +20,7 @@ namespace LissanDhofar_V1.Controllers
         {
             using (DhofarDb db = new DhofarDb())
             {
-                List<Post> lstPst = db.Posts.Select(x => x).ToList();
+                List<Post> lstPst = db.Posts.Where(x => x.post_status==0).ToList();
                 return Json(lstPst, JsonRequestBehavior.AllowGet);
             }
 

@@ -40,7 +40,6 @@
     $scope.posts = {};
     function getAllPostsToDisply() {
         getDataService.getAllPosts().then(function (response) {
-
             $scope.posts = response.data.pstLst;
             $scope.tPst = response.data.totalPst;
         }, function () {
@@ -102,9 +101,10 @@
             //here am getting the selected post for delete
             var getData = getDataService.delPost(post.PostId);
         getData.then(function (pst) {
+            getAllPostsToDisply();
             cleanFields();
             alert(pst.data);
-            getAllPostsToDisply();
+          
         });
     };
 

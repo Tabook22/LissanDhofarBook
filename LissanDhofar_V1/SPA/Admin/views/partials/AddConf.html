@@ -156,24 +156,37 @@
                     </uib-tab>
                     <uib-tab index="6" heading="ملفات المؤتمر">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-default" style="margin-top:20px;">
-                                    <div class="panel-heading">الرجاء إختيار ملف تسجيل المؤتمر</div>
+                            <div class="col-md-6">
+                                <div class="panel panel-primary" style="margin-top:20px;">
+                                    <div class="panel-heading">الرجاء إختيار ملف تسجيل المؤتمر- النسخة العربية</div>
                                     <div class="panel-body">
-                                        <select ng-model="selfiles" ng-change="checkselection(selfiles)"
+                                        <select ng-model="selfiles1" ng-change="checkselection(selfiles1)"
                                                 ng-options="x as x.filedesc for x in selectConfFiles">
                                             <option value="">Select Account</option>
                                         </select>
-                                        <h4>وصف الملف: {{selfiles.filedesc}}</h4>
+                                        <h4>وصف الملف: {{selfiles1.filedesc}}</h4>
                                         <input type="text" name="crfile" ng-model="confr.crfile" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="panel panel-default" style="margin-top:20px;">
+                                    <div class="panel-heading">الرجاء إختيار ملف تسجيل المؤتمر -  النسخة الأنجليزية</div>
+                                    <div class="panel-body">
+                                        <select ng-model="selfiles3" ng-change="checkselection3(selfiles3)"
+                                                ng-options="x as x.filedesc for x in selectConfFiles">
+                                            <option value="">Select Account</option>
+                                        </select>
+                                        <h4>وصف الملف: {{selfiles3.filedesc}}</h4>
+                                        <input type="text" name="crfileEn" ng-model="confr.crfileEn" class="form-control" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-default" style="margin-top:20px;">
-                                    <div class="panel-heading">الرجاء إختيار الملف</div>
+                            <div class="col-md-6">
+                                <div class="panel panel-primary" style="margin-top:20px;">
+                                    <div class="panel-heading">الرجاء إختيار ملف المؤتمر - النسخة العربية</div>
                                     <div class="panel-body">
                                         <select ng-model="selfiles2" ng-change="checkselection2(selfiles2)"
                                                 ng-options="x as x.filedesc for x in selectConfFiles">
@@ -181,6 +194,19 @@
                                         </select>
                                         <h4>وصف الملف: {{selfiles2.filedesc}}</h4>
                                         <input type="text" id="cfile" name="cfile" ng-model="confr.cfile" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="panel panel-default" style="margin-top:20px;">
+                                    <div class="panel-heading"> الرجاء إختيار ملف المؤتمر - النسخة الإنجليزية</div>
+                                    <div class="panel-body">
+                                        <select ng-model="selfiles4" ng-change="checkselection4(selfiles4)"
+                                                ng-options="x as x.filedesc for x in selectConfFiles">
+                                            <option value="">Select Account</option>
+                                        </select>
+                                        <h4>وصف الملف: {{selfiles4.filedesc}}</h4>
+                                        <input type="text" id="cfileEn" name="cfileEn" ng-model="confr.cfileEn" class="form-control" />
                                     </div>
                                 </div>
                             </div>

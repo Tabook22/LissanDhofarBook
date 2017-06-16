@@ -167,6 +167,7 @@
     <Compile Include="Models\Conference.cs" />
     <Compile Include="Models\confile.cs" />
     <Compile Include="Models\conInfo.cs" />
+    <Compile Include="Models\contact.cs" />
     <Compile Include="Models\DhofarDb.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Post.cs" />
@@ -1400,9 +1401,11 @@
     <Content Include="SPA\client\public\js\wow.min.js" />
     <Content Include="SPA\client\public\views\modal\exampl.html" />
     <Content Include="SPA\client\public\views\partials\carousel.html" />
+    <Content Include="SPA\client\public\views\partials\confLst.html" />
     <Content Include="SPA\client\public\views\partials\coninfo.html" />
     <Content Include="SPA\client\public\views\partials\footer.html" />
     <Content Include="SPA\client\public\views\partials\header.html" />
+    <Content Include="SPA\client\public\views\partials\newEvents.html" />
     <Content Include="SPA\client\public\views\partials\sliderF.html" />
     <Content Include="SPA\client\services\conService.js" />
     <Content Include="SPA\client\public\views\home.html" />
@@ -1418,6 +1421,13 @@
     <Content Include="SPA\client\public\views\test.html" />
     <Content Include="SPA\client\controllers\homeController.js" />
     <Content Include="SPA\client\myApp.js" />
+    <Content Include="SPA\common\commonServices\DataHubServices.js" />
+    <Content Include="SPA\common\commonServices\DataService.js" />
+    <Content Include="SPA\common\commonServices\ValidationServices.js" />
+    <Content Include="SPA\Contacts\contactController.js" />
+    <Content Include="SPA\Contacts\contactsModule.app.js" />
+    <Content Include="SPA\Contacts\contactsService.js" />
+    <Content Include="SPA\Contacts\Directives\contacts.html" />
     <Content Include="SPA\MainController.js" />
     <Content Include="SPA\MyCtrl.js" />
     <Content Include="SPA\postController.js" />

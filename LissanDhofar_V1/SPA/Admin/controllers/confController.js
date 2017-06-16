@@ -200,7 +200,12 @@
     $scope.checkselection2 = function (item) {
         $scope.confr.cfile = item.filename;
     }
-    
+    $scope.checkselection3 = function (item) {
+        $scope.confr.crfileEn = item.filename;
+    }
+    $scope.checkselection4 = function (item) {
+        $scope.confr.cfileEn = item.filename;
+    }
 }]);
 
 //The ModalInstanceCtrl controller will be called when the modal is initiated in the $scope.open = function (...controller: 'ModalInstanceCtrl',..) in postController.

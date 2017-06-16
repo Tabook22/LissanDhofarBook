@@ -103,6 +103,8 @@ namespace LissanDhofar_V1.Controllers
                     conList.cimg = conf.cimg;
                     conList.cfile = conf.cfile;
                     conList.crfile = conf.crfile;
+                    conList.cfileEn = conf.cfileEn;
+                    conList.crfileEn = conf.crfileEn;
                     conList.cstatus = conf.cstatus;
                     db.SaveChanges();
                     string msg = "تمت عملية الإضافة";

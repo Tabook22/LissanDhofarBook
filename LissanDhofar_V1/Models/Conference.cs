@@ -27,10 +27,14 @@ namespace LissanDhofar_V1.Models
         public string corgnizer { get; set; }
         [Display(Name = "محاور المؤتمر")]
         public string cguidelines { get; set; }
-        [Display(Name = "ملف التسجيل")]
+        [Display(Name = "ملف التسجيل العربي")]
         public string crfile { get; set; }
-        [Display(Name = "ملف معلومات المؤتمر")]
+        [Display(Name = "ملف التسجيل الأنجليزي")]
+        public string crfileEn { get; set; }
+        [Display(Name = "ملف معلومات المؤتمر العربي")]
         public string cfile { get; set; }
+        [Display(Name = "ملف معلومات المؤتمر الأنجليزي")]
+        public string cfileEn { get; set; }
         [Display(Name = "نوعية الملف المرفوع")]
         public string ftype { get; set; }
         [Display(Name = "اللغه")]

@@ -164,7 +164,7 @@
                         </th>
                         <th></th>
                     </tr>
-                    <tr dir-paginate="art in postForArt |orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                    <tr dir-paginate="art in postForArt |orderBy:sortKey:reverse|filter:search|itemsPerPage:10">
                         <td>{{$index+1}}</td>
                         <td>{{art.PostId}}</td>
                         <td>{{art.post_title}}</td>
@@ -204,17 +204,23 @@
                             عنوان المقالة
                             <span class="glyphicon sort-icon" ng-show="sortKey=='post_title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                         </th>
-                        <th style="width:100px;" ng-click="sort('post_adate')">
+                        <th ng-click="sort('Location'')">
+                            إسم المجموعة
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='Location'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+<th style="width:100px;" ng-click="sort('post_adate')">
                             تاريخ المقالة
                             <span class="glyphicon sort-icon" ng-show="sortKey=='post_adate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                         </th>
                         <th></th>
+                        <th></th>
                     </tr>
-                    <tr dir-paginate="agr in artPstGroups |orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                    <tr dir-paginate="agr in artPstGroups |orderBy:sortKey:reverse|filter:search|itemsPerPage:10">
                         <td>{{$index+1}}</td>
                         <td>{{agr.PostId}}</td>
                         <td>{{agr.ArticleId}}</td>
                         <td>{{agr.post_title}}</td>
+                        <td>{{agr.Location}}</td>
                         <td>
                             {{agr.post_adate | dateFilter | date:"dd/MM/yyyy"}}
                         </td>

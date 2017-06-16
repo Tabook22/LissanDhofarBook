@@ -19,5 +19,6 @@ namespace LissanDhofar_V1.Models
         public DbSet<Conference> Conferences { get; set; }
         public DbSet<conInfo> conInfos { get; set; }
         public DbSet<confile> confiles { set; get; }
+        public DbSet<contact> contacts { set; get; }
     }
 }

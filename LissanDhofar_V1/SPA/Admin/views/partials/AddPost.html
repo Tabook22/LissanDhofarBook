@@ -49,7 +49,7 @@
                     <!-- Adding Conditional Classes ng-class. The way it works is ng-class="{ <class-you-want> : <expression to be evaluated > }"-->
                     <div class="form-group" ng-class="{ 'has-error' : postForm.post_title.$invalid && !postForm.post_title.$pristine }">
                         <label>الموضوع:</label>
-                        <input type="text" name="post_title" class="form-control" ng-model="post.post_title" required ng-minlength="10" ng-maxlength="100">
+                        <input type="text" name="post_title" class="form-control" ng-model="post.post_title" required ng-minlength="10" ng-maxlength="250">
                         <div class="error-msgs" ng-messages="postForm.post_title.$error">
                             <p ng-message="minlength">العنوان قصير جداً</p>
                             <p ng-message="maxlength">العنوان طويل جداً</p>

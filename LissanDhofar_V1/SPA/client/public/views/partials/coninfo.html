@@ -97,11 +97,13 @@
 
         .bottomBanner img {
             width: 50px;
-            height:50px;
+            height: 50px;
         }
-    .bottomBanner img {
-        width: 100px;
-    }
+
+        .bottomBanner img {
+            width: 100px;
+        }
+
     .sitebLogo {
         border: 1px solid #1d69a6;
         padding: 10px;
@@ -112,7 +114,6 @@
         margin-top: 10px;
         margin-left: -350px;
     }
-
 </style>
 <section id="confInfo" style="background:#f1f1f1;">
     <div class="topBanner">
@@ -129,9 +130,10 @@
         <nav role="navigation" class="navbar navbar-inverse">
             <div class="container">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a ui-sref="home">الصفحة الرئيسية</a>
-                    <!--<li><a href="aboutus">إتصل بنا</a>
-                    <li><a class="active" href="products">الصفحة الرئيسية</a>-->
+                    <li>
+                        <a ui-sref="home">الصفحة الرئيسية</a>
+                        <!--<li><a href="aboutus">إتصل بنا</a>
+                        <li><a class="active" href="products">الصفحة الرئيسية</a>-->
                 </ul>
             </div>
 
@@ -147,20 +149,31 @@
                             <table>
                                 <tr>
                                     <td style="text-align:center;">
+                                        <img src="../../../../../Content/images/pdf-library-rc.jpg" />
                                         <a href="../../../../../UploadedFiles/conf/{{conInfo.cfile}}">
-                                            <img src="../../../../../Content/images/pdf-library-rc.jpg" />
+                                            
                                             <label>
-                                                ملف المؤتمر</br>
-                                                Conference file
+                                                ملف المؤتمر
+
                                             </label>
                                         </a>
+                                        <br />
+                                        <label>
+                                            <a href="../../../../../UploadedFiles/conf/{{conInfo.crfileEn}}">Conference file</a>
+                                        </label>
+
+
                                     </td>
                                     <td style="text-align:center;">
+                                        <img src="../../../../../Content/images/pdf-library-rc.jpg" />
                                         <a href="../../../../../UploadedFiles/conf/{{conInfo.crfile}}">
-                                            <img src="../../../../../Content/images/pdf-library-rc.jpg" />
+                                           
                                             <label>
-                                                ملف التسجيل في المؤتمر</br>
-                                                Conference Registration
+                                                ملف التسجيل في المؤتمر
+                                            </label>
+                                            <br />
+                                            <label>
+                                                <a href="../../../../../UploadedFiles/conf/{{conInfo.crfileEn}}"> Conference Registration</a>
                                             </label>
                                         </a>
                                     </td>
