@@ -101,20 +101,26 @@
             .meta a:hover {
                 color: rgba(0, 0, 0, .87);
             }
+    #slider {
+        background-image:url("../../../../../Content/images/MEC.jpg")
+    }
 </style>
 <section id="slider" ng-controller="conCtrl">
     <div class="container">
         <div class="row">
+            <div style="padding-right:20px;">
+                <h1 class="heading"><span>الفعاليات القادمة</span></h1>
+            </div>
             <div class="col-sm-6 col-md-6 col-lg-6 mt-4" ng-repeat="slide in conHome">
                 <div class="card card-inverse card-info">
                     <img class="card-img-top" ng-src="{{slide.cimg}}">
-                    <div class="card-block">
+                    <div class="card-block" style="background-color:#fff;">
                         <figure class="profile">
                             <img src="../../../../../Content/images/siteLogo.png" class="profile-avatar" alt="">
 
                         </figure>
                         <h3 class="card-title mt-3" style="height:50px;">
-                            <a ui-sref="coninfo({confId:{{slide.confId}}})">{{slide.cTitle}}</a>
+                            <a ui-sref="coninfo({confId:{{slide.confId}}})" style="color:#ff530a;">{{slide.cTitle}}</a>
                         </h3>
 
                         <!--<div ng-bind-html="trustAsHtml(slide.cdetails)" class="card-text" style="font-size:12px;font-weight:normal;height:80px;overflow:hidden;">

@@ -24,8 +24,9 @@
 
     .nav-tabs > li.active > a {
         border-bottom: 1px solid #fff !important;
+        color: #888 !important;
     }
-
+     
     .nav-tabs > li > a:hover {
         border: 1px solid #ccc;
     }
@@ -150,33 +151,44 @@
                                 <tr>
                                     <td style="text-align:center;">
                                         <img src="../../../../../Content/images/pdf-library-rc.jpg" />
-                                        <a href="../../../../../UploadedFiles/conf/{{conInfo.cfile}}">
+                                        <div ng-if="conInfo.cfile">
+                                            <a href="../../../../../UploadedFiles/conf/{{conInfo.cfile}}">
+
+                                                <label>
+                                                    ملف المؤتمر
+
+                                                </label>
+                                            </a>
+                                        </div>
+                                      
+                                        <!--<a href="../../../../../UploadedFiles/conf/{{conInfo.cfile}}">
                                             
                                             <label>
                                                 ملف المؤتمر
 
                                             </label>
-                                        </a>
+                                        </a>-->
                                         <br />
-                                        <label>
-                                            <a href="../../../../../UploadedFiles/conf/{{conInfo.crfileEn}}">Conference file</a>
-                                        </label>
-
-
+                                        <div ng-if="conInfo.cfileEn"><!--Show if conInfo is not empty-->
+                                            <label>
+                                                <a href="../../../../../UploadedFiles/conf/{{conInfo.cfileEn}}">Conference file</a>
+                                            </label>
+                                        </div>
+                                        
                                     </td>
                                     <td style="text-align:center;">
                                         <img src="../../../../../Content/images/pdf-library-rc.jpg" />
-                                        <a href="../../../../../UploadedFiles/conf/{{conInfo.crfile}}">
-                                           
-                                            <label>
-                                                ملف التسجيل في المؤتمر
-                                            </label>
-                                            <br />
-                                            <label>
+                                        <div ng-if="conInfo.crfile">
+                                            <a href="../../../../../UploadedFiles/conf/{{conInfo.crfile}}">
+                                                    ملف التسجيل في المؤتمر
+                                            </a>
+                                        </div>
+                                       
+                                                <br />
+                                        <div ng-if="conInfo.crfileEn">
                                                 <a href="../../../../../UploadedFiles/conf/{{conInfo.crfileEn}}"> Conference Registration</a>
-                                            </label>
-                                        </a>
-                                    </td>
+                                        </div>
+</td>
                                     <!--<td>
                                         <a href="../../../../../download/conf.pdf">
                                             ملف المؤتمر

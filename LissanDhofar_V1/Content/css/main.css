@@ -72,7 +72,7 @@ a:active {
   text-align: center;
   font-weight: 500;
   color: #2E2E2E;
-  padding: 40px 0px;
+  padding: 40px 0px 0px 0px;
   position: relative;
 }
 .heading span {
@@ -145,12 +145,12 @@ nav {
   z-index: 99999;
   width: 100%;
 }
-nav .block {
-  margin-top: -85px;
-  background: #fff;
-  padding: 25px 40px;
-  background: rgba(255, 255, 255, 0.89);
-}
+    nav .block {
+        margin-top: -85px;
+        background: #fff;
+        padding: 25px 40px 5px 40px;
+        background: rgba(255, 255, 255, 0.89);
+    }
 nav .block .navbar-default {
   border: none;
   border-radius: 0px;

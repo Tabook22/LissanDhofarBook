@@ -64,6 +64,38 @@ namespace LissanDhofar_V1.Controllers
 
         }
 
+        //conferences Videos-----------------------------------------------------------------
+        //get all videso
+        public JsonResult getVideos()
+        {
+            using(DhofarDb db=new DhofarDb())
+            {
+                List<ConfVideo> vLsts = db.ConfVideos.Where(x => x.vStatus == "1").ToList(); ;
+                return Json(vLsts, JsonRequestBehavior.AllowGet);
+            }
+           
+        }
+
+        //add videos
+        public JsonResult addVideos(ConfVideo video)
+        {
+            string msg = string.Empty;
+            if (video != null)
+            {
+                using (DhofarDb db = new DhofarDb())
+                {
+                    video.vDate = DateTime.Parse(DateTime.Now.ToShortTimeString());
+                    db.ConfVideos.Add(video);
+                    db.SaveChanges();
+                    msg = "تمت إضافة الفيديو بنجاح";
+                    return Json(msg, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            msg = "حدثت مشكلة أثناء إضافة الفيديو";
+                return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
         //Get partial view slider
         public ActionResult slider()
         {

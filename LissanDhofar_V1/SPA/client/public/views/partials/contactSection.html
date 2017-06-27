@@ -1,24 +1,57 @@
-﻿<section id="contact-us">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="block">
-                    <h1 class="heading wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms"> <span>إتصل بنا</span></h1>
-                    <!--<h3 class="title wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">Sign Up for <span>Email Alerts</span> </h3>-->
-                    <form>
-                        <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="600ms">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Write your full name here...">
-                        </div>
-                        <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="800ms">
-                            <input type="text" class="form-control" placeholder="Write your email address here...">
-                        </div>
-                        <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1000ms">
-                            <textarea class="form-control" rows="3" placeholder="Write your message here..."></textarea>
-                        </div>
-                    </form>
-                    <a class="btn btn-default wow bounceIn" data-wow-duration="500ms" data-wow-delay="1300ms" href="#" role="button">إرسال الرسالة</a>
-                </div>
-            </div><!-- .col-md-12 close -->
-        </div><!-- .row close -->
-    </div><!-- .container close -->
-</section>
+﻿<!--<script src="/Scripts/angular.js"></script>
+<script src="../../../testApp.js"></script>
+<script src="../../../services/ContactsService.js"></script>
+<script src="../../../controllers/contactsController.js"></script>-->
+<style>
+    .msg-error{
+        font-weight:bold;
+        color:red;
+    }
+</style>
+<div ng-app="myApp">
+    <section id="contact-us" ng-controller="contactCtrl">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <h1 class="heading wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms"> <span>إتصل بنا</span></h1>
+                        <!--<h3 class="title wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">Sign Up for <span>Email Alerts</span> </h3>-->
+                       
+                            <form name="contactForm" ng-submit="addContact()" novalidate>
+                                <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="600ms" ng-class="{ 'has-error' :  contactForm.cname.$invalid && !contactForm.cname.$pristine }">
+                                    <input type="text" name="cname" class="form-control" ng-model="contact.cname" required ng-minlength="10" ng-maxlength="250" placeholder="الرجاء كتابة الأسم كاملاً...">
+                                    <!-- this  can be used withoug using ngMessage-->
+                                    <!--<p ng-show="contactForm.cname.$invalid && !contactForm.cname.$pristine" class="msg-error">الأسم مطلوب*</p>
+                                    <p ng-show="contactForm.cname.$error.minlength" class="msg-error">الأسم قصير جداً*</p>
+                                    <p ng-show="contactForm.cname.$error.maxlength" class="msg-error" >الأسم طويل جداً*</p>-->
+
+                                    <!--Here we are using ngMessages to group all the messages in one place, make sure that you make a reference to ngMessages inside the myApp module-->
+                                    <div class="error-msgs" ng-messages="contactForm.cname.$error">
+                                        <p ng-message="minlength" class="msg-error">الإسم قصير جداً</p>
+                                        <p ng-message="maxlength" class="msg-error">الإسم طويل جداً</p>
+                                        <p ng-message="required" class="msg-error">الرجاء كتابة الإسم كاملاً</p>
+                                    </div>
+                                </div>
+                                <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="800ms" ng-class="{ 'has-error' :  contactForm.cemail.$invalid && !contactForm.cemail.$pristine }">
+                                    <input type="email" name="cemail" class="form-control" placeholder="الرجاء كتابة البريد الإلكتروني..." ng-model="contact.cemail" required>
+                                    <!-- this  can be used withoug using ngMessage-->
+                                    <!--<p ng-show="contactForm.cemail.$invalid && !contactForm.cemail.$pristine" class="msg-error">الرجاء كتابة البريد الإلكتروني بشكل صحيح</p>-->
+
+                                    <!--Here we are using ngMessages to group all the messages in one place, make sure that you make a reference to ngMessages inside the myApp module-->
+                                    <div class="error-msgs" ng-messages="contactForm.cemail.$error">
+                                        <p ng-message="required" class="msg-error">الرجاء كتابة البريد الإلكتروني بشكل صحيح</p>
+                                    </div>
+                                </div>
+                                <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1000ms">
+                                    <textarea class="form-control" name="contact.cmsg" rows="3" placeholder="كتابة الرسالة النصية هنا..." ng-model="contact.cmsg"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" ng-disabled="contactForm.$invalid">إرسال</button>
+                                <!--<a type="submit" class="btn btn-default" href="#" role="button">إرسال الرسالة</a>-->
+                            </form>
+                       
+                    </div>
+                </div><!-- .col-md-12 close -->
+            </div><!-- .row close -->
+        </div><!-- .container close -->
+    </section>
+</div>

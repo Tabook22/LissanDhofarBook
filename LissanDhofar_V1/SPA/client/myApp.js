@@ -4,7 +4,7 @@ var myApp; //this is important because if we put it inside the (function(){ var 
 // the id of (function(){})(); is the prevent any variable declaration from beign seen outside on the globale scale, that is good because it will prevent any varialbe conflict
 // because in javascript if we declare any varialbe it will be seen globly, and name conflict can occure, this can be considered a negative thing in javascript 
 (function () {
-    myApp = angular.module("mainApp", ['ui.router', 'ui.bootstrap']);
+    myApp = angular.module("mainApp", ['ui.router', 'ui.bootstrap', 'ngMessages']);
     myApp.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
         
         // default route

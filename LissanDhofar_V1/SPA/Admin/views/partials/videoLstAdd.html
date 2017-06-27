@@ -1,0 +1,72 @@
+﻿<link href="../../../../Content/css/bootstrap.min.css" rel="stylesheet" />
+
+<script src="../../../../Scripts/angular.min.js"></script>
+
+<script src="../../controllers/videoLstAddController.js"></script>
+<script src="../../../../Scripts/ng-youtube-embed.min.js"></script>
+<div class="container" ng-app="myApp">
+    <div ng-controller="videoLstAddCtrl as ctrl">
+        <div>
+            <ul>
+                <li ng-repeat="vd in ctrl.getVideos">
+                    <span>{{vd.vTitle}}</span>
+                    <ng-youtube-embed video="vd.vUrl"
+                                      autoplay="false"
+                                      color="white"
+                                      disablekb="true"
+                                      end="20">
+                    </ng-youtube-embed>
+                </li>
+            </ul>
+        </div>
+        <form class="form-horizontal" ng-submit="ctrl.addVideo(video)" name="formAddVideo" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : formAddVideo.vTitle.$invalid && !formAddVideo.vTitle.$pristine }">
+                <label for="vTitle" class="col-sm-2 control-label">عنوان الفيديو:</label>
+                <div class="col-sm-10">
+                    <input type="text" 
+                           class="form-control" 
+                           name="vTitle" 
+                           placeholder="الرجاء كتابة عنوان للفيديو" 
+                           ng-model="video.vTitle"
+                           ng-required="true">
+
+                    <span class="help-block"
+                          ng-show="formAddVideo.vTitle.$invalid && !formAddVideo.vTitle.$pristine">
+
+                        عنوان الفيديو مطلوب.
+
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="vUrl" class="col-sm-2 control-label">وصلة الفيديو:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="vUrl" placeholder="الرجاء إضافة وصلة الفيديو" ng-model="video.vUrl">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="vDesc" class="col-sm-2 control-label">وصف الفيديو:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="vDesc" placeholder="الرجاء إضافة معلومات الفيديو:" ng-model="video.vDesc">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="vDesc" class="col-sm-2 control-label">الحالة:</label>
+                <div class="col-sm-10">
+                    <input type="checkbox" ng-model="video.vStatus"
+                           ng-true-value="'1'" ng-false-value="'0'">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" ng-disabled="!formAddVideo.$valid" class="form-control btn btn-info">
+
+                    Register
+
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

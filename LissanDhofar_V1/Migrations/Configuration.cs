@@ -9,7 +9,7 @@ namespace LissanDhofar_V1.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(LissanDhofar_V1.Models.DhofarDb context)
