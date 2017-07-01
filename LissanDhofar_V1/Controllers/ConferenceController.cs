@@ -19,7 +19,7 @@ namespace LissanDhofar_V1.Controllers
         {
             using (DhofarDb db = new DhofarDb())
             {
-                var getCon = db.Conferences.Where(x => x.cstatus == "0").ToList();
+                var getCon = db.Conferences.Where(x => x.cstatus == "0" && x.clang=="1").ToList();
                 return Json(getCon, JsonRequestBehavior.AllowGet);
             }
         }

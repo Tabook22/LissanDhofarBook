@@ -154,7 +154,11 @@ myApp.controller("conCtrl", ["$scope","$http", "$sce", "conLstService","$locatio
 myApp.controller("conInfoCtrl", ["$scope", "$sce", "conLstService", "conInfoDetails", "$location", "$anchorScroll", function ($scope, $sce, conLstService, conInfoDetails,$location,$anchorScroll) {
     
     $scope.conInfo = conInfoDetails;
-
+    $scope.go = function (cif) {
+        alert(cif);
+        $location.url('/coninfoEn/' + cif);
+        //$location.path(path);
+    };
     //this function will be used to remove html tags from the details
     $scope.trustAsHtml = function (html) {
         return $sce.trustAsHtml(html);
@@ -164,6 +168,11 @@ myApp.controller("conInfoEnCtrl", ["$scope", "$sce", "conLstService","conInfoDet
 
     $scope.conInfoEn = conInfoDetailsEn;
 
+    $scope.go = function (cif) {
+        alert(cif);
+        $location.url('/coninfo/'+cif);
+        //$location.path(path);
+    };
     //this function will be used to remove html tags from the details
     $scope.trustAsHtml = function (html) {
         return $sce.trustAsHtml(html);
