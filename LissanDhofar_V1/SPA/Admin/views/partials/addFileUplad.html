@@ -62,14 +62,14 @@
                             <tr>
                                 <td>
                                     <input type="file" ngf-select ng-model="picFile" name="file"
-                                           accept="image/*" ngf-max-size="2MB" required
+                                           accept="image/*" ngf-max-size="3MB" required
                                            ngf-model-invalid="errorFile">
                                 </td>
                                 <td>
                                     <i ng-show="myForm.file.$error.required" style="color:red">*required</i><br>
                                     <i ng-show="myForm.file.$error.maxSize" style="color:red;">
                                         File too large
-                                        {{errorFile.size / 1000000|number:1}}MB: max 2M
+                                        {{errorFile.size / 1000000|number:1}}MB: max 3M
                                     </i>
                                 </td>
                             </tr>

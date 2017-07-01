@@ -26,13 +26,13 @@
         border-bottom: 1px solid #fff !important;
         color: #888 !important;
     }
-     
+
     .nav-tabs > li > a:hover {
         border: 1px solid #ccc;
     }
 
     .nav-tabs > li {
-        float: right;
+        /*float: right;*/
     }
 
     .uib-tab a {
@@ -132,7 +132,7 @@
             <div class="container">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a ui-sref="home">الصفحة الرئيسية</a>
+                        <a ui-sref="home">Home Page</a>
                         <!--<li><a href="aboutus">إتصل بنا</a>
                         <li><a class="active" href="products">الصفحة الرئيسية</a>-->
                 </ul>
@@ -144,57 +144,35 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <img ng-src="{{conInfo.cimg}}" style="margin:auto; max-height:391px; width:100%;">
+                    <img ng-src="{{conInfoEn.cimg}}" style="margin:auto; max-height:391px; width:100%;">
                     <div class="row">
                         <div class="col-md-4">
                             <table>
                                 <tr>
                                     <td style="text-align:center;">
                                         <img src="../../../../../Content/images/pdf-library-rc.jpg" />
-                                        <div ng-if="conInfo.cfile">
-                                            <a href="../../../../../UploadedFiles/conf/{{conInfo.cfile}}" target="_blank">
-
-                                                <label>
-                                                    ملف المؤتمر
-
-                                                </label>
-                                            </a>
-                                        </div>
-                                      
-                                        <!--<a href="../../../../../UploadedFiles/conf/{{conInfo.cfile}}">
-                                            
-                                            <label>
-                                                ملف المؤتمر
-
-                                            </label>
-                                        </a>-->
+                                       
+                                        Conference File
+                                       
                                         <br />
-                                        <div ng-if="conInfo.cfileEn"><!--Show if conInfo is not empty-->
+                                        <div ng-if="conInfoEn.cfileEn">
+                                            <!--Show if conInfoEn is not empty-->
                                             <label>
-                                                <a href="../../../../../UploadedFiles/conf/{{conInfo.cfileEn}}" target="_blank">Conference file</a>
+                                                <a href="../../../../../UploadedFiles/conf/{{conInfoEn.cfileEn}}" target="_blank">Conference file</a>
                                             </label>
                                         </div>
-                                        
+
                                     </td>
                                     <td style="text-align:center;">
                                         <img src="../../../../../Content/images/pdf-library-rc.jpg" />
-                                        <div ng-if="conInfo.crfile">
-                                            <a href="../../../../../UploadedFiles/conf/{{conInfo.crfile}}" target="_blank">
-                                                    ملف التسجيل في المؤتمر
-                                            </a>
-                                        </div>
-                                       
-                                                <br />
-                                        <div ng-if="conInfo.crfileEn">
-                                                <a href="../../../../../UploadedFiles/conf/{{conInfo.crfileEn}}" target="_blank"> Conference Registration</a>
-                                        </div>
-</td>
-                                    <!--<td>
-                                        <a href="../../../../../download/conf.pdf">
-                                            ملف المؤتمر
-                                        </a>
+                                        Registartion File
 
-                                    </td>-->
+                                        <br />
+                                        <div ng-if="conInfoEn.crfileEn">
+                                            <a href="../../../../../UploadedFiles/conf/{{conInfoEn.crfileEn}}" target="_blank"> Conference Registration</a>
+                                        </div>
+                                    </td>
+                                   
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -202,7 +180,7 @@
                             </table>
                         </div>
                         <div class="col-md-10">
-                            <!--<h2 style="margin-top:40px; background-color:#EDE9EA;height:50px; padding:5px;"><span style="color:#000;">عنوان المؤتمر :{{conInfo.cTitle}}</span></h2>-->
+                            <!--<h2 style="margin-top:40px; background-color:#EDE9EA;height:50px; padding:5px;"><span style="color:#000;">عنوان المؤتمر :{{conInfoEn.cTitle}}</span></h2>-->
                         </div>
                     </div>
 
@@ -210,42 +188,42 @@
                     <div class="row">
                         <div class="col-md-12">
                             <uib-tabset active="activeForm">
-                                <uib-tab index="0" heading="المقدمة">
+                                <uib-tab index="0" heading="Introduction">
                                     <div style="padding:20px;">
-                                        <div ng-bind-html="trustAsHtml(conInfo.cdetails)"></div>
+                                        <div ng-bind-html="trustAsHtml(conInfoEn.cdetails)"></div>
                                     </div>
 
                                 </uib-tab>
-                                <uib-tab index="1" heading="المحاور">
+                                <uib-tab index="1" heading="GuidLines">
                                     <div style="padding:20px;">
-                                        <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
+                                        <div ng-bind-html="trustAsHtml(conInfoEn.cguidelines)"></div>
                                     </div>
                                 </uib-tab>
-                                <uib-tab index="2" heading="المستهدفون من المؤتمر">
+                                <uib-tab index="2" heading="Register">
                                     <div style="padding:20px;">
-                                        <div ng-bind-html="trustAsHtml(conInfo.cmessage)"></div>
+                                        <div ng-bind-html="trustAsHtml(conInfoEn.cmessage)"></div>
                                     </div>
                                 </uib-tab>
-                                <uib-tab index="3" heading="الجهة المنظمة">
+                                <uib-tab index="3" heading="Organizers">
                                     <div style="padding:20px;">
-                                        <div ng-bind-html="trustAsHtml(conInfo.corgnizer)"></div>
+                                        <div ng-bind-html="trustAsHtml(conInfoEn.corgnizer)"></div>
                                     </div>
                                 </uib-tab>
-                                <uib-tab index="4" heading="التسهيلات">
+                                <uib-tab index="4" heading="Facilities">
 
                                     <div style="padding:20px;">
-                                        <div ng-bind-html="trustAsHtml(conInfo.cfacilities)"></div>
+                                        <div ng-bind-html="trustAsHtml(conInfoEn.cfacilities)"></div>
                                     </div>
 
                                 </uib-tab>
                                 <!--<uib-tab index="5" heading="التسجيل">
                                     <div style="padding:20px;">
-                                        <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
+                                        <div ng-bind-html="trustAsHtml(conInfoEn.cguidelines)"></div>
                                     </div>
                                 </uib-tab>-->
                                 <!--<uib-tab index="6" heading="English">
                                     <div style="padding:20px;">
-                                        <div ng-bind-html="trustAsHtml(conInfo.cguidelines)"></div>
+                                        <div ng-bind-html="trustAsHtml(conInfoEn.cguidelines)"></div>
                                     </div>
                                 </uib-tab>-->
                             </uib-tabset>
@@ -262,27 +240,31 @@
             <div id="bottomWrapper" class="container " style="background-color:#277CC0; border:1px solid #ccc;">
                 <div class="col-md-9">
                     <table class="ftable">
-                        <tr>
-                            <td style="text-align:left">البريد الألكتروني</td>
-                            <td>info@mecoman.net</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align:left">أرقام الهواتف</td>
-                            <td>
-                                الفاكس\ ٠٠٩٦٨٢٣٣٢٠٠٠٢
-                                <br />
-                                الهاتف \٠٠٩٦٨٢٣٣٢٠٠٠٠
-                            </td>
+                        <tr><td style="text-align:left">info@mecoman.net</td>
+                            <td style="text-align:left">E-mail</td>
+                           
                         </tr>
                         <tr>
                             <td style="text-align:left">
-                                العنوان
+    Fax\0096823320002 <!--٠٠٩٦٨٢٣٣٢٠٠٠٢-->
+    <br />
+    Tel. \0096823320000<!--٠٠٩٦٨٢٣٣٢٠٠٠٠-->
+</td>
+                            <td style="text-align:left">Tel. Numbers</td>
+                            
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">
+    Nahda Center - Sada - Second Foor - Flat No. 230
+    <!--مبنى النهضة سنتر - السعادة - الدور الثاني - شقة ٢٣٠-->
+    <br />
+    Dhofar Region- Sultanate of Oman - Salalah
+    <!--محافظة ظفار-  سلطنه عمان- صلالة-->
+</td>
+                            <td style="text-align:left">
+                               Address
                             </td>
-                            <td>
-                                مبنى النهضة سنتر - السعادة - الدور الثاني - شقة ٢٣٠
-                                <br />
-                                محافظة ظفار-  سلطنه عمان- صلالة
-                            </td>
+                            
                         </tr>
                     </table>
                 </div>

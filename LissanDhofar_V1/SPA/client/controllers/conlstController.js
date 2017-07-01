@@ -160,7 +160,15 @@ myApp.controller("conInfoCtrl", ["$scope", "$sce", "conLstService", "conInfoDeta
         return $sce.trustAsHtml(html);
     };
 }]);
+myApp.controller("conInfoEnCtrl", ["$scope", "$sce", "conLstService","conInfoDetailsEn", "$location", "$anchorScroll", function ($scope, $sce, conLstService, conInfoDetailsEn, $location, $anchorScroll) {
 
+    $scope.conInfoEn = conInfoDetailsEn;
+
+    //this function will be used to remove html tags from the details
+    $scope.trustAsHtml = function (html) {
+        return $sce.trustAsHtml(html);
+    };
+}]);
 //Another way to check for our code wither it safe or not, is to define a filter which works in exactly the same way as the trustAsHtml function above:
 //And use it like this:
 //<div ng-bind-html="myHtmlVar | trustAsHtml"></div>

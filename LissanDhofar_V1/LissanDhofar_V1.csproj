@@ -253,6 +253,8 @@
     <Content Include="Content\images\Website 1.png" />
     <Content Include="Content\images\Website 3.png" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\gmaps.js" />
+    <Content Include="Content\js\init.js" />
     <Content Include="Content\js\jquery.nav.js" />
     <Content Include="Content\js\jquery.sticky.js" />
     <Content Include="Content\js\jssor.slider-23.1.6.min.js" />
@@ -293,6 +295,7 @@
     <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\gmaps.js" />
     <Content Include="Scripts\ng-youtube-embed.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-2.5.0.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
@@ -1404,10 +1407,12 @@
     <Content Include="SPA\client\public\js\vendor\jquery-1.10.2.min.js" />
     <Content Include="SPA\client\public\js\vendor\modernizr-2.6.2.min.js" />
     <Content Include="SPA\client\public\js\wow.min.js" />
+    <Content Include="SPA\client\public\views\gmap.html" />
     <Content Include="SPA\client\public\views\modal\exampl.html" />
     <Content Include="SPA\client\public\views\partials\carousel.html" />
     <Content Include="SPA\client\public\views\partials\confLst.html" />
     <Content Include="SPA\client\public\views\partials\coninfo.html" />
+    <Content Include="SPA\client\public\views\partials\coninfoEn.html" />
     <Content Include="SPA\client\public\views\partials\footer.html" />
     <Content Include="SPA\client\public\views\partials\header.html" />
     <Content Include="SPA\client\public\views\partials\newEvents.html" />

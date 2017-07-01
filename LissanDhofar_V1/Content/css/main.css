@@ -1,17 +1,12 @@
 /* var text-decoration */
-@import url('https://fonts.googleapis.com/css?family=Cairo');
-@font-face {
-    font-family: 'Cairo', sans-serif;
-    /*font-family: myfont;*/
-    src: url(../fonts/ufonts.com_tw-cen-mt.ttf);
-}
+@import url('https://fonts.googleapis.com/css?family=Cairo&subset=arabic'); 
 /*--
     Common Css
 --*/
 body {
-  font-family: myfont;
-  font-size: 14px;
-  font-weight: 400;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
 }
 h1,
 h2,
@@ -19,8 +14,8 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0px;
-  font-family: myfont;
+    margin: 0px;
+    font-family: 'Cairo', sans-serif;
 }
 h1 {
   font-size: 36px;
@@ -34,11 +29,11 @@ h3 {
   font-weight: 600;
 }
 p {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  margin: 0px;
-  font-family: myfont;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0px;
+    font-family: 'Cairo', sans-serif;
 }
 ul {
   padding: 0;

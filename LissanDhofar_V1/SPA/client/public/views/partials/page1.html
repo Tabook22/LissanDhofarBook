@@ -77,6 +77,12 @@
         /*height: 60px;
         background-color: #f5f5f5;*/
     }
+    .art-heading {
+        color: #ff530a;
+        font-size: 34px;
+        font-weight: 500;
+        text-align: center;
+    }
 </style>
 
 <div class="topBanner">
@@ -107,7 +113,7 @@
         <div class="col-md-8">
             <div>
                 <div class="block">
-                    <h2 class="heading">
+                    <h2 class="art-heading">
                         <span>
                             {{showArts.post_title}}
                             <!--الحملة الوطنية لمخاطر تقنية المعلومات-->
@@ -119,7 +125,7 @@
                         <span>{{showArts.post_adate | dateFilter | date:"dd/MM/yyyy"}}</span>
                     </p>
                     
-                    <div ng-bind-html="trustAsHtml(showArts.post_data)"></div>
+                    <div ng-bind-html="trustAsHtml(showArts.post_data)" style="line-height:30px;"></div>
                     <!--<div ng-bind-html="showArts.post_data"></div>-->
                     <!--{{showArts.post_data"}}-->
                 </div>

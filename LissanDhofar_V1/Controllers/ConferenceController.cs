@@ -84,6 +84,15 @@ namespace LissanDhofar_V1.Controllers
             return Json(con, JsonRequestBehavior.AllowGet);
         }
 
+        // get conference details which will be in the home page so the visitors can see
+        public JsonResult getConfInfoEn(string confId)
+        {
+            int pid = Convert.ToInt32(confId);
+            DhofarDb db = new DhofarDb();
+            Conference con = db.Conferences.Where(x => x.confId == pid && x.clang =="1").FirstOrDefault();
+            return Json(con, JsonRequestBehavior.AllowGet);
+        }
+
         //Update conference
         public JsonResult updateCon(Conference  conf)
         {
@@ -106,6 +115,7 @@ namespace LissanDhofar_V1.Controllers
                     conList.cfileEn = conf.cfileEn;
                     conList.crfileEn = conf.crfileEn;
                     conList.cstatus = conf.cstatus;
+                    conList.clang = conf.clang;
                     db.SaveChanges();
                     string msg = "تمت عملية الإضافة";
                     return Json(msg, JsonRequestBehavior.AllowGet);

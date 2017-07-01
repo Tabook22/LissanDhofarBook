@@ -68,6 +68,22 @@ var myApp; //this is important because if we put it inside the (function(){ var 
                     }]
                 }
             })
+            .state('coninfoEn', {
+                url: '/coninfoEn/:confId',
+                templateUrl: '/SPA/client/public/views/partials/coninfoEn.html',
+                controller: 'conInfoEnCtrl',
+                resolve: {
+                    conInfoDetailsEn: ['$http', '$stateParams', function ($http, $stateParams) {
+                        return $http({
+                            url: "/Conference/getConfInfoEn",
+                            method: "GET",
+                            params: { confId: $stateParams.confId }
+                        }).then(function (res) {
+                            return res.data;
+                        });
+                    }]
+                }
+            })
             .state('dic', {
                 url: '/dic',
                 templateUrl: '/SPA/client/public/views/partials/dic.html',
