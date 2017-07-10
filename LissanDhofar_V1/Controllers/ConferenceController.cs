@@ -19,7 +19,7 @@ namespace LissanDhofar_V1.Controllers
         {
             using (DhofarDb db = new DhofarDb())
             {
-                var getCon = db.Conferences.Where(x => x.cstatus == "0" && x.clang=="1").ToList();
+                var getCon = db.Conferences.Where(x => x.cstatus == "0").ToList();
                 return Json(getCon, JsonRequestBehavior.AllowGet);
             }
         }
@@ -37,6 +37,18 @@ namespace LissanDhofar_V1.Controllers
             }
 
         }
+
+        public JsonResult getAllcfr()
+        {
+            using (DhofarDb db = new DhofarDb())
+            {
+                List<Conference> lstCon = db.Conferences.Select(x => x).ToList();
+                int totalCon = lstCon.Count();
+                return Json(new { cnfLst = lstCon, totalcn = totalCon }, JsonRequestBehavior.AllowGet);
+                //return Json(lstCon, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         //add new conference
         [HttpPost]
         public JsonResult addNewConf(Conference conf)
@@ -116,6 +128,7 @@ namespace LissanDhofar_V1.Controllers
                     conList.crfileEn = conf.crfileEn;
                     conList.cstatus = conf.cstatus;
                     conList.clang = conf.clang;
+                    conList.ftype = conf.ftype;
                     db.SaveChanges();
                     string msg = "تمت عملية الإضافة";
                     return Json(msg, JsonRequestBehavior.AllowGet);

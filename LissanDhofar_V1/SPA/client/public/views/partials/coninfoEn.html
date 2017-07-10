@@ -150,32 +150,35 @@
                             <table>
                                 <tr>
                                     <td style="text-align:center;">
-                                        <img src="../../../../../Content/images/pdf-library-rc.jpg" />
-                                       
-                                        Conference File
-                                       
-                                        <br />
                                         <div ng-if="conInfoEn.cfileEn">
-                                            <!--Show if conInfoEn is not empty-->
-                                            <label>
-                                                <a href="../../../../../UploadedFiles/conf/{{conInfoEn.cfileEn}}" target="_blank">Conference file</a>
-                                            </label>
+                                            <table>
+                                                <tr>
+                                                    <td><a href="../../../../../UploadedFiles/conf/{{conInfoEn.cfileEn}}" target="_blank">Conference file</a></td>
+                                                    <td><img src="../../../../../Content/images/pdf-library-rc.jpg" style="width:50px;" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
                                         </div>
-
                                     </td>
                                     <td style="text-align:center;">
-                                        <img src="../../../../../Content/images/pdf-library-rc.jpg" />
-                                        Registartion File
-
-                                        <br />
                                         <div ng-if="conInfoEn.crfileEn">
-                                            <a href="../../../../../UploadedFiles/conf/{{conInfoEn.crfileEn}}" target="_blank"> Conference Registration</a>
+                                            <table>
+                                                <tr>
+                                                    <td><a href="../../../../../UploadedFiles/conf/{{conInfoEn.crfileEn}}" target="_blank"> Conference Registration</a></td>
+                                                    <td><img src="../../../../../Content/images/pdf-library-rc.jpg" style="width:50px;" /></td>
+                                                 
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="../../../../../UploadedFiles/conf/e_ agenda_e.pdf" target="_blank"> Electronic Payments Salalah Agenda</a></td>
+                                                    <td><img src="../../../../../Content/images/pdf-library-rc.jpg" style="width:50px;" /></td>
+                                                    
+                                                </tr>
+                                            </table>
                                         </div>
                                     </td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td></td>
                                 </tr>
                             </table>
                         </div>
@@ -216,16 +219,16 @@
                                     </div>
 
                                 </uib-tab>
-                               
-                                    <uib-tab heading="عربي" ng-click="go(conInfoEn.confId)"></uib-tab>
-                                  
 
-                                    <!--<uib-tab index="6" heading="English">
-            <div style="padding:20px;">
-                <div ng-bind-html="trustAsHtml(conInfoEn.cguidelines)"></div>
-            </div>
-        </uib-tab>-->
-</uib-tabset>
+                                <uib-tab heading="عربي" ng-click="go(conInfoEn.ftype)"></uib-tab>
+
+
+                                <!--<uib-tab index="6" heading="English">
+                                    <div style="padding:20px;">
+                                        <div ng-bind-html="trustAsHtml(conInfoEn.cguidelines)"></div>
+                                    </div>
+                                </uib-tab>-->
+                            </uib-tabset>
                         </div>
                     </div>
 
@@ -239,31 +242,32 @@
             <div id="bottomWrapper" class="container " style="background-color:#277CC0; border:1px solid #ccc;">
                 <div class="col-md-9">
                     <table class="ftable">
-                        <tr><td style="text-align:left">info@mecoman.net</td>
+                        <tr>
+                            <td style="text-align:left">info@mecoman.net</td>
                             <td style="text-align:left">E-mail</td>
-                           
+
                         </tr>
                         <tr>
                             <td style="text-align:left">
-    Fax\0096823320002 <!--٠٠٩٦٨٢٣٣٢٠٠٠٢-->
-    <br />
-    Tel. \0096823320000<!--٠٠٩٦٨٢٣٣٢٠٠٠٠-->
-</td>
-                            <td style="text-align:left">Tel. Numbers</td>
-                            
-                        </tr>
-                        <tr>
-                            <td style="text-align:left">
-    Nahda Center - Sada - Second Foor - Flat No. 230
-    <!--مبنى النهضة سنتر - السعادة - الدور الثاني - شقة ٢٣٠-->
-    <br />
-    Dhofar Region- Sultanate of Oman - Salalah
-    <!--محافظة ظفار-  سلطنه عمان- صلالة-->
-</td>
-                            <td style="text-align:left">
-                               Address
+                                Fax\0096823320002 <!--٠٠٩٦٨٢٣٣٢٠٠٠٢-->
+                                <br />
+                                Tel. \0096823320000<!--٠٠٩٦٨٢٣٣٢٠٠٠٠-->
                             </td>
-                            
+                            <td style="text-align:left">Tel. Numbers</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">
+                                Nahda Center - Sada - Second Foor - Flat No. 230
+                                <!--مبنى النهضة سنتر - السعادة - الدور الثاني - شقة ٢٣٠-->
+                                <br />
+                                Dhofar Region- Sultanate of Oman - Salalah
+                                <!--محافظة ظفار-  سلطنه عمان- صلالة-->
+                            </td>
+                            <td style="text-align:left">
+                                Address
+                            </td>
+
                         </tr>
                     </table>
                 </div>

@@ -155,7 +155,6 @@ myApp.controller("conInfoCtrl", ["$scope", "$sce", "conLstService", "conInfoDeta
     
     $scope.conInfo = conInfoDetails;
     $scope.go = function (cif) {
-        alert(cif);
         $location.url('/coninfoEn/' + cif);
         //$location.path(path);
     };
@@ -169,7 +168,6 @@ myApp.controller("conInfoEnCtrl", ["$scope", "$sce", "conLstService","conInfoDet
     $scope.conInfoEn = conInfoDetailsEn;
 
     $scope.go = function (cif) {
-        alert(cif);
         $location.url('/coninfo/'+cif);
         //$location.path(path);
     };

@@ -193,6 +193,18 @@
         });
 
     }
+
+    //Display all the conferences and their information
+    DisplayAllConfrs();
+    function DisplayAllConfrs() {
+        var getData = fileService.getAllCfr();
+        getData.then(function (pst) {
+            $scope.selectCf = pst.data.cnfLst;
+            console.log(JSON.stringify($scope.selectCf ));
+        }, function () {
+            alert('Error in getting records');
+        });
+    }
     
     $scope.checkselection = function (item) {
         $scope.confr.crfile = item.filename;
@@ -205,6 +217,11 @@
     }
     $scope.checkselection4 = function (item) {
         $scope.confr.cfileEn = item.filename;
+    }
+
+    //this is for the arabic version of the conference
+    $scope.checkselection5 = function (item) {
+        $scope.confr.ftype = item;
     }
 }]);
 
@@ -301,6 +318,15 @@ myApp.service("fileService", function ($http) {
         return response;
     };
 
+    //get all conferences from database
+    this.getAllCfr = function () {
+        var response = $http({
+            method: "Get",
+            url: "/conference/getAllcfr",
+            dataType: "Json"
+        });
+        return response;
+    };
     //del file
     this.delFiles = function (fid) {
         var response = $http({

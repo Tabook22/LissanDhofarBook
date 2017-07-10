@@ -5,8 +5,9 @@ var myApp; //this is important because if we put it inside the (function(){ var 
 // because in javascript if we declare any varialbe it will be seen globly, and name conflict can occure, this can be considered a negative thing in javascript 
 (function () {
     myApp = angular.module("mainApp", ['ui.router', 'ui.bootstrap', 'ngMessages']);
+  
     myApp.config(['$urlRouterProvider', '$stateProvider','$locationProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
-        
+        //app.run(['$uiRouter', ($uiRouter) => $uiRouter.stateRegistry.register(state)])
         // default route
         $urlRouterProvider.otherwise('/'); //this is the default route
 
@@ -103,8 +104,14 @@ var myApp; //this is important because if we put it inside the (function(){ var 
         //    enabled: true,
         //    requireBase: true
         //});
-        $locationProvider.html5Mode(true);
-        //$locationProvider.hashPrefix('');
+        //$locationProvider.html5Mode({
+        //    enabled: true,
+        //    requireBase: false
+        //});
+        $locationProvider.html5Mode(false);
+        //$locationProvider.hashPrefix('!');
         
     }]);
+
+   
 })();
